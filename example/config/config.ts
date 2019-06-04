@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 import { IConfig, IPlugin } from 'umi-types';
 import slash from 'slash2';
+=======
+// https://umijs.org/config/
+import os from 'os';
+import { IPlugin, IConfig } from 'umi-types';
+import defaultSettings from './defaultSettings';
+import webpackPlugin from './plugin.config';
+import dartConfig from './dartConfig';
+
+const { pwa, primaryColor } = defaultSettings;
+const { APP_TYPE, TEST } = process.env;
+>>>>>>> add dark seeting
 
 const plugins: IPlugin[] = [
   [
