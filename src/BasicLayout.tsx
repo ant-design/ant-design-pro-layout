@@ -90,7 +90,7 @@ const footerRender = (props: BasicLayoutProps): React.ReactNode => {
     return null;
   }
   if (props.footerRender) {
-    return props.footerRender({ ...props }, <Footer />);
+    return props.footerRender({ ...props });
   }
   return <Footer />;
 };
