@@ -1,6 +1,7 @@
 import { PageHeader, Tabs } from 'antd';
 import React from 'react';
-import { TabsProps } from 'antd/lib/tabs';
+import { TabsProps } from 'antd/es/tabs';
+import { PageHeaderProps } from 'antd/es/page-header';
 import './index.less';
 import GridContent from '../GridContent';
 import RouteContext from '../RouteContext';
@@ -15,9 +16,11 @@ interface PageHeaderTabConfig {
   tabBarExtraContent?: TabsProps['tabBarExtraContent'];
 }
 
-interface PageHeaderWrapperProps extends PageHeaderTabConfig {
+interface PageHeaderWrapperProps
+  extends PageHeaderTabConfig,
+    Omit<PageHeaderProps, 'title'> {
+  title?: React.ReactNode | false;
   content?: React.ReactNode;
-  title?: React.ReactNode;
   extraContent?: React.ReactNode;
   pageHeaderRender?: (props: PageHeaderWrapperProps) => React.ReactNode;
 }
@@ -29,28 +32,31 @@ const prefixedClassName = 'ant-pro-page-header-wrap';
  * In order to be compatible with the old version of the PageHeader
  * basically all the functions are implemented.
  */
-const renderFooter: React.SFC<PageHeaderWrapperProps> = ({
+const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
   tabList,
   tabActiveKey,
   onTabChange,
   tabBarExtraContent,
 }) => {
-  return tabList && tabList.length ? (
-    <Tabs
-      className={`${prefixedClassName}-tabs`}
-      activeKey={tabActiveKey}
-      onChange={key => {
-        if (onTabChange) {
-          onTabChange(key);
-        }
-      }}
-      tabBarExtraContent={tabBarExtraContent}
-    >
-      {tabList.map(item => (
-        <Tabs.TabPane tab={item.tab} key={item.key} />
-      ))}
-    </Tabs>
-  ) : null;
+  if (tabList && tabList.length) {
+    return (
+      <Tabs
+        className={`${prefixedClassName}-tabs`}
+        activeKey={tabActiveKey}
+        onChange={key => {
+          if (onTabChange) {
+            onTabChange(key);
+          }
+        }}
+        tabBarExtraContent={tabBarExtraContent}
+      >
+        {tabList.map(item => (
+          <Tabs.TabPane tab={item.tab} key={item.key} />
+        ))}
+      </Tabs>
+    );
+  }
+  return null;
 };
 
 const renderPageHeader = (
@@ -88,21 +94,28 @@ const defaultPageHeaderRender = (
     extraContent,
     ...restProps
   } = props;
-  if (pageHeaderRender) {
-    return pageHeaderRender(props);
-  }
+
   return (
     <RouteContext.Consumer>
-      {value => (
-        <PageHeader
-          {...value}
-          title={title || value.title}
-          {...restProps}
-          footer={renderFooter(restProps)}
-        >
-          {renderPageHeader(content, extraContent)}
-        </PageHeader>
-      )}
+      {value => {
+        if (pageHeaderRender) {
+          return pageHeaderRender({ ...props, ...value });
+        }
+        let pageHeaderTitle = title;
+        if (!title && title !== false) {
+          pageHeaderTitle = value.title;
+        }
+        return (
+          <PageHeader
+            {...value}
+            title={pageHeaderTitle}
+            {...restProps}
+            footer={renderFooter(restProps)}
+          >
+            {renderPageHeader(content, extraContent)}
+          </PageHeader>
+        );
+      }}
     </RouteContext.Consumer>
   );
 };

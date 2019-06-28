@@ -2,7 +2,6 @@ import * as H from 'history';
 
 import {
   RouteComponentProps as BasicRouteProps,
-  RouteProps,
   match,
 } from 'react-router-dom';
 
@@ -32,14 +31,10 @@ export interface Route extends MenuDataItem {
 }
 export type WithFalse<T> = T | false;
 
-type IncludeRoute = 'component' | 'exact' | 'path';
-
-type RouteType = Pick<RouteProps, IncludeRoute>;
-
-export interface RouterTypes<T extends Record<string, any> = {}, P = {}>
-  extends BasicRouteProps {
+export interface RouterTypes<P> extends Omit<BasicRouteProps, 'location'> {
   computedMatch?: match<P>;
-  route?: RouteType & T;
+  route?: Route;
+  location: BasicRouteProps['location'] | { pathname?: string };
 }
 
 export interface MessageDescriptor {

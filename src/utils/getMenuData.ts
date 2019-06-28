@@ -1,7 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import memoizeOne from 'memoize-one';
-import { MenuDataItem, Route } from '../typings';
-import { BasicLayoutProps } from '../BasicLayout';
+import { MenuDataItem, Route, MessageDescriptor } from '../typings';
 
 import { Settings } from '../defaultSettings';
 
@@ -12,6 +11,7 @@ interface FormatterProps {
   parentName?: string;
   authority?: string[] | string;
 }
+
 // Conversion router to menu.
 function formatter(props: FormatterProps): MenuDataItem[] {
   const { data, menu, formatMessage, authority, parentName } = props;
@@ -54,17 +54,15 @@ const memoizeOneFormatter = memoizeOne(formatter, isEqual);
 /**
  * filter menuData
  */
-const defaultFilterMenuData = (
-  menuData: MenuDataItem[] = [],
-): MenuDataItem[] => {
-  return menuData
+const defaultFilterMenuData = (menuData: MenuDataItem[] = []): MenuDataItem[] =>
+  menuData
     .filter(item => item && item.name && !item.hideInMenu)
     .map(item => {
       if (
         item.children &&
         Array.isArray(item.children) &&
         !item.hideChildrenInMenu &&
-        item.children.some(child => !!child.name)
+        item.children.some(child => child && !!child.name)
       ) {
         const children = defaultFilterMenuData(item.children);
         if (children.length) return { ...item, children };
@@ -72,7 +70,6 @@ const defaultFilterMenuData = (
       return { ...item, children: undefined };
     })
     .filter(item => item);
-};
 
 /**
  * 获取面包屑映射
@@ -103,8 +100,12 @@ const memoizeOneGetBreadcrumbNameMap = memoizeOne(
   isEqual,
 );
 
-export default (routes: Route[], props: BasicLayoutProps) => {
-  const { formatMessage, menu, menuDataRender } = props;
+export default (
+  routes: Route[],
+  menu?: { locale: boolean },
+  formatMessage?: (message: MessageDescriptor) => string,
+  menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[],
+) => {
   let originalMenuData = memoizeOneFormatter({
     data: routes,
     formatMessage,

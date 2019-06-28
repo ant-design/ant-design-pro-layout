@@ -3,7 +3,7 @@ import './index.less';
 import { Icon, Menu } from 'antd';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { MenuMode, MenuTheme } from 'antd/lib/menu';
+import { MenuMode, MenuTheme } from 'antd/es/menu';
 import defaultSettings, { Settings } from '../defaultSettings';
 import { getMenuMatches } from './SiderMenuUtils';
 import { isUrl } from '../utils/utils';
@@ -34,7 +34,12 @@ export interface BaseMenuProps
   theme?: MenuTheme;
   formatMessage?: (message: MessageDescriptor) => string;
   menuItemRender?: WithFalse<
-    (item: MenuDataItem, defaultDom: React.ReactNode) => React.ReactNode
+    (
+      item: MenuDataItem & {
+        isUrl: boolean;
+      },
+      defaultDom: React.ReactNode,
+    ) => React.ReactNode
   >;
 }
 
@@ -110,15 +115,14 @@ export default class BaseMenu extends Component<BaseMenuProps> {
   /**
    * 获得菜单子节点
    */
-  getNavMenuItems = (menusData: MenuDataItem[] = []): React.ReactNode[] => {
-    return menusData
+  getNavMenuItems = (menusData: MenuDataItem[] = []): React.ReactNode[] =>
+    menusData
       .filter(item => item.name && !item.hideInMenu)
       .map(item => this.getSubMenuOrItem(item))
       .filter(item => item);
-  };
 
   // Get the currently selected menu
-  getSelectedMenuKeys = (pathname: string): string[] => {
+  getSelectedMenuKeys = (pathname?: string): string[] => {
     const { flatMenuKeys } = this.props;
     return urlToList(pathname)
       .map(itemPath => getMenuMatches(flatMenuKeys, itemPath).pop())
@@ -132,7 +136,7 @@ export default class BaseMenu extends Component<BaseMenuProps> {
     if (
       Array.isArray(item.children) &&
       !item.hideChildrenInMenu &&
-      item.children.some(child => !!child.name)
+      item.children.some(child => child && !!child.name)
     ) {
       const name = this.getIntlName(item);
       return (
@@ -196,9 +200,9 @@ export default class BaseMenu extends Component<BaseMenuProps> {
         <span>{name}</span>
       </>
     );
-
+    const isHttpUrl = isUrl(itemPath);
     // Is it a http link
-    if (/^https?:\/\//.test(itemPath)) {
+    if (isHttpUrl) {
       defaultItem = (
         <a href={itemPath} target={target}>
           {icon}
@@ -210,6 +214,7 @@ export default class BaseMenu extends Component<BaseMenuProps> {
       return menuItemRender(
         {
           ...item,
+          isUrl: isHttpUrl,
           itemPath,
           replace: itemPath === location.pathname,
           onClick: () => (isMobile ? onCollapse && onCollapse(true) : null),

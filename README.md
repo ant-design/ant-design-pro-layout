@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+English | [简体中文](./README.zh-CN.md) [changelog](./changelog.zh-CN.md)
 
 [![](https://img.shields.io/npm/dw/@ant-design/pro-layout.svg)](https://www.npmjs.com/package/@ant-design/pro-layout) [![npm package](https://img.shields.io/npm/v/@ant-design/pro-layout.svg?style=flat-square?style=flat-square)](https://www.npmjs.com/package/@ant-design/pro-layout) [![](https://img.shields.io/github/issues/ant-design/ant-design-pro-layout.svg)](https://github.com/ant-design/ant-design-pro-layout/issues) [![Dependencies](https://img.shields.io/david/ant-design/ant-design-pro-layout.svg?style=flat-square)](https://david-dm.org/ant-design/ant-design-pro-layout) [![DevDependencies](https://img.shields.io/david/dev/ant-design/ant-design-pro-layout.svg?style=flat-square)](https://david-dm.org/ant-design/ant-design-pro-layout?type=dev)
 
@@ -50,9 +50,11 @@ render(<ProLayout />, document.getElementById('root'));
 | collapsed | control menu's collapse and expansion | boolean | true |
 | onCollapse | folding collapse event of menu | (collapsed: boolean) => void | - |
 | headerRender | custom header render method | (props: BasicLayoutProps) => ReactNode | - |
+| collapsedButtonRender | custom collapsed button method | (collapsed: boolean) => ReactNode | - |
 | footerRender | custom footer render method | (props: BasicLayoutProps) => ReactNode | - |
 | pageTitleRender | custom page title render method | (props: BasicLayoutProps) => ReactNode | - |
 | menuRender | custom menu render method | (props: HeaderViewProps) => ReactNode | - |
+| menuDataRender | The render method of menuData, with the definition of menuData | `(menuData: MenuDataItem[]) => MenuDataItem[]` | - |
 | menuItemRender | the render method of a custom menu item | [(itemProps: MenuDataItem) => ReactNode](#MenuDataItem) | - |
 | route | Used to assist in the generation of menu and bread crumbs. Umi will automatically bring | [route](#Route) | - |
 
@@ -68,6 +70,73 @@ import { SettingDrawer } from '@ant-design/pro-layout';
 | --- | --- | --- | --- |
 | settings | layout settings | [`Settings`](#Settings) | [`Settings`](#Settings) | - |
 | onSettingChange | The setting changes event | (settings: [Settings](#Settings)) => void | - |
+
+### PageHeaderWrapper
+
+PageHeaderWrapper encapsulates the PageHeader component of ant design, adds tabList, and content. Fill in the title and breadcrumb based on the current route. It depends on the route property of the Layout. Of course you can pass in parameters to override the default values. PageHeaderWrapper supports all the attributes of [Tabs](https://ant.design/components/tabs-cn/) and [PageHeader](https://ant.design/components/page-header-cn/).
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| content | Content area | ReactNode | - |
+| extraContent | Extra content area, on the right side of content | ReactNode | - |
+| tabList | Tabs title list | `Array<{key: string, tab: ReactNode}>` | - |
+| tabActiveKey | The currently highlighted tab item | string | - |
+| onTabChange | Switch panel callback | `(key) => void` | - |
+| tabBarExtraContent | Extra elements on the tab bar | React.ReactNode | 无 |
+
+### GridContent
+
+GridContent encapsulates [equal width](https://preview.pro.ant.design/dashboard/analysis?layout=topmenu&contentWidth=Fixed) and [streaming](https://preview.pro.ant.design/dashboard/) The logic of analysis?layout=topmenu). You can see the preview in [preview](https://preview.pro.ant.design/dashboard/analysis).
+
+| Property     | Description  | Type                | Default Value |
+| ------------ | ------------ | ------------------- | ------------- |
+| contentWidth | Content mode | `'Fluid' | 'Fixed'` | -             |
+
+### getMenuData
+
+Generate menuData and breadcrumb based on the router information.
+
+```js
+import { getMenuData } from '@ant-design/pro-layout';
+
+const { breadcrumb, menuData } = getMenuData(
+  routes,
+  menu,
+  formatMessage,
+  menuDataRender,
+);
+```
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| routes | Routing configuration information | [route[]](#Route) | - |
+| menu | Menu configuration item, default `{locale: true}` | `{ locale: boolean }` | - |
+| menuDataRender | The render method of menuData, with the definition of menuData | `(menuData: MenuDataItem[]) => MenuDataItem[]` | - |
+| formatMessage | The formatMessage method of react-intl | `(data: { id: any; defaultMessage?: string }) => string;` | - |
+
+### getPageTitle
+
+```js
+import { getPageTitle } from '@ant-design/pro-layout';
+
+const title = getPageTitle({
+  pathname,
+  breadcrumb,
+  menu,
+  title,
+  formatMessage,
+});
+```
+
+getPageTitle encapsulates the logic based on the title generated on menuData.
+
+| Property | Description | Type | Default Value |
+| --- | --- | --- | --- |
+| pathname | Current pathname | location.pathname | - |
+| breadcrumb | Collection of MenuDataItem | `{ [path: string]: MenuDataItem }` | - |
+| menu | Menu configuration item, default `{locale: true}` | `{ locale: boolean }` | - |
+| title | Type of title | string | 'Ant Design Pro' |
+| formatMessage | The formatMessage method of react-intl | `(data: { id: any; defaultMessage?: string }) => string;` | - |
 
 ## Data Structure
 

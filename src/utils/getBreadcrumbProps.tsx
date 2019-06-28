@@ -1,5 +1,5 @@
 import H from 'history';
-import { BreadcrumbProps as AntdBreadcrumbProps } from 'antd/lib/breadcrumb';
+import { BreadcrumbProps as AntdBreadcrumbProps } from 'antd/es/breadcrumb';
 import React from 'react';
 import pathToRegexp from 'path-to-regexp';
 import { Settings } from '../defaultSettings';
@@ -9,7 +9,11 @@ import { urlToList } from './pathTools';
 export interface BreadcrumbProps {
   breadcrumbList?: { title: string; href: string }[];
   home?: string;
-  location?: H.Location;
+  location?:
+    | H.Location
+    | {
+        pathname?: string;
+      };
   menu?: Settings['menu'];
   breadcrumb?: { [path: string]: MenuDataItem };
   formatMessage?: (message: MessageDescriptor) => string;
@@ -21,9 +25,9 @@ export interface BreadcrumbProps {
 
 // 渲染Breadcrumb 子节点
 // Render the Breadcrumb child node
-const defualtItemRender: AntdBreadcrumbProps['itemRender'] = route => {
-  return <a>{route.breadcrumbName}</a>;
-};
+const defaultItemRender: AntdBreadcrumbProps['itemRender'] = route => (
+  <a>{route.breadcrumbName}</a>
+);
 
 const renderItemLocal = (
   item: MenuDataItem,
@@ -93,7 +97,7 @@ const conversionFromProps = (
 };
 
 const conversionFromLocation = (
-  routerLocation: BreadcrumbProps['location'],
+  routerLocation: BreadcrumbProps['location'] = { pathname: '/' },
   breadcrumb: { [path: string]: MenuDataItem },
   props: BreadcrumbProps,
 ): AntdBreadcrumbProps['routes'] => {
@@ -115,6 +119,7 @@ const conversionFromLocation = (
         ? {
             path: url,
             breadcrumbName: name,
+            component: currentBreadcrumb.component,
           }
         : { path: '', breadcrumbName: '' };
     })
@@ -154,13 +159,15 @@ export const getBreadcrumbProps = (
   props: BreadcrumbProps,
 ): BreadcrumbListReturn => {
   const { breadcrumbRender, itemRender: propsItemRender } = props;
-  const routes = genBreadcrumbProps(props);
-  const itemRender = propsItemRender || defualtItemRender;
+  const routesArray = genBreadcrumbProps(props);
+  const itemRender = propsItemRender || defaultItemRender;
+  let routes = routesArray;
+  // if routes.length =1, don't show it
   if (breadcrumbRender) {
-    return {
-      routes: breadcrumbRender(routes),
-      itemRender,
-    };
+    routes = breadcrumbRender(routes) || [];
+  }
+  if (routes && routes.length < 2) {
+    routes = undefined;
   }
   return {
     routes,

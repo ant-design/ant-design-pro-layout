@@ -1,4 +1,4 @@
-@import '~antd/lib/style/themes/default.less';
+@import '~antd/es/style/themes/default.less';
 
 @top-nav-header-prefix-cls: ~'@{ant-prefix}-pro-top-nav-header';
 
@@ -15,12 +15,14 @@
       height: 100%;
     }
   }
+
   &.light {
     background-color: #fff;
     h1 {
       color: #002140;
     }
   }
+
   &-main {
     display: flex;
     height: @layout-header-height;
@@ -61,8 +63,10 @@
     }
   }
   &-menu {
-    height: @layout-header-height;
-    line-height: @layout-header-height;
-    border: none;
+    .ant-menu.ant-menu-horizontal {
+      height: @layout-header-height;
+      line-height: @layout-header-height;
+      border: none;
+    }
   }
 }

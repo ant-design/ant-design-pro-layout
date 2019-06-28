@@ -4,18 +4,19 @@ import React, { Component } from 'react';
 
 import { Layout } from 'antd';
 import { BasicLayoutProps } from './BasicLayout';
-import GlobalHeader from './GlobalHeader';
+import GlobalHeader, { GlobalHeaderProps } from './GlobalHeader';
 import { Settings } from './defaultSettings';
 import TopNavHeader from './TopNavHeader';
 import { WithFalse } from './typings';
 
 const { Header } = Layout;
 
-export interface HeaderViewProps extends Partial<Settings> {
+export interface HeaderViewProps extends Partial<Settings>, GlobalHeaderProps {
   isMobile?: boolean;
   collapsed?: boolean;
   logo?: React.ReactNode;
   autoHideHeader?: boolean;
+  menuRender?: BasicLayoutProps['menuRender'];
   headerRender?: BasicLayoutProps['headerRender'];
   rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   handleMenuCollapse?: (collapse: boolean) => void;

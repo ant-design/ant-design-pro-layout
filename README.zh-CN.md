@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+[English](./README.md) | 简体中文 [changelog](./changelog.en-US.md)
 
 [![](https://img.shields.io/npm/dw/@ant-design/pro-layout.svg)](https://www.npmjs.com/package/@ant-design/pro-layout) [![npm package](https://img.shields.io/npm/v/@ant-design/pro-layout.svg?style=flat-square?style=flat-square)](https://www.npmjs.com/package/@ant-design/pro-layout) [![](https://img.shields.io/github/issues/ant-design/ant-design-pro-layout.svg)](https://github.com/ant-design/ant-design-pro-layout/issues) [![Dependencies](https://img.shields.io/david/ant-design/ant-design-pro-layout.svg?style=flat-square)](https://david-dm.org/ant-design/ant-design-pro-layout) [![DevDependencies](https://img.shields.io/david/dev/ant-design/ant-design-pro-layout.svg?style=flat-square)](https://david-dm.org/ant-design/ant-design-pro-layout?type=dev)
 
@@ -48,10 +48,12 @@ render(<BasicLayout />, document.getElementById('root'));
 | collapsed | 控制菜单的收起和展开 | boolean | true |
 | onCollapse | 菜单的折叠收起事件 | (collapsed: boolean) => void | - |
 | headerRender | 自定义头的 render 方法 | (props: BasicLayoutProps) => ReactNode | - |
+| collapsedButtonRender | 自定义 collapsed button 的方法 | (collapsed: boolean) => ReactNode | - |
 | footerRender | 自定义页脚的 render 方法 | (props: BasicLayoutProps) => ReactNode | - |
 | pageTitleRender | 自定义页面标题的显示方法 | (props: BasicLayoutProps) => ReactNode | - |
 | menuRender | 自定义菜单的 render 方法 | (props: HeaderViewProps) => ReactNode | - |
 | menuItemRender | 自定义菜单项的 render 方法 | [(itemProps: MenuDataItem) => ReactNode](#MenuDataItem) | - |
+| menuDataRender | menuData 的 render 方法，用来自定义 menuData | `(menuData: MenuDataItem[]) => MenuDataItem[]` | - |
 | route | 用于生成菜单和面包屑。umi 的 Layout 会自动带有 | [route](#Route) | - |
 
 ### SettingDrawer
@@ -62,6 +64,73 @@ render(<BasicLayout />, document.getElementById('root'));
 | --- | --- | --- | --- |
 | settings | layout 的设置 | [`Settings`](#Settings) | [`Settings`](#Settings) | - |
 | onSettingChange | [`Settings`](#Settings) 发生更改事件 | (settings: [`Settings`](#Settings) ) => void | - |
+
+### PageHeaderWrapper
+
+PageHeaderWrapper 封装了 ant design 的 PageHeader 组件，增加了 tabList，和 content。 根据当前的路由填入 title 和 breadcrumb。它依赖 Layout 的 route 属性。当然你可以传入参数来复写默认值。 PageHeaderWrapper 支持 [Tabs](https://ant.design/components/tabs-cn/) 和 [PageHeader](https://ant.design/components/page-header-cn/) 的所有属性。
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| content | 内容区 | ReactNode | - |
+| extraContent | 额外内容区，位于 content 的右侧 | ReactNode | - |
+| tabList | tab 标题列表 | `Array<{key: string, tab: ReactNode}>` | - |
+| tabActiveKey | 当前高亮的 tab 项 | string | - |
+| onTabChange | 切换面板的回调 | `(key) => void` | - |
+| tabBarExtraContent | tab bar 上额外的元素 | React.ReactNode | 无 |
+
+### GridContent
+
+GridContent 封装了 [等宽](https://preview.pro.ant.design/dashboard/analysis?layout=topmenu&contentWidth=Fixed)和 [流式](https://preview.pro.ant.design/dashboard/analysis?layout=topmenu) 的逻辑。你可以在 [preview](https://preview.pro.ant.design/dashboard/analysis) 中查看预览效果。
+
+| 参数         | 说明     | 类型                | 默认值 |
+| ------------ | -------- | ------------------- | ------ |
+| contentWidth | 内容模式 | `'Fluid' | 'Fixed'` | -      |
+
+### getMenuData
+
+根据 router 信息来生成 menuData 和 breadcrumb。
+
+```js
+import { getMenuData } from '@ant-design/pro-layout';
+
+const { breadcrumb, menuData } = getMenuData(
+  routes,
+  menu,
+  formatMessage,
+  menuDataRender,
+);
+```
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| routes | 路由的配置信息 | [route[]](#Route) | - |
+| menu | menu 的配置项，默认 `{locale: true}` | `{ locale: boolean }` | - |
+| menuDataRender | menuData 的 render 方法，用来自定义 menuData | `(menuData: MenuDataItem[]) => MenuDataItem[]` | - |
+| formatMessage | react-intl 的 formatMessage 方法 | `(data: { id: any; defaultMessage?: string }) => string;` | - |
+
+### getPageTitle
+
+getPageTitle 封装了根据 menuData 上生成的 title 的逻辑。
+
+```js
+import { getPageTitle } from '@ant-design/pro-layout';
+
+const title = getPageTitle({
+  pathname,
+  breadcrumb,
+  menu,
+  title,
+  formatMessage,
+});
+```
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| pathname | 当前的 pathname | location.pathname | - |
+| breadcrumb | MenuDataItem 的合集 | `{ [path: string]: MenuDataItem }` | - |
+| menu | menu 的配置项，默认 `{locale: true}` | `{ locale: boolean }` | - |
+| title | title 的类型 | string | 'Ant Design Pro' |
+| formatMessage | react-intl 的 formatMessage 方法 | `(data: { id: any; defaultMessage?: string }) => string;` | - |
 
 ## 数据结构
 

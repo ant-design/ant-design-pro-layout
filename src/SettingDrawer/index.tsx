@@ -18,7 +18,8 @@ import defaultSettings, { Settings } from '../defaultSettings';
 
 import BlockCheckbox from './BlockCheckbox';
 import ThemeColor from './ThemeColor';
-import getLocales from '../locales';
+import getLocales, { getLanguage } from '../locales';
+import { isBrowser } from '../utils/utils';
 
 const { Option } = Select;
 interface BodyProps {
@@ -53,12 +54,14 @@ export interface SettingDrawerProps {
 }
 
 export interface SettingDrawerState extends MergerSettingsType<Settings> {
-  collapse: boolean;
+  collapse?: boolean;
+  language?: string;
 }
 
 class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
   state: SettingDrawerState = {
     collapse: false,
+    language: getLanguage(),
   };
 
   static getDerivedStateFromProps(
@@ -72,6 +75,30 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
     return null;
   }
 
+  componentDidMount(): void {
+    if (isBrowser()) {
+      window.addEventListener('languagechange', this.onLanguageChange, {
+        passive: true,
+      });
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (isBrowser()) {
+      window.removeEventListener('languagechange', this.onLanguageChange);
+    }
+  }
+
+  onLanguageChange = (): void => {
+    const language = getLanguage();
+
+    if (language !== this.state.language) {
+      this.setState({
+        language,
+      });
+    }
+  };
+
   getLayoutSetting = (): SettingItemProps[] => {
     const { settings } = this.props;
     const formatMessage = this.getFormatMessage();
@@ -84,7 +111,7 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
           defaultMessage: 'Content Width',
         }),
         action: (
-          <Select
+          <Select<string>
             value={contentWidth}
             size="small"
             onSelect={value => this.changeSetting('contentWidth', value)}
