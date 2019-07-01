@@ -11,7 +11,7 @@ interface PageHeaderTabConfig {
     key: string;
     tab: string;
   }[];
-  tabActiveKey?: TabsProps['activeKey'];
+  tabDefaultActiveKey?: TabsProps['defaultActiveKey'];
   onTabChange?: TabsProps['onChange'];
   tabBarExtraContent?: TabsProps['tabBarExtraContent'];
 }
@@ -34,7 +34,7 @@ const prefixedClassName = 'ant-pro-page-header-wrap';
  */
 const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
   tabList,
-  tabActiveKey,
+  tabDefaultActiveKey,
   onTabChange,
   tabBarExtraContent,
 }) => {
@@ -42,7 +42,7 @@ const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
     return (
       <Tabs
         className={`${prefixedClassName}-tabs`}
-        activeKey={tabActiveKey}
+        defaultActiveKey={tabDefaultActiveKey}
         onChange={key => {
           if (onTabChange) {
             onTabChange(key);
