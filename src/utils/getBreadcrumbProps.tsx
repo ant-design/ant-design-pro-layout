@@ -2,6 +2,7 @@ import H from 'history';
 import { BreadcrumbProps as AntdBreadcrumbProps } from 'antd/es/breadcrumb';
 import React from 'react';
 import pathToRegexp from 'path-to-regexp';
+import Link from 'umi/link';
 import { Settings } from '../defaultSettings';
 import { MenuDataItem, MessageDescriptor } from '../typings';
 import { urlToList } from './pathTools';
@@ -28,7 +29,7 @@ export interface BreadcrumbProps {
 const defaultItemRender: AntdBreadcrumbProps['itemRender'] = ({
   breadcrumbName,
   path,
-}) => <a href={path}>{breadcrumbName}</a>;
+}) => <Link to={path}>{breadcrumbName}</Link>;
 
 const renderItemLocal = (
   item: MenuDataItem,
