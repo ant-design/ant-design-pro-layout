@@ -27,7 +27,7 @@ export interface GetPageTitleProps {
   formatMessage: (data: { id: any; defaultMessage?: string }) => string;
 }
 
-const getPageTitle = (props: GetPageTitleProps): string => {
+const getPageTitle = (props: GetPageTitleProps): React.ReactNode => {
   const {
     pathname,
     breadcrumb,
