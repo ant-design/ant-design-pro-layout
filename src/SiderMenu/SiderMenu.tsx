@@ -55,7 +55,7 @@ export interface SiderMenuProps
 
 interface SiderMenuState {
   pathname?: string;
-  openKeys?: string[];
+  openKeys?: string[] | false;
   flatMenuKeysLen?: number;
 }
 

@@ -30,7 +30,7 @@ export interface BaseMenuProps
   mode?: MenuMode;
   onCollapse?: (collapsed: boolean) => void;
   onOpenChange?: (openKeys: string[]) => void;
-  openKeys?: string[];
+  openKeys?: WithFalse<string[]>;
   style?: React.CSSProperties;
   theme?: MenuTheme;
   formatMessage?: (message: MessageDescriptor) => string;
@@ -276,6 +276,7 @@ export default class BaseMenu extends Component<BaseMenuProps> {
         openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
       };
     }
+
     const cls = classNames(className, {
       'top-nav-menu': mode === 'horizontal',
     });
