@@ -38,9 +38,6 @@ export const getDefaultCollapsedSubMenus = (
   if (openKeys === false) {
     return false;
   }
-  if (openKeys !== undefined) {
-    return openKeys;
-  }
   return urlToList(location.pathname)
     .map(item => getMenuMatches(flatMenuKeys, item)[0])
     .filter(item => item)

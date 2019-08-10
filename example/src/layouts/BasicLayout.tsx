@@ -38,7 +38,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         logo={logo}
         collapsed={collapsed}
         onCollapse={handleMenuCollapse}
-        openKeys={false}
         menuItemRender={(menuItemProps, defaultDom) =>
           menuItemProps.isUrl ? (
             defaultDom
