@@ -10,6 +10,7 @@ interface PageHeaderTabConfig {
   tabList?: {
     key: string;
     tab: string;
+    disabled?: boolean;
   }[];
   tabActiveKey?: TabsProps['activeKey'];
   onTabChange?: TabsProps['onChange'];
@@ -51,7 +52,11 @@ const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
         tabBarExtraContent={tabBarExtraContent}
       >
         {tabList.map(item => (
-          <Tabs.TabPane tab={item.tab} key={item.key} />
+          <Tabs.TabPane
+            tab={item.tab}
+            key={item.key}
+            disabled={item.disabled || false}
+          />
         ))}
       </Tabs>
     );
