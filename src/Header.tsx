@@ -125,7 +125,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
     const width = this.getHeadWidth();
     return visible ? (
       <Header
-        style={{ padding: 0, width, zIndex: 2 }}
+        style={{ padding: 0, width, zIndex: 9 }}
         className={fixedHeader ? 'ant-pro-fixed-header' : ''}
       >
         {this.renderContent()}
