@@ -212,8 +212,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
    * init variables
    */
   const [isMobile, setIsMobile] = useState<boolean>(
-    useMediaQuery({ maxWidth: 767 }, undefined, match => {
-      setIsMobile(match);
+    useMediaQuery({ maxWidth: 767 }, undefined, (match: boolean) => {
+      if (!props.disableMobile) {
+        setIsMobile(match);
+      }
     }) && !props.disableMobile,
   );
 
