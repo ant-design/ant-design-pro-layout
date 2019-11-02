@@ -1,6 +1,6 @@
 import './BasicLayout.less';
 
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, CSSProperties, useContext } from 'react';
 import { BreadcrumbProps as AntdBreadcrumbProps } from 'antd/es/breadcrumb';
 import { Helmet } from 'react-helmet';
 import { Layout } from 'antd';
@@ -197,7 +197,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     children,
     onCollapse: propsOnCollapse,
     location = { pathname: '/' },
-    fixedHeader,
     fixSiderbar,
     navTheme,
     contentStyle,
@@ -205,6 +204,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     route = {
       routes: [],
     },
+    style,
     siderWidth = 256,
     menu,
     menuDataRender,
@@ -269,6 +269,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     ...props,
     formatMessage,
     breadcrumb,
+    style: undefined,
   };
 
   // gen page title
@@ -286,68 +287,85 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     breadcrumb,
   });
 
+  // render sider dom
+  const siderMenuDom = renderSiderMenu({
+    ...defaultProps,
+    menuData,
+    onCollapse,
+    isMobile,
+    theme: navTheme,
+    collapsed,
+  });
+
+  // render header dom
+  const headerDom = headerRender({
+    ...defaultProps,
+    menuData,
+    isMobile,
+    collapsed,
+    onCollapse,
+  });
+
+  // render footer dom
+  const footerDom = footerRender({
+    isMobile,
+    collapsed,
+    ...defaultProps,
+  });
+  const { isChildrenLayout } = useContext(RouteContext);
+
+  // gen className
+  const className = classNames(
+    getScreenClassName(),
+    'ant-design-pro',
+    'ant-pro-basicLayout',
+    {
+      'ant-pro-basicLayout-topmenu': PropsLayout === 'topmenu',
+      'ant-pro-basicLayout-is-children': isChildrenLayout,
+    },
+  );
+
+  const genLayoutStyle: CSSProperties = {
+    paddingLeft: getPaddingLeft(!!hasLeftPadding, collapsed, siderWidth),
+    height: '100%',
+    position: 'relative',
+  };
+
+  // if is some layout children，don't need min height
+  if (!isChildrenLayout) {
+    genLayoutStyle.minHeight = '100vh';
+  }
+
+  const contentClassName = classNames('ant-pro-basicLayout-content', {
+    'ant-pro-basicLayout-has-header': headerDom,
+  });
+
   return (
     <>
       <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-      <div
-        className={classNames(
-          getScreenClassName(),
-          'ant-design-pro',
-          'basicLayout',
-        )}
-      >
-        <Layout>
-          {renderSiderMenu({
-            ...defaultProps,
-            menuData,
-            onCollapse,
-            isMobile,
-            theme: navTheme,
-            collapsed,
-          })}
-          <Layout
-            style={{
-              paddingLeft: getPaddingLeft(
-                !!hasLeftPadding,
-                collapsed,
-                siderWidth,
-              ),
-              minHeight: '100vh',
-            }}
-          >
-            {headerRender({
-              ...defaultProps,
-              menuData,
-              isMobile,
-              collapsed,
-              onCollapse,
-            })}
-            <Content
-              className="ant-pro-basicLayout-content"
-              style={
-                !fixedHeader ? { paddingTop: 0, ...contentStyle } : contentStyle
-              }
-            >
+      <div className={className}>
+        <Layout style={style}>
+          {siderMenuDom}
+          <Layout style={genLayoutStyle}>
+            {headerDom}
+            <Content className={contentClassName} style={contentStyle}>
               <RouteContext.Provider
                 value={{
                   breadcrumb: breadcrumbProps,
-                  ...props,
+                  ...defaultProps,
                   menuData,
                   isMobile,
                   collapsed,
+                  isChildrenLayout: true,
                   title: pageTitle.split('-')[0].trim(),
                 }}
               >
                 {children}
               </RouteContext.Provider>
             </Content>
-            {footerRender({
-              isMobile,
-              collapsed,
-              ...defaultProps,
-            })}
+            {footerDom}
           </Layout>
         </Layout>
       </div>
