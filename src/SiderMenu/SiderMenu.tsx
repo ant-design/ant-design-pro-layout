@@ -52,7 +52,7 @@ export interface SiderMenuProps
   menuHeaderRender?: WithFalse<
     (logo: React.ReactNode, title: React.ReactNode) => React.ReactNode
   >;
-  breakpoint?: SiderProps['breakpoint'];
+  breakpoint?: SiderProps['breakpoint'] | false;
   onMenuHeaderClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 
   /**
@@ -176,7 +176,7 @@ export default class SiderMenu extends Component<
         collapsible
         trigger={null}
         collapsed={collapsed}
-        breakpoint={breakpoint}
+        breakpoint={breakpoint === false ? undefined : breakpoint}
         onCollapse={collapse => {
           if (firstMount || !isMobile) {
             if (onCollapse) {
