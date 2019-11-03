@@ -76,9 +76,14 @@ export interface BasicLayoutProps
     SiderMenuProps,
     HeaderViewProps,
     Partial<Settings> {
+  /**
+   * logo url
+   */
   logo?: React.ReactNode | WithFalse<() => React.ReactNode>;
   locale?: localeType;
+
   onCollapse?: (collapsed: boolean) => void;
+
   headerRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   footerRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
@@ -86,20 +91,20 @@ export interface BasicLayoutProps
   menuRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
-  contentStyle?: CSSProperties;
-  menuItemRender?: BaseMenuProps['menuItemRender'];
-  pageTitleRender?: WithFalse<typeof defaultGetPageTitle>;
-  formatMessage?: (message: MessageDescriptor) => string;
-  menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[];
   breadcrumbRender?: (
     routers: AntdBreadcrumbProps['routes'],
   ) => AntdBreadcrumbProps['routes'];
+  menuItemRender?: BaseMenuProps['menuItemRender'];
+  pageTitleRender?: WithFalse<typeof defaultGetPageTitle>;
+  menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[];
   itemRender?: AntdBreadcrumbProps['itemRender'];
 
+  formatMessage?: (message: MessageDescriptor) => string;
   /**
    * 是否禁用移动端模式，有的管理系统不需要移动端模式，此属性设置为true即可
    */
   disableMobile?: boolean;
+  contentStyle?: CSSProperties;
 }
 
 const headerRender = (props: BasicLayoutProps): React.ReactNode => {
@@ -192,6 +197,11 @@ const getPaddingLeft = (
   return undefined;
 };
 
+/**
+ * 🌃 Powerful and easy to use beautiful layout
+ * 🏄‍ Support multiple topics and layout types
+ * @param props
+ */
 const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const {
     children,
