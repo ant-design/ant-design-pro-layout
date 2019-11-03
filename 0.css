@@ -2,12 +2,25 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-pro-basicLayout {
+  height: 100%;
+}
+.ant-pro-basicLayout .ant-layout {
+  transition: all 0.2s;
+}
+.ant-pro-basicLayout .ant-layout-header {
+  position: absolute;
+}
 .ant-pro-basicLayout-content {
+  position: relative;
   margin: 24px;
+}
+.ant-pro-basicLayout-content.ant-pro-basicLayout-has-header {
   padding-top: 64px;
 }
-.basicLayout .ant-layout {
-  transition: all 0.2s;
+.ant-pro-basicLayout .ant-pro-basicLayout-is-children,
+.ant-pro-basicLayout .ant-pro-basicLayout-is-children > .ant-layout {
+  height: calc(100vh - 64px);
 }
 
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
@@ -112,7 +125,7 @@
 .ant-pro-sider-menu-sider {
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  min-height: 100%;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }
 .ant-pro-sider-menu-sider.fix-sider-bar {
