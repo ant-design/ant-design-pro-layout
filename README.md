@@ -42,6 +42,7 @@ render(<ProLayout />, document.getElementById('root'));
 | logo | layout top left logo url | ReactNode \| ()=>ReactNode | - |
 | menuHeaderRender | render logo and title | ReactNode \| (logo,title)=>ReactNode | - |
 | onMenuHeaderClick | menu header click event | (e: React.MouseEvent<HTMLDivElement>) => void | - |
+| contentStyle | layout content style | CSSProperties | - |
 | layout | layout menu mode, sidemenu: right navigation, topmenu: top navigation | 'sidemenu' \| 'topmenu' | `'sidemenu'` |
 | contentWidth | content mode of layout, Fluid: fixed width 1200px, Fixed: adaptive | 'Fluid' \| 'Fixed' | `'Fluid'` |
 | navTheme | Navigation menu theme | 'light' \| 'dark' | `'dark'` |
