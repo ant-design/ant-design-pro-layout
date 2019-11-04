@@ -67,7 +67,6 @@
     "not ie <= 10"
   ],
   "dependencies": {
-    "antd": "^3.23.6",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.10",
@@ -105,6 +104,7 @@
     "@types/warning": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@umijs/fabric": "^1.1.10",
+    "antd": "^3.23.6",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.12.2",
     "chalk": "^2.4.2",
@@ -137,6 +137,7 @@
     "umi-types": "^0.5.2"
   },
   "peerDependencies": {
+    "antd": ">=3.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
