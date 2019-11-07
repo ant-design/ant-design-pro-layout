@@ -179,7 +179,7 @@ export default class SiderMenu extends Component<
         breakpoint={breakpoint === false ? undefined : breakpoint}
         onCollapse={collapse => {
           if (firstMount || !isMobile) {
-            if (onCollapse) {
+            if (!firstMount && onCollapse) {
               onCollapse(collapse);
             }
           }
