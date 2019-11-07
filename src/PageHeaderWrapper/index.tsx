@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { TabsProps, TabPaneProps } from 'antd/es/tabs';
 import { PageHeaderProps } from 'antd/es/page-header';
 import './index.less';
+import { Omit } from 'antd/lib/_util/type';
 import GridContent from '../GridContent';
 import RouteContext, { RouteContextType } from '../RouteContext';
 

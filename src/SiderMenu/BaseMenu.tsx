@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { MenuMode, MenuProps } from 'antd/es/menu';
 import { MenuTheme } from 'antd/es/menu/MenuContext';
+import { Omit } from 'antd/lib/_util/type';
 import defaultSettings, { Settings } from '../defaultSettings';
 import { getMenuMatches } from './SiderMenuUtils';
 import { isUrl } from '../utils/utils';
