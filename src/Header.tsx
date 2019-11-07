@@ -132,7 +132,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
     });
 
     return visible ? (
-      <Header style={{ padding: 0, width, zIndex: 2 }} className={className}>
+      <Header style={{ padding: 0, width, zIndex: 9 }} className={className}>
         {this.renderContent()}
       </Header>
     ) : null;
