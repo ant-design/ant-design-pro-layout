@@ -7,6 +7,7 @@ import { Layout } from 'antd';
 import classNames from 'classnames';
 import warning from 'warning';
 import { useMediaQuery } from 'react-responsive';
+import Omit from 'omit.js';
 
 import Header, { HeaderViewProps } from './Header';
 import {
@@ -84,7 +85,9 @@ export interface BasicLayoutProps
 
   onCollapse?: (collapsed: boolean) => void;
 
-  headerRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
+  headerRender?: WithFalse<
+    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+  >;
   footerRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
@@ -95,7 +98,9 @@ export interface BasicLayoutProps
     routers: AntdBreadcrumbProps['routes'],
   ) => AntdBreadcrumbProps['routes'];
   menuItemRender?: BaseMenuProps['menuItemRender'];
-  pageTitleRender?: WithFalse<typeof defaultGetPageTitle>;
+  pageTitleRender?: WithFalse<
+    (props: GetPageTitleProps, defaultPageTitle?: string) => void
+  >;
   menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[];
   itemRender?: AntdBreadcrumbProps['itemRender'];
 
@@ -106,6 +111,8 @@ export interface BasicLayoutProps
   disableMobile?: boolean;
   contentStyle?: CSSProperties;
   isChildrenLayout?: boolean;
+
+  className?: string;
 }
 
 const headerRender = (props: BasicLayoutProps): React.ReactNode => {
@@ -145,11 +152,12 @@ const defaultPageTitleRender = (
   props: BasicLayoutProps,
 ): string => {
   const { pageTitleRender } = props;
+  const defaultPageTitle = defaultGetPageTitle(pageProps);
   if (pageTitleRender === false) {
     return props.title || '';
   }
   if (pageTitleRender) {
-    const title = pageTitleRender(pageProps);
+    const title = pageTitleRender(pageProps, defaultPageTitle);
     if (typeof title === 'string') {
       return title;
     }
@@ -158,7 +166,7 @@ const defaultPageTitleRender = (
       'pro-layout: renderPageTitle return value should be a string',
     );
   }
-  return defaultGetPageTitle(pageProps);
+  return defaultPageTitle;
 };
 
 export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
@@ -277,12 +285,14 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   );
 
   // Splicing parameters, adding menuData and formatMessage in props
-  const defaultProps = {
-    ...props,
-    formatMessage,
-    breadcrumb,
-    style: undefined,
-  };
+  const defaultProps = Omit(
+    {
+      ...props,
+      formatMessage,
+      breadcrumb,
+    },
+    ['className', 'style'],
+  );
 
   // gen page title
   const pageTitle = defaultPageTitleRender(
@@ -295,7 +305,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 
   // gen breadcrumbProps, parameter for pageHeader
   const breadcrumbProps = getBreadcrumbProps({
-    ...props,
+    ...defaultProps,
     breadcrumb,
   });
 
@@ -337,6 +347,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   // gen className
   const className = classNames(
     getScreenClassName(),
+    props.className,
     'ant-design-pro',
     'ant-pro-basicLayout',
     {
