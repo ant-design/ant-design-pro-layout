@@ -115,7 +115,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       );
     }
     if (headerRender) {
-      return headerRender(this.props);
+      return headerRender(this.props, defaultDom);
     }
     return defaultDom;
   };
