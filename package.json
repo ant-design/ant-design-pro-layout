@@ -47,11 +47,6 @@
     "storybook": "start-storybook",
     "test": "umi test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
