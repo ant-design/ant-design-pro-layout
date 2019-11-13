@@ -378,15 +378,15 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         <title>{pageTitle}</title>
       </Helmet>
       <div className={className}>
-        <Layout style={style}>
+        <Layout style={style} hasSider>
           {siderMenuDom}
           <Layout style={genLayoutStyle}>
             {headerDom}
             <Content className={contentClassName} style={contentStyle}>
               <RouteContext.Provider
                 value={{
-                  breadcrumb: breadcrumbProps,
                   ...defaultProps,
+                  breadcrumb: breadcrumbProps,
                   menuData,
                   isMobile,
                   collapsed,
