@@ -1,4 +1,4 @@
-import pathToRegexp from 'path-to-regexp';
+import * as pathToRegexp from 'path-to-regexp';
 import { BaseMenuProps } from './BaseMenu';
 import { MenuDataItem } from '../typings';
 import { urlToList } from '../utils/pathTools';
@@ -26,7 +26,9 @@ export const getMenuMatches = (
   flatMenuKeys: string[] = [],
   path: string,
 ): string[] =>
-  flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
+  flatMenuKeys.filter(
+    item => item && pathToRegexp.pathToRegexp(item).test(path),
+  );
 
 /**
  * 获得菜单子节点

@@ -1,4 +1,4 @@
-import pathToRegexp from 'path-to-regexp';
+import * as pathToRegexp from 'path-to-regexp';
 import { MenuDataItem } from './typings';
 import { Settings } from './defaultSettings';
 
@@ -8,7 +8,7 @@ export const matchParamsPath = (
 ): MenuDataItem => {
   if (breadcrumb) {
     const pathKey = Object.keys(breadcrumb).find(key =>
-      pathToRegexp(key).test(pathname),
+      pathToRegexp.pathToRegexp(key).test(pathname),
     );
     if (pathKey) {
       return breadcrumb[pathKey];
