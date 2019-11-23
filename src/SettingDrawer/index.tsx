@@ -305,7 +305,7 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
         '@primary-color': string;
       };
       theme: 'dark' | 'light';
-    }[] = (window as any).umi_plugin_ant_themeVar;
+    }[] = (window as any).umi_plugin_ant_themeVar || [];
     const themeList = [
       {
         key: 'light',
