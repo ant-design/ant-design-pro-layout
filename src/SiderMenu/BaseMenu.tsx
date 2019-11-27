@@ -1,11 +1,11 @@
 import './index.less';
 
-import { Icon, Menu } from 'antd';
+import { Menu } from 'antd';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { MenuMode, MenuProps } from 'antd/es/menu';
 import { MenuTheme } from 'antd/es/menu/MenuContext';
-import defaultSettings, { Settings } from '../defaultSettings';
+import { Settings } from '../defaultSettings';
 import { getMenuMatches } from './SiderMenuUtils';
 import { isUrl } from '../utils/utils';
 import { urlToList } from '../utils/pathTools';
@@ -47,35 +47,6 @@ export interface BaseMenuProps
 
 const { SubMenu } = Menu;
 
-let IconFont = Icon.createFromIconfontCN({
-  scriptUrl: defaultSettings.iconfontUrl,
-});
-
-// Allow menu.js config icon as string or ReactNode
-//   icon: 'setting',
-//   icon: 'icon-geren' #For Iconfont ,
-//   icon: 'http://demo.com/icon.png',
-//   icon: '/favicon.png',
-//   icon: <Icon type="setting" />,
-const getIcon = (icon?: string | React.ReactNode): React.ReactNode => {
-  if (typeof icon === 'string') {
-    if (isUrl(icon)) {
-      return (
-        <Icon
-          component={() => (
-            <img src={icon} alt="icon" className="ant-pro-sider-menu-icon" />
-          )}
-        />
-      );
-    }
-    if (icon.startsWith('icon-')) {
-      return <IconFont type={icon} />;
-    }
-    return <Icon type={icon} />;
-  }
-  return icon;
-};
-
 export default class BaseMenu extends Component<BaseMenuProps> {
   public static defaultProps: Partial<BaseMenuProps> = {
     flatMenuKeys: [],
@@ -90,29 +61,7 @@ export default class BaseMenu extends Component<BaseMenuProps> {
 
   warp: HTMLDivElement | undefined;
 
-  public constructor(props: BaseMenuProps) {
-    super(props);
-    const { iconfontUrl } = props;
-    // reset IconFont
-    if (iconfontUrl) {
-      IconFont = Icon.createFromIconfontCN({
-        scriptUrl: iconfontUrl,
-      });
-    }
-  }
-
   state = {};
-
-  public static getDerivedStateFromProps(props: BaseMenuProps): null {
-    const { iconfontUrl } = props;
-    // reset IconFont
-    if (iconfontUrl) {
-      IconFont = Icon.createFromIconfontCN({
-        scriptUrl: iconfontUrl,
-      });
-    }
-    return null;
-  }
 
   /**
    * 获得菜单子节点
@@ -150,7 +99,6 @@ export default class BaseMenu extends Component<BaseMenuProps> {
       //  get defaultTitle by menuItemRender
       const defaultTitle = item.icon ? (
         <span>
-          {getIcon(item.icon)}
           <span>{name}</span>
         </span>
       ) : (
@@ -203,7 +151,6 @@ export default class BaseMenu extends Component<BaseMenuProps> {
    */
   getMenuItemPath = (item: MenuDataItem) => {
     const itemPath = this.conversionPath(item.path);
-    const icon = getIcon(item.icon);
     const {
       location = { pathname: '/' },
       isMobile,
@@ -213,18 +160,12 @@ export default class BaseMenu extends Component<BaseMenuProps> {
     const { target } = item;
     // if local is true formatMessage all name。
     const name = this.getIntlName(item);
-    let defaultItem = (
-      <>
-        {icon}
-        <span>{name}</span>
-      </>
-    );
+    let defaultItem = <span>{name}</span>;
     const isHttpUrl = isUrl(itemPath);
     // Is it a http link
     if (isHttpUrl) {
       defaultItem = (
         <a href={itemPath} target={target}>
-          {icon}
           <span>{name}</span>
         </a>
       );

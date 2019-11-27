@@ -1,21 +1,10 @@
 import './index.less';
 
-import {
-  Button,
-  Divider,
-  Drawer,
-  Icon,
-  List,
-  Select,
-  Switch,
-  Tooltip,
-  message,
-} from 'antd';
+import { Divider, Drawer, List, Select, Switch, Tooltip, message } from 'antd';
+import { Close, Setting } from '@ant-design/icons';
 import { createBrowserHistory } from 'history';
 import { stringify, parse } from 'qs';
 import React, { Component } from 'react';
-import CopyToClipboard from 'react-copy-to-clipboard';
-import omit from 'omit.js';
 import defaultSettings, { Settings } from '../defaultSettings';
 
 import BlockCheckbox from './BlockCheckbox';
@@ -442,13 +431,21 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
             className="ant-pro-setting-drawer-handle"
             onClick={this.togglerContent}
           >
-            <Icon
-              type={collapse ? 'close' : 'setting'}
-              style={{
-                color: '#fff',
-                fontSize: 20,
-              }}
-            />
+            {collapse ? (
+              <Close
+                style={{
+                  color: '#fff',
+                  fontSize: 20,
+                }}
+              />
+            ) : (
+              <Setting
+                style={{
+                  color: '#fff',
+                  fontSize: 20,
+                }}
+              />
+            )}
           </div>
         }
         style={{
@@ -530,17 +527,6 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
               ]}
             />
           </Body>
-          <Divider />
-          <CopyToClipboard
-            text={JSON.stringify(omit(settings, ['colorWeak']), null, 2)}
-            onCopy={() =>
-              message.success(formatMessage({ id: 'app.setting.copyinfo' }))
-            }
-          >
-            <Button block icon="copy">
-              {formatMessage({ id: 'app.setting.copy' })}
-            </Button>
-          </CopyToClipboard>
         </div>
       </Drawer>
     );
