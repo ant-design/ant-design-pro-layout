@@ -117,7 +117,7 @@ GridContent 封装了 [等宽](https://preview.pro.ant.design/dashboard/analysis
 
 ### getMenuData
 
-根据 router 信息来生成 menuData 和 breadcrumb。
+根据 router 信息来生成 menuData 和 breadcrumb(Map)。
 
 ```js
 import { getMenuData } from '@ant-design/pro-layout';
@@ -156,7 +156,7 @@ const title = getPageTitle({
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | pathname | 当前的 pathname | location.pathname | - |
-| breadcrumb | MenuDataItem 的合集 | `{ [path: string]: MenuDataItem }` | - |
+| breadcrumb | MenuDataItem 的合集 | `{ [path: string]: MenuDataItem } | Map<string, MenuDataItem>` | - |
 | menu | menu 的配置项，默认 `{locale: true}` | `{ locale: boolean }` | - |
 | title | title 的类型 | string | 'Ant Design Pro' |
 | formatMessage | react-intl 的 formatMessage 方法 | `(data: { id: any; defaultMessage?: string }) => string;` | - |

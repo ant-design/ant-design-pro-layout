@@ -77,8 +77,9 @@ const defaultFilterMenuData = (menuData: MenuDataItem[] = []): MenuDataItem[] =>
  */
 const getBreadcrumbNameMap = (
   menuData: MenuDataItem[],
-): { [key: string]: MenuDataItem } => {
-  const routerMap: { [key: string]: MenuDataItem } = {};
+): Map<string, MenuDataItem> => {
+  // Map is used to ensure the order of keys
+  const routerMap = new Map<string, MenuDataItem>();
   const flattenMenuData: (data: MenuDataItem[]) => void = data => {
     data.forEach(menuItem => {
       if (!menuItem) {
@@ -88,7 +89,7 @@ const getBreadcrumbNameMap = (
         flattenMenuData(menuItem.children);
       }
       // Reduce memory usage
-      routerMap[menuItem.path] = menuItem;
+      routerMap.set(menuItem.path, menuItem);
     });
   };
   flattenMenuData(menuData);

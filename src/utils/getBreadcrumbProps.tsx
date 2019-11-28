@@ -15,7 +15,7 @@ export interface BreadcrumbProps {
         pathname?: string;
       };
   menu?: Settings['menu'];
-  breadcrumb?: { [path: string]: MenuDataItem };
+  breadcrumb?: Map<string, MenuDataItem>;
   formatMessage?: (message: MessageDescriptor) => string;
   breadcrumbRender?: (
     routers: AntdBreadcrumbProps['routes'],
@@ -49,7 +49,7 @@ const renderItemLocal = (
 };
 
 export const getBreadcrumb = (
-  breadcrumb: { [path: string]: MenuDataItem },
+  breadcrumb: Map<string, MenuDataItem>,
   url: string,
 ): MenuDataItem => {
   if (!breadcrumb) {
@@ -57,13 +57,17 @@ export const getBreadcrumb = (
       path: '',
     };
   }
-  let breadcrumbItem = breadcrumb[url];
+  let breadcrumbItem = breadcrumb.get(url);
   if (!breadcrumbItem) {
-    Object.keys(breadcrumb).forEach(item => {
-      if (pathToRegexp(item).test(url)) {
-        breadcrumbItem = breadcrumb[item];
-      }
-    });
+    // Find the first matching path in the order defined by route config
+    // 按照 route config 定义的顺序找到第一个匹配的路径
+    const targetPath = [...breadcrumb.keys()].find(path =>
+      pathToRegexp(path).test(url),
+    );
+
+    if (targetPath) {
+      breadcrumbItem = breadcrumb.get(targetPath);
+    }
   }
   return breadcrumbItem || { path: '' };
 };
@@ -99,7 +103,7 @@ const conversionFromProps = (
 
 const conversionFromLocation = (
   routerLocation: BreadcrumbProps['location'] = { pathname: '/' },
-  breadcrumb: { [path: string]: MenuDataItem },
+  breadcrumb: Map<string, MenuDataItem>,
   props: BreadcrumbProps,
 ): AntdBreadcrumbProps['routes'] => {
   if (!routerLocation) {

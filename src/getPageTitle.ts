@@ -4,14 +4,24 @@ import { Settings } from './defaultSettings';
 
 export const matchParamsPath = (
   pathname: string,
-  breadcrumb?: { [path: string]: MenuDataItem },
+  breadcrumb?: Map<string, MenuDataItem> | { [path: string]: MenuDataItem },
 ): MenuDataItem => {
   if (breadcrumb) {
-    const pathKey = Object.keys(breadcrumb).find(key =>
-      pathToRegexp(key).test(pathname),
-    );
-    if (pathKey) {
-      return breadcrumb[pathKey];
+    if (breadcrumb instanceof Map) {
+      const pathKey = [...breadcrumb.keys()].find(key =>
+        pathToRegexp(key).test(pathname),
+      );
+      if (pathKey) {
+        return breadcrumb.get(pathKey) as MenuDataItem;
+      }
+    } else {
+      const pathKey = Object.keys(breadcrumb).find(key =>
+        pathToRegexp(key).test(pathname),
+      );
+
+      if (pathKey) {
+        return breadcrumb[pathKey];
+      }
     }
   }
   return {
@@ -21,7 +31,7 @@ export const matchParamsPath = (
 
 export interface GetPageTitleProps {
   pathname?: string;
-  breadcrumb?: { [path: string]: MenuDataItem };
+  breadcrumb?: Map<string, MenuDataItem> | { [path: string]: MenuDataItem };
   menu?: Settings['menu'];
   title?: Settings['title'];
   pageName?: string;

@@ -175,7 +175,7 @@ const defaultPageTitleRender = (
 };
 
 export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
-  breadcrumb: { [path: string]: MenuDataItem };
+  breadcrumb: Map<string, MenuDataItem>;
 };
 
 function useCollapsed(

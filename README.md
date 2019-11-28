@@ -123,7 +123,7 @@ GridContent encapsulates [equal width](https://preview.pro.ant.design/dashboard/
 
 ### getMenuData
 
-Generate menuData and breadcrumb based on the router information.
+Generate menuData and breadcrumb(Map) based on the router information.
 
 ```js
 import { getMenuData } from '@ant-design/pro-layout';
