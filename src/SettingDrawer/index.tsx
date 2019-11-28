@@ -1,7 +1,7 @@
 import './index.less';
 
 import { Divider, Drawer, List, Select, Switch, Tooltip, message } from 'antd';
-import { Close, Setting } from '@ant-design/icons';
+import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
 import { createBrowserHistory } from 'history';
 import { stringify, parse } from 'qs';
 import React, { Component } from 'react';
@@ -432,14 +432,14 @@ class SettingDrawer extends Component<SettingDrawerProps, SettingDrawerState> {
             onClick={this.togglerContent}
           >
             {collapse ? (
-              <Close
+              <CloseOutlined
                 style={{
                   color: '#fff',
                   fontSize: 20,
                 }}
               />
             ) : (
-              <Setting
+              <SettingOutlined
                 style={{
                   color: '#fff',
                   fontSize: 20,

@@ -1,7 +1,7 @@
 import './ThemeColor.less';
 
 import { Tooltip } from 'antd';
-import { Check } from '@ant-design/icons';
+import { CheckOutlined } from '@ant-design/icons';
 
 import React from 'react';
 
@@ -14,7 +14,7 @@ export interface TagProps {
 
 const Tag: React.FC<TagProps> = ({ color, check, ...rest }) => (
   <div {...rest} style={{ backgroundColor: color }}>
-    {check ? <Check /> : ''}
+    {check ? <CheckOutlined /> : ''}
   </div>
 );
 

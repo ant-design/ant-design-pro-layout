@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import { Github, Copyright } from '@ant-design/icons';
+import { GithubOutlined, CopyrightOutlined } from '@ant-design/icons';
 import React, { Fragment, CSSProperties } from 'react';
 
 import GlobalFooter from './GlobalFooter';
@@ -16,7 +16,7 @@ const defaultLinks = [
   },
   {
     key: 'github',
-    title: Github,
+    title: GithubOutlined,
     href: 'https://github.com/ant-design/ant-design-pro',
     blankTarget: true,
   },
@@ -56,7 +56,7 @@ const FooterView: React.FC<FooterProps> = ({
       copyright={
         copyright === false ? null : (
           <Fragment>
-            Copyright {<Copyright />} {copyright || defaultCopyright}
+            Copyright {<CopyrightOutlined />} {copyright || defaultCopyright}
           </Fragment>
         )
       }

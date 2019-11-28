@@ -2,7 +2,7 @@ import './index.less';
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { MenuFold, MenuUnfold } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 import debounce from 'lodash/debounce';
 import { HeaderViewProps } from '../Header';
@@ -25,9 +25,9 @@ export interface GlobalHeaderProps {
 
 const defaultRenderCollapsedButton = (collapsed?: boolean) => {
   if (collapsed) {
-    return <MenuUnfold />;
+    return <MenuUnfoldOutlined />;
   }
-  return <MenuFold />;
+  return <MenuFoldOutlined />;
 };
 
 const renderLogo = (
