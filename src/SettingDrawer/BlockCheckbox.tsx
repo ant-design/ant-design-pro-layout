@@ -13,7 +13,7 @@ export interface BlockCheckboxProps {
   }[];
 }
 
-const baseClassName = 'ant-pro-setting-drawer-block-checbox';
+const baseClassName = 'ant-pro-setting-drawer-block-checkbox';
 
 const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
   value,
