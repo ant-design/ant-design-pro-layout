@@ -66,17 +66,17 @@ exports[`settingDrawer.test base user 1`] = `
                   Page style setting
                 </h3>
                 <div
-                  class="ant-pro-setting-drawer-block-checbox"
+                  class="ant-pro-setting-drawer-block-checkbox"
                 >
                   <div
-                    class="ant-pro-setting-drawer-block-checbox-item"
+                    class="ant-pro-setting-drawer-block-checkbox-item"
                   >
                     <img
                       alt="light"
                       src="https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg"
                     />
                     <div
-                      class="ant-pro-setting-drawer-block-checbox-selectIcon"
+                      class="ant-pro-setting-drawer-block-checkbox-selectIcon"
                       style="display:none"
                     >
                       <span
@@ -102,14 +102,14 @@ exports[`settingDrawer.test base user 1`] = `
                     </div>
                   </div>
                   <div
-                    class="ant-pro-setting-drawer-block-checbox-item"
+                    class="ant-pro-setting-drawer-block-checkbox-item"
                   >
                     <img
                       alt="dark"
                       src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg"
                     />
                     <div
-                      class="ant-pro-setting-drawer-block-checbox-selectIcon"
+                      class="ant-pro-setting-drawer-block-checkbox-selectIcon"
                       style="display:block"
                     >
                       <span
@@ -187,17 +187,17 @@ exports[`settingDrawer.test base user 1`] = `
                   Navigation Mode
                 </h3>
                 <div
-                  class="ant-pro-setting-drawer-block-checbox"
+                  class="ant-pro-setting-drawer-block-checkbox"
                 >
                   <div
-                    class="ant-pro-setting-drawer-block-checbox-item"
+                    class="ant-pro-setting-drawer-block-checkbox-item"
                   >
                     <img
                       alt="sidemenu"
                       src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg"
                     />
                     <div
-                      class="ant-pro-setting-drawer-block-checbox-selectIcon"
+                      class="ant-pro-setting-drawer-block-checkbox-selectIcon"
                       style="display:block"
                     >
                       <span
@@ -223,14 +223,14 @@ exports[`settingDrawer.test base user 1`] = `
                     </div>
                   </div>
                   <div
-                    class="ant-pro-setting-drawer-block-checbox-item"
+                    class="ant-pro-setting-drawer-block-checkbox-item"
                   >
                     <img
                       alt="topmenu"
                       src="https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg"
                     />
                     <div
-                      class="ant-pro-setting-drawer-block-checbox-selectIcon"
+                      class="ant-pro-setting-drawer-block-checkbox-selectIcon"
                       style="display:none"
                     >
                       <span
