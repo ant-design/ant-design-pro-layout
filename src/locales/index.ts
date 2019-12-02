@@ -15,7 +15,7 @@ const getLanguage = (): string => {
   // support ssr
   const lang = undefined;
   if (isBrowser()) {
-    window.localStorage.getItem('umi_locale');
+    lang = window.localStorage.getItem('umi_locale');
   }
   return (
     lang ||
