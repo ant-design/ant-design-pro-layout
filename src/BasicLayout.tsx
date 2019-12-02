@@ -175,7 +175,7 @@ const defaultPageTitleRender = (
 };
 
 export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
-  breadcrumb: Map<string, MenuDataItem>;
+  breadcrumb: { [path: string]: MenuDataItem };
 };
 
 function useCollapsed(
@@ -283,7 +283,7 @@ Pro-Layout 在 4.7 中支持了 subMenu 的 render, 会导致 menu 变成蓝色�
   };
 
   const { routes = [] } = route;
-  const { breadcrumb, menuData } = getMenuData(
+  const { breadcrumb, breadcrumbMap, menuData } = getMenuData(
     routes,
     menu,
     formatMessage,
@@ -315,6 +315,7 @@ Pro-Layout 在 4.7 中支持了 subMenu 的 render, 会导致 menu 变成蓝色�
     {
       pathname: location.pathname,
       ...defaultProps,
+      breadcrumbMap,
     },
     props,
   );
@@ -322,7 +323,7 @@ Pro-Layout 在 4.7 中支持了 subMenu 的 render, 会导致 menu 变成蓝色�
   // gen breadcrumbProps, parameter for pageHeader
   const breadcrumbProps = getBreadcrumbProps({
     ...defaultProps,
-    breadcrumb,
+    breadcrumbMap,
   });
   // render sider dom
   const siderMenuDom = renderSiderMenu({
