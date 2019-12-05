@@ -1513,6 +1513,12 @@ html {
   background-color: transparent;
   content: '';
 }
+.ant-menu-item > .ant-badge > a {
+  color: rgba(255, 255, 255, 0.65);
+}
+.ant-menu-item > .ant-badge > a:hover {
+  color: #fff;
+}
 .ant-menu-item-divider {
   height: 1px;
   overflow: hidden;
@@ -1801,7 +1807,7 @@ html {
 .ant-menu-vertical-left .ant-menu-submenu,
 .ant-menu-vertical-right .ant-menu-submenu,
 .ant-menu-inline .ant-menu-submenu {
-  padding-bottom: 0.01px;
+  padding-bottom: 0.02px;
 }
 .ant-menu-vertical .ant-menu-item:not(:last-child),
 .ant-menu-vertical-left .ant-menu-item:not(:last-child),
@@ -2375,6 +2381,7 @@ html {
 .ant-drawer-content {
   position: relative;
   z-index: 1;
+  overflow: auto;
   background-color: #23232e;
   background-clip: padding-box;
   border: 0;
@@ -2425,6 +2432,10 @@ html {
   font-size: 14px;
   line-height: 1.5;
   word-wrap: break-word;
+}
+.ant-drawer-wrapper-body {
+  height: 100%;
+  overflow: auto;
 }
 .ant-drawer-mask {
   position: absolute;
@@ -3442,6 +3453,9 @@ html {
 .ant-btn-group > span > .ant-btn:disabled {
   z-index: 0;
 }
+.ant-btn-group > .ant-btn-icon-only {
+  font-size: 14px;
+}
 .ant-btn-group-lg > .ant-btn,
 .ant-btn-group-lg > span > .ant-btn {
   height: 40px;
@@ -3934,79 +3948,6 @@ a.ant-btn-lg {
 }
 a.ant-btn-sm {
   line-height: 22px;
-}
-
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable no-duplicate-selectors */
-/* stylelint-disable */
-/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
-.ant-message {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 14px;
-  font-variant: tabular-nums;
-  line-height: 1.5;
-  list-style: none;
-  font-feature-settings: 'tnum';
-  position: fixed;
-  top: 16px;
-  left: 0;
-  z-index: 1010;
-  width: 100%;
-  pointer-events: none;
-}
-.ant-message-notice {
-  padding: 8px;
-  text-align: center;
-}
-.ant-message-notice:first-child {
-  margin-top: -8px;
-}
-.ant-message-notice-content {
-  display: inline-block;
-  padding: 10px 16px;
-  background: #23232e;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  pointer-events: all;
-}
-.ant-message-success .anticon {
-  color: #00a854;
-}
-.ant-message-error .anticon {
-  color: #f04134;
-}
-.ant-message-warning .anticon {
-  color: #ffbf00;
-}
-.ant-message-info .anticon,
-.ant-message-loading .anticon {
-  color: #1890ff;
-}
-.ant-message .anticon {
-  position: relative;
-  top: 1px;
-  margin-right: 8px;
-  font-size: 16px;
-}
-.ant-message-notice.move-up-leave.move-up-leave-active {
-  overflow: hidden;
-  animation-name: MessageMoveOut;
-  animation-duration: 0.3s;
-}
-@keyframes MessageMoveOut {
-  0% {
-    max-height: 150px;
-    padding: 8px;
-    opacity: 1;
-  }
-  100% {
-    max-height: 0;
-    padding: 0;
-    opacity: 0;
-  }
 }
 
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
@@ -5434,9 +5375,6 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-select-selection--multiple .ant-select-selection__clear,
 .ant-select-selection--multiple .ant-select-arrow {
   top: 16px;
-}
-.ant-select-allow-clear .ant-select-selection--single .ant-select-selection-selected-value {
-  padding-right: 16px;
 }
 .ant-select-allow-clear .ant-select-selection--multiple .ant-select-selection__rendered,
 .ant-select-show-arrow .ant-select-selection--multiple .ant-select-selection__rendered {
@@ -9162,6 +9100,79 @@ textarea.ant-pagination-options-quick-jumper input {
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-message {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: fixed;
+  top: 16px;
+  left: 0;
+  z-index: 1010;
+  width: 100%;
+  pointer-events: none;
+}
+.ant-message-notice {
+  padding: 8px;
+  text-align: center;
+}
+.ant-message-notice:first-child {
+  margin-top: -8px;
+}
+.ant-message-notice-content {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #23232e;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: all;
+}
+.ant-message-success .anticon {
+  color: #00a854;
+}
+.ant-message-error .anticon {
+  color: #f04134;
+}
+.ant-message-warning .anticon {
+  color: #ffbf00;
+}
+.ant-message-info .anticon,
+.ant-message-loading .anticon {
+  color: #1890ff;
+}
+.ant-message .anticon {
+  position: relative;
+  top: 1px;
+  margin-right: 8px;
+  font-size: 16px;
+}
+.ant-message-notice.move-up-leave.move-up-leave-active {
+  overflow: hidden;
+  animation-name: MessageMoveOut;
+  animation-duration: 0.3s;
+}
+@keyframes MessageMoveOut {
+  0% {
+    max-height: 150px;
+    padding: 8px;
+    opacity: 1;
+  }
+  100% {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 .ant-page-header {
   box-sizing: border-box;
   margin: 0;
@@ -9409,6 +9420,7 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-dropdown-menu-submenu-popup ul {
   margin-right: 0.3em;
   margin-left: 0.3em;
+  padding: 0;
 }
 .ant-dropdown-menu-item,
 .ant-dropdown-menu-submenu-title {
@@ -9423,6 +9435,8 @@ textarea.ant-pagination-options-quick-jumper input {
   cursor: pointer;
   transition: all 0.3s;
 }
+.ant-dropdown-menu-item > .anticon:first-child,
+.ant-dropdown-menu-submenu-title > .anticon:first-child,
 .ant-dropdown-menu-item > span > .anticon:first-child,
 .ant-dropdown-menu-submenu-title > span > .anticon:first-child {
   min-width: 12px;
@@ -9485,6 +9499,11 @@ textarea.ant-pagination-options-quick-jumper input {
 :root .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow-icon {
   font-size: 12px;
 }
+.ant-dropdown-menu-item-group-list {
+  margin: 0 8px;
+  padding: 0;
+  list-style: none;
+}
 .ant-dropdown-menu-submenu-title {
   padding-right: 26px;
 }
@@ -9504,6 +9523,9 @@ textarea.ant-pagination-options-quick-jumper input {
   color: rgba(255, 255, 255, 0.25);
   background-color: #23232e;
   cursor: not-allowed;
+}
+.ant-dropdown-menu-submenu-selected .ant-dropdown-menu-submenu-title {
+  color: #1890ff;
 }
 .ant-dropdown.slide-down-enter.slide-down-enter-active.ant-dropdown-placement-bottomLeft,
 .ant-dropdown.slide-down-appear.slide-down-appear-active.ant-dropdown-placement-bottomLeft,

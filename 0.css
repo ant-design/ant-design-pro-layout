@@ -3,23 +3,27 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 .ant-pro-basicLayout {
-  height: 100%;
-}
-.ant-pro-basicLayout .ant-layout {
+  transform: rotate(0);
   transition: all 0.2s;
 }
-.ant-pro-basicLayout .ant-layout-header {
-  position: absolute;
+.ant-pro-basicLayout.ant-pro-basicLayout-fix-siderbar > section.ant-layout > section.ant-layout {
+  height: 100vh;
+}
+.ant-pro-basicLayout .ant-layout-header.ant-pro-fixed-header {
+  position: sticky;
+  top: 0;
 }
 .ant-pro-basicLayout-content {
   position: relative;
   margin: 24px;
 }
-.ant-pro-basicLayout-content.ant-pro-basicLayout-has-header {
-  padding-top: 64px;
+.ant-pro-basicLayout-content-disable-margin {
+  margin: 0;
 }
-.ant-pro-basicLayout .ant-pro-basicLayout-is-children,
-.ant-pro-basicLayout .ant-pro-basicLayout-is-children > .ant-layout {
+.ant-pro-basicLayout-content > .ant-layout {
+  max-height: 100%;
+}
+.ant-pro-basicLayout .ant-pro-basicLayout-has-header .ant-pro-basicLayout-is-children.ant-pro-basicLayout-fix-siderbar section.ant-layout section.ant-layout {
   height: calc(100vh - 64px);
 }
 
@@ -28,9 +32,6 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 .ant-pro-fixed-header {
-  position: fixed;
-  top: 0;
-  right: 0;
   z-index: 9;
   width: 100%;
   transition: width 0.2s;
@@ -98,6 +99,9 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-pro-sider-menu {
+  position: relative;
+}
 .ant-pro-sider-menu-logo {
   position: relative;
   height: 64px;
@@ -119,7 +123,6 @@
   color: white;
   font-weight: 600;
   font-size: 20px;
-  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   vertical-align: middle;
 }
 .ant-pro-sider-menu-sider {
@@ -134,7 +137,7 @@
   left: 0;
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
 }
-.ant-pro-sider-menu-sider.fix-sider-bar .ant-menu-root {
+.ant-pro-sider-menu-sider.fix-sider-bar > .ant-menu-root {
   height: calc(100vh - 64px);
   overflow-y: auto;
 }
@@ -150,8 +153,7 @@
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
 }
 .ant-pro-sider-menu-sider.light .ant-pro-sider-menu-logo {
-  background: white;
-  box-shadow: 1px 1px 0 0 #17171f;
+  background-color: white;
 }
 .ant-pro-sider-menu-sider.light .ant-pro-sider-menu-logo h1 {
   color: #1890ff;
@@ -162,6 +164,14 @@
 .ant-pro-sider-menu-icon {
   width: 14px;
   vertical-align: baseline;
+}
+.ant-pro-sider-menu-links {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+}
+.ant-pro-sider-menu-links .ant-menu-root {
+  height: auto;
 }
 .ant-pro-sider-menu .top-nav-menu li.ant-menu-item {
   height: 64px;
@@ -318,6 +328,9 @@
   font-weight: bold;
   font-size: 14px;
 }
+.ant-pro-setting-drawer-block-checbox-selectIcon .action {
+  color: #1890ff;
+}
 .ant-pro-setting-drawer-color_block {
   display: inline-block;
   width: 38px;
@@ -393,6 +406,9 @@
   font-weight: bold;
   font-size: 14px;
 }
+.ant-pro-setting-drawer-block-checbox-selectIcon .action {
+  color: #1890ff;
+}
 .ant-pro-setting-drawer-color_block {
   display: inline-block;
   width: 38px;
@@ -457,7 +473,6 @@
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 .ant-pro-grid-content {
   width: 100%;
-  height: 100%;
   min-height: 100%;
   transition: 0.3s;
 }
