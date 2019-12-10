@@ -5,7 +5,7 @@ import itITLocal from './it-IT';
 import { isBrowser } from '../utils/utils';
 
 const locales = {
-  'zh-CN': zhLocal, 
+  'zh-CN': zhLocal,
   'zh-TW': zhTWLocal,
   'en-US': enUSLocal,
   'it-IT': itITLocal,
