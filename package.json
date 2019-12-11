@@ -67,7 +67,7 @@
     "not ie <= 10"
   ],
   "dependencies": {
-    "antd": "^3.23.6",
+    "antd": "3.26.2",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.10",
