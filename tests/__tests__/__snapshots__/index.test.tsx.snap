@@ -31,12 +31,6 @@ exports[`BasicLayout 🥩 base use 1`] = `
             </h1>
           </a>
         </div>
-        <ul
-          class="ant-menu ant-pro-sider-menu ant-menu-dark ant-menu-root ant-menu-inline"
-          role="menu"
-          style="padding:16px 0;width:100%"
-        />
-        <div />
       </div>
     </aside>
     <section
@@ -117,12 +111,6 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
             </h1>
           </a>
         </div>
-        <ul
-          class="ant-menu ant-pro-sider-menu ant-menu-dark ant-menu-root ant-menu-inline"
-          role="menu"
-          style="padding:16px 0;width:100%"
-        />
-        <div />
       </div>
     </aside>
     <section
@@ -203,12 +191,6 @@ exports[`BasicLayout 🥩 support loading 1`] = `
             </h1>
           </a>
         </div>
-        <ul
-          class="ant-menu ant-pro-sider-menu ant-menu-dark ant-menu-root ant-menu-inline"
-          role="menu"
-          style="padding:16px 0;width:100%"
-        />
-        <div />
       </div>
     </aside>
     <section
