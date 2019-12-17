@@ -78,9 +78,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
               </Link>
             )
           }
-          subMenuItemRender={(_, defaultDom) => (
-            <a className="qixian-subMenuItem">{defaultDom}</a>
-          )}
           onMenuHeaderClick={() => history.push('/')}
           footerRender={() => <DefaultFooter />}
           {...props}

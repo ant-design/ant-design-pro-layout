@@ -285,12 +285,34 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   };
 
   const { routes = [] } = route;
-  const { breadcrumb, breadcrumbMap, menuData } = getMenuData(
-    routes,
-    menu,
-    formatMessage,
-    menuDataRender,
-  );
+  const [menuInfoData, setMenuInfoData] = useState<{
+    breadcrumb?: {
+      [key: string]: MenuDataItem;
+    };
+    breadcrumbMap?: Map<string, MenuDataItem>;
+    menuData?: MenuDataItem[];
+  }>({});
+  const { breadcrumb = {}, breadcrumbMap, menuData = [] } = menuInfoData;
+
+  /**
+   *  如果 menuRender 存在，没必要进行数据优化，每次肯定要刷新一下
+   */
+  useEffect(() => {
+    if (!menuDataRender) {
+      const infoData = getMenuData(routes, menu, formatMessage, menuDataRender);
+      // 稍微慢一点 render，不然会造成性能问题，看起来像是菜单的卡顿
+      const animationFrameId = requestAnimationFrame(() => {
+        setMenuInfoData(infoData);
+      });
+      return () => cancelAnimationFrame(animationFrameId);
+    }
+    return () => null;
+  }, [JSON.stringify(routes), JSON.stringify(menu)]);
+
+  if (menuDataRender) {
+    const infoData = getMenuData(routes, menu, formatMessage, menuDataRender);
+    setMenuInfoData(infoData);
+  }
 
   // If it is a fix menu, calculate padding
   // don't need padding in phone mode

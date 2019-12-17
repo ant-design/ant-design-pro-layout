@@ -72,6 +72,20 @@ export default {
           path: 'single',
           name: 'Single',
           component: './Welcome',
+          routes: [
+            {
+              path: 'welcome',
+              name: 'two',
+              icon: 'smile',
+              component: './Welcome',
+            },
+            {
+              path: 'welcome2',
+              name: 'two2',
+              icon: 'smile',
+              component: './Welcome',
+            },
+          ],
         },
         {
           path: '/',
@@ -83,18 +97,18 @@ export default {
               redirect: '/welcome',
             },
             {
-              path: '/welcome',
+              path: 'welcome',
               name: 'one',
               component: './Welcome',
               routes: [
                 {
-                  path: '/welcome/welcome',
+                  path: 'welcome',
                   name: 'two',
                   icon: 'smile',
                   component: './Welcome',
                 },
                 {
-                  path: '/welcome/welcome2',
+                  path: 'welcome2',
                   name: 'two2',
                   icon: 'smile',
                   component: './Welcome',

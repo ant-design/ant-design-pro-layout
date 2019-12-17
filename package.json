@@ -69,7 +69,6 @@
   "dependencies": {
     "antd": "^3.23.6",
     "classnames": "^2.2.6",
-    "hash.js": "^1.1.7",
     "history": "^4.10.1",
     "lodash": "^4.17.10",
     "memoize-one": "^5.1.1",

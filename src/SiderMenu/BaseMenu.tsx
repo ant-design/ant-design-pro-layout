@@ -276,7 +276,7 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
       flatMenuKeys || [],
     );
     setOpenKeys(keys);
-  }, [flatMenus, flatMenuKeys.join('-')]);
+  }, [JSON.stringify(flatMenus), flatMenuKeys.join('-')]);
 
   const [selectedKeys, setSelectedKeys] = useMergeValue<string[] | undefined>(
     [],
@@ -308,7 +308,13 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
       flatMenus,
       flatMenuKeys || [],
     );
-    setSelectedKeys(keys);
+    const animationFrameId = requestAnimationFrame(() => {
+      setSelectedKeys(keys);
+      setOpenKeys(keys);
+    });
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [pathname, flatMenuKeys.join('-')]);
 
   const openKeysProps = getOpenKeysProps(openKeys, selectedKeys, props);
