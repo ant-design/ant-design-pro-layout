@@ -54,6 +54,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
           }
           return pageName || 'ant';
         }}
+        collapsed={collapsed}
         disableContentMargin
         {...props}
       >

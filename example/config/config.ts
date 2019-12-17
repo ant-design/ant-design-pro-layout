@@ -69,9 +69,14 @@ export default {
           component: './AccountSettings',
         },
         {
+          name: '高级表单',
+          icon: 'smile',
+          path: 'formadvancedform',
+          component: './FormAdvancedForm',
+        },
+        {
           path: 'single',
           name: 'Single',
-          component: './Welcome',
           routes: [
             {
               path: 'welcome',
