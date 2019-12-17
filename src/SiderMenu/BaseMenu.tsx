@@ -334,9 +334,9 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
         setDefaultOpenAll(false);
       }
     });
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () =>
+      window.cancelAnimationFrame &&
+      window.cancelAnimationFrame(animationFrameId);
   }, [pathname, flatMenuKeys.join('-')]);
 
   const openKeysProps = getOpenKeysProps(openKeys, props);

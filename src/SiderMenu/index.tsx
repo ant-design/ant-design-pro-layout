@@ -29,7 +29,9 @@ const SiderMenuWrapper: React.FC<SiderMenuProps> = props => {
       setFlatMenus(newFlatMenus);
       setFlatMenuKeys(Object.keys(newFlatMenus));
     });
-    return () => cancelAnimationFrame(animationFrameId);
+    return () =>
+      window.cancelAnimationFrame &&
+      window.cancelAnimationFrame(animationFrameId);
   }, [JSON.stringify(menuData)]);
 
   const omitProps = Omit(props, ['className', 'style']);

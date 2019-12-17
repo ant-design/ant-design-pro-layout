@@ -285,17 +285,39 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   };
 
   const { routes = [] } = route;
-  const [menuInfoData, setMenuInfoData] = useState<{
+  const [menuInfoData, setMenuInfoData] = useMergeValue<{
     breadcrumb?: {
       [key: string]: MenuDataItem;
     };
     breadcrumbMap?: Map<string, MenuDataItem>;
     menuData?: MenuDataItem[];
-  }>({});
-  const { breadcrumb = {}, breadcrumbMap, menuData = [] } = menuInfoData;
+  }>(() => getMenuData(routes, menu, formatMessage, menuDataRender));
+
+  let renderMenuInfoData: {
+    breadcrumb?: {
+      [key: string]: MenuDataItem;
+    };
+    breadcrumbMap?: Map<string, MenuDataItem>;
+    menuData?: MenuDataItem[];
+  } = {};
+
+  // 如果menuDataRender 存在，就应该每次都render一下，不然无法保证数据的同步
+  if (menuDataRender) {
+    renderMenuInfoData = getMenuData(
+      routes,
+      menu,
+      formatMessage,
+      menuDataRender,
+    );
+  }
+
+  const { breadcrumb = {}, breadcrumbMap, menuData = [] } = !menuDataRender
+    ? menuInfoData
+    : renderMenuInfoData;
 
   /**
-   *  如果 menuRender 存在，没必要进行数据优化，每次肯定要刷新一下
+   *  如果 menuRender 不存在，可以做一下性能优化
+   *  只要 routers 没有更新就不需要重新计算
    */
   useEffect(() => {
     if (!menuDataRender) {
@@ -304,15 +326,12 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       const animationFrameId = requestAnimationFrame(() => {
         setMenuInfoData(infoData);
       });
-      return () => cancelAnimationFrame(animationFrameId);
+      return () =>
+        window.cancelAnimationFrame &&
+        window.cancelAnimationFrame(animationFrameId);
     }
     return () => null;
   }, [JSON.stringify(routes), JSON.stringify(menu)]);
-
-  if (menuDataRender) {
-    const infoData = getMenuData(routes, menu, formatMessage, menuDataRender);
-    setMenuInfoData(infoData);
-  }
 
   // If it is a fix menu, calculate padding
   // don't need padding in phone mode
