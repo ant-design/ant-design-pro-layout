@@ -154,7 +154,7 @@ function fromEntries(iterable: any) {
 
 export default (
   routes: Route[],
-  menu?: { locale: boolean },
+  menu?: { locale?: boolean },
   formatMessage?: (message: MessageDescriptor) => string,
   menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[],
 ) => {

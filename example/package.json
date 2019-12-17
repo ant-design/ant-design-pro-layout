@@ -13,7 +13,7 @@
     "@antv/data-set": "^0.10.2",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.isequal": "^4.5.5",
-    "antd": "^3.15.0",
+    "antd": "^3.26.3",
     "bizcharts": "^3.5.3-beta.0",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "classnames": "^2.2.6",
