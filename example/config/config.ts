@@ -102,6 +102,10 @@ export default {
               redirect: '/welcome',
             },
             {
+              path: '/welcome',
+              redirect: '/welcome/welcome',
+            },
+            {
               path: 'welcome',
               name: 'one',
               component: './Welcome',

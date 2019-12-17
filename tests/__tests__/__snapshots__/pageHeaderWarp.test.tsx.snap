@@ -94,7 +94,7 @@ exports[`BasicLayout base use 1`] = `
                     <span
                       class="ant-page-header-heading-title"
                     >
-                      welcome
+                      Ant Design Pro
                     </span>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ exports[`BasicLayout content is text 1`] = `
                     <span
                       class="ant-page-header-heading-title"
                     >
-                      welcome
+                      Ant Design Pro
                     </span>
                   </div>
                   <div
