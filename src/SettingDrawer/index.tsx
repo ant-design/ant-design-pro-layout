@@ -59,7 +59,7 @@ let oldSetting: MergerSettingsType<Settings> = {};
 const getDifferentSetting = (state: Partial<Settings>) => {
   const stateObj: Partial<Settings> = {};
   Object.keys(state).forEach(key => {
-    if (state[key] !== oldSetting[key] && key !== 'collapse' && state[key]) {
+    if (state[key] !== oldSetting[key] && key !== 'collapse') {
       stateObj[key] = state[key];
     }
   });
@@ -267,14 +267,13 @@ const initState = (
   let loadedStyle = false;
 
   if (window.location.search) {
-    const setting = parse(window.location.search);
+    const params = parse(window.location.search.replace('?', ''));
     const replaceSetting = {};
-    Object.keys(setting).forEach(key => {
+    Object.keys(params).forEach(key => {
       if (defaultSettings[key]) {
-        replaceSetting[key] = setting[key];
+        replaceSetting[key] = params[key];
       }
     });
-
     if (onSettingChange) {
       onSettingChange({
         ...settings,
@@ -283,10 +282,10 @@ const initState = (
     }
 
     // 如果 url 中设置主题，进行一次加载。
-    if (oldSetting.navTheme !== setting.navTheme && setting.navTheme) {
+    if (oldSetting.navTheme !== params.navTheme && params.navTheme) {
       updateTheme(
         settings.navTheme === 'realDark',
-        setting.primaryColor,
+        params.primaryColor,
         true,
         publicPath,
       );
@@ -311,18 +310,12 @@ const initState = (
 
 const SettingDrawer: React.FC<SettingDrawerProps> = props => {
   const {
-    settings = {},
+    settings: propsSettings = {},
     hideLoading = false,
     hideColors,
     getContainer,
     onSettingChange,
   } = props;
-  const {
-    navTheme = 'dark',
-    primaryColor = 'daybreak',
-    layout = 'sidemenu',
-    colorWeak,
-  } = settings || {};
 
   const [show, setShow] = useMergeValue(false, {
     value: props.collapse,
@@ -332,10 +325,17 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
   const [settingState, setSettingState] = useMergeValue<Partial<Settings>>(
     defaultSettings,
     {
-      value: settings,
+      value: props.settings,
       onChange: onSettingChange,
     },
   );
+
+  const {
+    navTheme = 'dark',
+    primaryColor = 'daybreak',
+    layout = 'sidemenu',
+    colorWeak,
+  } = settingState || {};
 
   useEffect(() => {
     // 语言修改，这个是和 locale 是配置起来的
@@ -348,7 +348,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
     // 记住默认的选择，方便做 diff，然后保存到 url 参数中
     oldSetting = {
       ...defaultSettings,
-      ...settings,
+      ...propsSettings,
     };
 
     /**
@@ -358,8 +358,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
       return () => null;
     }
 
-    initState(settings, setSettingState, props.publicPath);
-
+    initState(settingState, setSettingState, props.publicPath);
     window.addEventListener('languagechange', onLanguageChange, {
       passive: true,
     });
@@ -408,9 +407,6 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
   const themeList = getThemeList();
 
   useEffect(() => {
-    if (onSettingChange) {
-      onSettingChange(settingState);
-    }
     /**
      * 如果不是浏览器 都没有必要做了
      */
@@ -418,8 +414,16 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
       return;
     }
     const browserHistory = createBrowserHistory();
+    let params = {};
+    if (window.location.search) {
+      params = parse(window.location.search.replace('?', ''));
+    }
+    const diffParams = getDifferentSetting({ ...params, ...settingState });
+    if (Object.keys(settingState).length < 1) {
+      return;
+    }
     browserHistory.replace({
-      search: stringify(getDifferentSetting(settingState)),
+      search: stringify(diffParams),
     });
   }, [JSON.stringify(settingState)]);
 
@@ -505,7 +509,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
         </Body>
         <Divider />
         <CopyToClipboard
-          text={JSON.stringify(omit(settings, ['colorWeak']), null, 2)}
+          text={JSON.stringify(omit(settingState, ['colorWeak']), null, 2)}
           onCopy={() =>
             message.success(formatMessage({ id: 'app.setting.copyinfo' }))
           }
