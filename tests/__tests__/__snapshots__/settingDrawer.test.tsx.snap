@@ -1262,9 +1262,9 @@ exports[`settingDrawer.test settings = undefined 1`] = `
                                   <div
                                     class="ant-select-selection-selected-value"
                                     style="display:block;opacity:1"
-                                    title="Fixed"
+                                    title="Fluid"
                                   >
-                                    Fixed
+                                    Fluid
                                   </div>
                                 </div>
                                 <span
