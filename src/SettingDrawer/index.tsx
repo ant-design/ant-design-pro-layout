@@ -1,15 +1,12 @@
 import './index.less';
-
 import {
-  Button,
-  Divider,
-  Drawer,
-  Icon,
-  List,
-  Switch,
-  message,
-  Alert,
-} from 'antd';
+  CopyOutlined,
+  CloseOutlined,
+  NotificationOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+
+import { Button, Divider, Drawer, List, Switch, message, Alert } from 'antd';
 import { createBrowserHistory } from 'history';
 import { stringify, parse } from 'qs';
 import React, { useState, useEffect, useRef } from 'react';
@@ -485,13 +482,21 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
           className="ant-pro-setting-drawer-handle"
           onClick={() => setShow(!show)}
         >
-          <Icon
-            type={show ? 'close' : 'setting'}
-            style={{
-              color: '#fff',
-              fontSize: 20,
-            }}
-          />
+          {show ? (
+            <CloseOutlined
+              style={{
+                color: '#fff',
+                fontSize: 20,
+              }}
+            />
+          ) : (
+            <SettingOutlined
+              style={{
+                color: '#fff',
+                fontSize: 20,
+              }}
+            />
+          )}
         </div>
       }
       style={{
@@ -561,7 +566,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
             message={formatMessage({
               id: 'app.setting.production.hint',
             })}
-            icon={<Icon type="notification" />}
+            icon={<NotificationOutlined />}
             showIcon
             style={{ marginBottom: 16 }}
           />
@@ -574,8 +579,8 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
               message.success(formatMessage({ id: 'app.setting.copyinfo' }))
             }
           >
-            <Button block icon="copy">
-              {formatMessage({ id: 'app.setting.copy' })}
+            <Button block>
+              <CopyOutlined /> {formatMessage({ id: 'app.setting.copy' })}
             </Button>
           </CopyToClipboard>
         )}
