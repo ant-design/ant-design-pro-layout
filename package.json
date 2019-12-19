@@ -68,6 +68,7 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@ant-design/icons": "^4.0.0-alpha.19",
     "antd": "^3.26.3",
     "classnames": "^2.2.6",
     "hash.js": "^1.1.7",
