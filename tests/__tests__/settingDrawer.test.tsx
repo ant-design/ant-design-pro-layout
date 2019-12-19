@@ -47,6 +47,18 @@ describe('settingDrawer.test', () => {
     expect(html).toMatchSnapshot();
   });
 
+  it('hideHintAlert = true', () => {
+    const html = render(
+      <SettingDrawer
+        settings={defaultSettings}
+        hideHintAlert
+        getContainer={false}
+        collapse
+      />,
+    );
+    expect(html).toMatchSnapshot();
+  });
+
   it('onCollapseChange', async () => {
     const onCollapseChange = jest.fn();
     const wrapper = mount(
