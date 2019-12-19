@@ -1,6 +1,15 @@
 import './index.less';
 
-import { Button, Divider, Drawer, Icon, List, Switch, message } from 'antd';
+import {
+  Button,
+  Divider,
+  Drawer,
+  Icon,
+  List,
+  Switch,
+  message,
+  Alert,
+} from 'antd';
 import { createBrowserHistory } from 'history';
 import { stringify, parse } from 'qs';
 import React, { useState, useEffect } from 'react';
@@ -45,6 +54,7 @@ export interface SettingDrawerProps {
   publicPath?: string;
   hideLoading?: boolean;
   hideColors?: boolean;
+  hideHintAlert?: boolean;
   onCollapseChange?: (collapse: boolean) => void;
   onSettingChange?: (settings: MergerSettingsType<Settings>) => void;
 }
@@ -313,6 +323,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
     settings: propsSettings = {},
     hideLoading = false,
     hideColors,
+    hideHintAlert,
     getContainer,
     onSettingChange,
   } = props;
@@ -508,6 +519,19 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
           />
         </Body>
         <Divider />
+
+        {hideHintAlert ? null : (
+          <>
+            <Alert
+              type="warning"
+              message={formatMessage({
+                id: 'app.setting.production.hint',
+              })}
+            />
+            <br />
+          </>
+        )}
+
         <CopyToClipboard
           text={JSON.stringify(omit(settingState, ['colorWeak']), null, 2)}
           onCopy={() =>
