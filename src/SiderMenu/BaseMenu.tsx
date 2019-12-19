@@ -1,6 +1,9 @@
 import './index.less';
 
-import { Icon, Menu } from 'antd';
+import Icon, { createFromIconfontCN } from '@ant-design/icons';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+
+import { Menu } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import useMergeValue from 'use-merge-value';
@@ -58,7 +61,7 @@ export interface BaseMenuProps
 
 const { SubMenu } = Menu;
 
-let IconFont = Icon.createFromIconfontCN({
+let IconFont = createFromIconfontCN({
   scriptUrl: defaultSettings.iconfontUrl,
 });
 
@@ -82,7 +85,7 @@ const getIcon = (icon?: string | React.ReactNode): React.ReactNode => {
     if (icon.startsWith('icon-')) {
       return <IconFont type={icon} />;
     }
-    return <Icon type={icon} />;
+    return <LegacyIcon type={icon} />;
   }
   return icon;
 };
@@ -309,7 +312,7 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
   useEffect(() => {
     // reset IconFont
     if (iconfontUrl) {
-      IconFont = Icon.createFromIconfontCN({
+      IconFont = createFromIconfontCN({
         scriptUrl: iconfontUrl,
       });
     }
