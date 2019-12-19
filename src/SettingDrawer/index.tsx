@@ -521,15 +521,13 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
         <Divider />
 
         {hideHintAlert ? null : (
-          <>
-            <Alert
-              type="warning"
-              message={formatMessage({
-                id: 'app.setting.production.hint',
-              })}
-            />
-            <br />
-          </>
+          <Alert
+            type="warning"
+            message={formatMessage({
+              id: 'app.setting.production.hint',
+            })}
+            style={{ marginBottom: 16 }}
+          />
         )}
 
         <CopyToClipboard
