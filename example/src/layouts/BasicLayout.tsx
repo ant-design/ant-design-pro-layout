@@ -18,6 +18,7 @@ import defaultSettings from '../../config/defaultSettings';
 import Link from 'umi/link';
 import history from 'umi/router';
 import logo from '../assets/logo.svg';
+import SelectLang from '@/components/SelectLang';
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
