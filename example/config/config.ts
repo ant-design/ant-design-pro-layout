@@ -1,9 +1,10 @@
 import { IConfig, IPlugin } from 'umi-types';
 import slash from 'slash2';
 import defaultSettings from './defaultSettings';
-import themePluginConfig from './themePluginConfig';
+// import themePluginConfig from './themePluginConfig';
 
 const plugins: IPlugin[] = [
+  ['umi-plugin-antd-icon-config', {}],
   [
     'umi-plugin-react',
     {
@@ -66,7 +67,7 @@ export default {
         },
         {
           name: 'flex 布局测试',
-          icon: 'smile',
+          icon: 'questionCircle',
           path: 'flex',
           component: './FlexDemo',
         },

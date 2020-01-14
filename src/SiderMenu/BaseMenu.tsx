@@ -1,7 +1,6 @@
 import './index.less';
 
 import Icon, { createFromIconfontCN } from '@ant-design/icons';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
 
 import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -21,6 +20,7 @@ import {
   WithFalse,
 } from '../typings';
 import MenuCounter from './Counter';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 export interface BaseMenuProps
   extends Partial<RouterTypes<Route>>,
@@ -85,7 +85,6 @@ const getIcon = (icon?: string | React.ReactNode): React.ReactNode => {
     if (icon.startsWith('icon-')) {
       return <IconFont type={icon} />;
     }
-    return <LegacyIcon type={icon} />;
   }
   return icon;
 };
