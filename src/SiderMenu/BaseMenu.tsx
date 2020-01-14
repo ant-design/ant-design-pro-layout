@@ -20,7 +20,6 @@ import {
   WithFalse,
 } from '../typings';
 import MenuCounter from './Counter';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 export interface BaseMenuProps
   extends Partial<RouterTypes<Route>>,
