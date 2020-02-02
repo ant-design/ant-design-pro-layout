@@ -50,33 +50,38 @@ class WrapContent extends React.Component<
     const { style, className, children, isChildrenLayout } = this.props;
 
     return (
-      <Content
-        className={className}
+      <div
         style={{
-          ...style,
           minHeight: contentSize,
         }}
       >
-        <ResizeObserver onResize={this.resize}>
-          <ConfigProvider
-            getPopupContainer={() => {
-              if (isChildrenLayout && this.ref) {
-                return this.ref;
-              }
-              return document.body;
-            }}
-          >
-            <div
-              ref={ele => {
-                this.ref = ele;
+        <Content
+          className={className}
+          style={{
+            ...style,
+          }}
+        >
+          <ResizeObserver onResize={this.resize}>
+            <ConfigProvider
+              getPopupContainer={() => {
+                if (isChildrenLayout && this.ref) {
+                  return this.ref;
+                }
+                return document.body;
               }}
-              className="ant-pro-basicLayout-children-content-wrap"
             >
-              {children}
-            </div>
-          </ConfigProvider>
-        </ResizeObserver>
-      </Content>
+              <div
+                ref={ele => {
+                  this.ref = ele;
+                }}
+                className="ant-pro-basicLayout-children-content-wrap"
+              >
+                {children}
+              </div>
+            </ConfigProvider>
+          </ResizeObserver>
+        </Content>
+      </div>
     );
   }
 }

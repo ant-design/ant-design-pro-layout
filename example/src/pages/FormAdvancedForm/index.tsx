@@ -145,7 +145,12 @@ class FormAdvancedForm extends Component<FormAdvancedFormProps> {
       submitting,
     } = this.props;
     return (
-      <>
+      <div
+        style={{
+          margin: -24,
+          padding: 24,
+        }}
+      >
         <Card title="仓库管理" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
@@ -350,7 +355,7 @@ class FormAdvancedForm extends Component<FormAdvancedFormProps> {
             提交
           </Button>
         </FooterToolbar>
-      </>
+      </div>
     );
   }
 }
