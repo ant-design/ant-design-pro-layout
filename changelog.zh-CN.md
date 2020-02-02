@@ -1,5 +1,9 @@
 # 更新日志
 
+### 4.10.11
+
+- 🐞 解决 margin 为负数的时候，高度计算错误的问题。[61f4ee20](https://github.com/ant-design/ant-design-pro-layout/commit/61f4ee20)
+
 ### 4.10.10
 
 - 🌟 默认色值进行了枚举，现在可以直接复制。[87e81c5](https://github.com/ant-design/ant-design-pro-layout/commit/87e81c5)
