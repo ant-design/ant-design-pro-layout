@@ -72,14 +72,15 @@ exports[`BasicLayout 🥩 base use 1`] = `
           />
         </div>
       </header>
-      <main
-        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-        style="min-height:auto"
-      >
-        <div
-          class="ant-pro-basicLayout-children-content-wrap"
-        />
-      </main>
+      <div>
+        <main
+          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
+        >
+          <div
+            class="ant-pro-basicLayout-children-content-wrap"
+          />
+        </main>
+      </div>
     </section>
   </section>
 </div>
@@ -157,14 +158,16 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
           />
         </div>
       </header>
-      <main
-        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-        style="padding:56px;min-height:auto"
-      >
-        <div
-          class="ant-pro-basicLayout-children-content-wrap"
-        />
-      </main>
+      <div>
+        <main
+          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
+          style="padding:56px"
+        >
+          <div
+            class="ant-pro-basicLayout-children-content-wrap"
+          />
+        </main>
+      </div>
     </section>
   </section>
 </div>
@@ -242,39 +245,40 @@ exports[`BasicLayout 🥩 support loading 1`] = `
           />
         </div>
       </header>
-      <main
-        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-        style="min-height:auto"
-      >
-        <div
-          class="ant-pro-basicLayout-children-content-wrap"
+      <div>
+        <main
+          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
         >
           <div
-            style="padding-top:100px;text-align:center"
+            class="ant-pro-basicLayout-children-content-wrap"
           >
             <div
-              class="ant-spin ant-spin-lg ant-spin-spinning"
+              style="padding-top:100px;text-align:center"
             >
-              <span
-                class="ant-spin-dot ant-spin-dot-spin"
+              <div
+                class="ant-spin ant-spin-lg ant-spin-spinning"
               >
-                <i
-                  class="ant-spin-dot-item"
-                />
-                <i
-                  class="ant-spin-dot-item"
-                />
-                <i
-                  class="ant-spin-dot-item"
-                />
-                <i
-                  class="ant-spin-dot-item"
-                />
-              </span>
+                <span
+                  class="ant-spin-dot ant-spin-dot-spin"
+                >
+                  <i
+                    class="ant-spin-dot-item"
+                  />
+                  <i
+                    class="ant-spin-dot-item"
+                  />
+                  <i
+                    class="ant-spin-dot-item"
+                  />
+                  <i
+                    class="ant-spin-dot-item"
+                  />
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </section>
   </section>
 </div>
@@ -352,14 +356,15 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
           />
         </div>
       </header>
-      <main
-        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-        style="min-height:auto"
-      >
-        <div
-          class="ant-pro-basicLayout-children-content-wrap"
-        />
-      </main>
+      <div>
+        <main
+          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
+        >
+          <div
+            class="ant-pro-basicLayout-children-content-wrap"
+          />
+        </main>
+      </div>
     </section>
   </section>
 </div>
