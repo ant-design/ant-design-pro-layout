@@ -145,7 +145,7 @@
     "slash2": "^2.0.0",
     "stylelint": "^13.0.0",
     "umi": "^2.12.9",
-    "umi-plugin-githubpages": "^1.0.0",
+    "umi-plugin-githubpages": "^2.0.1",
     "umi-types": "^0.5.11",
     "webpack-cli": "^3.3.10"
   },
