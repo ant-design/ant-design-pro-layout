@@ -75,11 +75,7 @@ exports[`BasicLayout base use 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
         >
           <div
             class="ant-pro-basicLayout-children-content-wrap"
@@ -192,11 +188,7 @@ exports[`BasicLayout content is text 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
         >
           <div
             class="ant-pro-basicLayout-children-content-wrap"

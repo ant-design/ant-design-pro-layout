@@ -1,6 +1,7 @@
 import './index.less';
 
 import Icon, { createFromIconfontCN } from '@ant-design/icons';
+import { Icon as OutdatedIcon } from '@ant-design/compatible';
 
 import { Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -98,7 +99,7 @@ https://pro.ant.design/blog/antd-4.0-cn 寻找解决方式！`,
       firstConsole = false;
     }
   }
-  return icon;
+  return <OutdatedIcon type={icon as string} />;
 };
 
 class MenuUtil {

@@ -75,11 +75,7 @@ exports[`BasicLayout 🥩 base use 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
         >
           <div
             class="ant-pro-basicLayout-children-content-wrap"
@@ -166,11 +162,7 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
           style="padding:56px"
         >
           <div
@@ -258,11 +250,7 @@ exports[`BasicLayout 🥩 support loading 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
         >
           <div
             class="ant-pro-basicLayout-children-content-wrap"
@@ -374,11 +362,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
       </header>
       <div>
         <main
-<<<<<<< HEAD
-          class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
-=======
           class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
->>>>>>> master
         >
           <div
             class="ant-pro-basicLayout-children-content-wrap"
