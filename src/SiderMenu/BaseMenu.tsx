@@ -98,8 +98,11 @@ https://pro.ant.design/blog/antd-4.0-cn 寻找解决方式！`,
       );
       firstConsole = false;
     }
+    if (icon) {
+      return <OutdatedIcon type={icon as string} />;
+    }
   }
-  return <OutdatedIcon type={icon as string} />;
+  return icon;
 };
 
 class MenuUtil {
