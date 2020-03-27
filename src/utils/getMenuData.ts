@@ -5,6 +5,21 @@ import { MenuDataItem, Route, MessageDescriptor } from '../typings';
 import { Settings } from '../defaultSettings';
 import { getKeyByPath, isUrl } from './utils';
 
+/**
+ * 获取locale，增加了一个功能，如果 locale = false，将不使用国际化
+ * @param item
+ * @param parentName
+ */
+const getItemLocaleName = (item: MenuDataItem, parentName: string) => {
+  const { name, locale } = item;
+
+  // 如果配置了 locale 并且 locale 为 false或 ""
+  if ('locale' in item && !locale) {
+    return '';
+  }
+  return item.locale || `${parentName}.${name}`;
+};
+
 interface FormatterProps {
   data: MenuDataItem[];
   menu?: Settings['menu'];
@@ -58,7 +73,7 @@ function formatter(
       }
       const path = mergePath(item.path, parent ? parent.path : '/');
       const { name } = item;
-      const locale = item.locale || `${parentName || 'menu'}.${name}`;
+      const locale = getItemLocaleName(item, parentName || 'menu');
       // if enableMenuLocale use item.name,
       // close menu international
       const localeName =
