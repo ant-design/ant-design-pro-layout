@@ -5,6 +5,7 @@ import pathToRegexp from 'path-to-regexp';
 import { Settings } from '../defaultSettings';
 import { MenuDataItem, MessageDescriptor } from '../typings';
 import { urlToList } from './pathTools';
+import { isBrowser } from './utils';
 
 export interface BreadcrumbProps {
   breadcrumbList?: { title: string; href: string }[];
@@ -94,7 +95,8 @@ const conversionFromProps = (
       const { title, href } = item;
       // For application that has configured router base
       // @ts-ignore
-      const realPath = window.routerBase === '/' ? href : `${window.routerBase}${href}`;
+      const { routerBase } = isBrowser() ? window : {};
+      const realPath = routerBase === '/' ? href : `${routerBase}${href}`;
       return {
         path: realPath,
         breadcrumbName: title,
@@ -118,7 +120,8 @@ const conversionFromLocation = (
     .map((url) => {
       // For application that has configured router base
       // @ts-ignore
-      const realPath = window.routerBase === '/' ? url : `${window.routerBase}${url}`;
+      const { routerBase } = isBrowser() ? window : {};
+      const realPath = routerBase === '/' ? url : `${routerBase}${url}`;
       const currentBreadcrumb = getBreadcrumb(breadcrumbMap, url);
       if (currentBreadcrumb.inherited) {
         return { path: '', breadcrumbName: '' };
