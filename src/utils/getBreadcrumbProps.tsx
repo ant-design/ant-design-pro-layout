@@ -92,8 +92,11 @@ const conversionFromProps = (
   return breadcrumbList
     .map((item) => {
       const { title, href } = item;
+      // For application that has configured router base
+      // @ts-ignore
+      const realPath = window.routerBase === '/' ? href : `${window.routerBase}${href}`;
       return {
-        path: href,
+        path: realPath,
         breadcrumbName: title,
       };
     })
@@ -113,6 +116,9 @@ const conversionFromLocation = (
   // Loop data mosaic routing
   const extraBreadcrumbItems: AntdBreadcrumbProps['routes'] = pathSnippets
     .map((url) => {
+      // For application that has configured router base
+      // @ts-ignore
+      const realPath = window.routerBase === '/' ? url : `${window.routerBase}${url}`;
       const currentBreadcrumb = getBreadcrumb(breadcrumbMap, url);
       if (currentBreadcrumb.inherited) {
         return { path: '', breadcrumbName: '' };
@@ -121,7 +127,7 @@ const conversionFromLocation = (
       const { hideInBreadcrumb } = currentBreadcrumb;
       return name && !hideInBreadcrumb
         ? {
-            path: url,
+            path: realPath,
             breadcrumbName: name,
             component: currentBreadcrumb.component,
           }
