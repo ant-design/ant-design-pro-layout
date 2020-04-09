@@ -33,25 +33,27 @@ const RightContent: React.FC<TopNavHeaderProps> = ({
         minWidth: rightSize,
       }}
     >
-      <ResizeObserver
-        onResize={({ width }: { width: number }) => {
-          if (!width) {
-            return;
-          }
-          setRightSize(width);
+      <div
+        style={{
+          paddingRight: 8,
         }}
       >
-        <div
-          style={{
-            paddingRight: 8,
+        <ResizeObserver
+          onResize={({ width }: { width: number }) => {
+            if (!width) {
+              return;
+            }
+            setRightSize(width);
           }}
         >
-          {rightContentRender &&
-            rightContentRender({
-              ...props,
-            })}
-        </div>
-      </ResizeObserver>
+          <>
+            {rightContentRender &&
+              rightContentRender({
+                ...props,
+              })}
+          </>
+        </ResizeObserver>
+      </div>
     </div>
   );
 };
