@@ -95,7 +95,7 @@ const conversionFromProps = (
       const { title, href } = item;
       // For application that has configured router base
       // @ts-ignore
-      const { routerBase } = isBrowser() ? window : {};
+      const { routerBase = '/' } = isBrowser() ? window : {};
       const realPath = routerBase === '/' ? href : `${routerBase}${href}`;
       return {
         path: realPath,
@@ -120,7 +120,7 @@ const conversionFromLocation = (
     .map((url) => {
       // For application that has configured router base
       // @ts-ignore
-      const { routerBase } = isBrowser() ? window : {};
+      const { routerBase = '/' } = isBrowser() ? window : {};
       const realPath = routerBase === '/' ? url : `${routerBase}${url}`;
       const currentBreadcrumb = getBreadcrumb(breadcrumbMap, url);
       if (currentBreadcrumb.inherited) {
