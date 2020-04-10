@@ -421,7 +421,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     }
   }, [stringify(props.location)]);
 
-  useDocumentTitle(pageTitleInfo.title);
+  useDocumentTitle(pageTitleInfo.title, props.title);
 
   return (
     <MenuCounter.Provider>
