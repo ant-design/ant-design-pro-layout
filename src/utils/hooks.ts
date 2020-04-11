@@ -8,7 +8,7 @@ export function useDocumentTitle(
 ) {
   const titleText = typeof title === 'string' ? title : appDefaultTitle;
   useEffect(() => {
-    if (isBrowser()) {
+    if (isBrowser() && titleText) {
       document.title = titleText;
     }
   }, [title]);
