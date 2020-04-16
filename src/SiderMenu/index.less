@@ -9,7 +9,7 @@
     position: relative;
     padding: 0 (@menu-collapsed-width - 32px) / 2;
     overflow: hidden;
-    background: @layout-sider-background;
+    background: transparent;
     cursor: pointer;
     transition: all 0.3s;
 
@@ -66,13 +66,17 @@
       background-color: white;
       box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
       .@{sider-menu-prefix-cls}-logo {
-        background-color: white;
+        background-color: transparent;
         h1 {
           color: @primary-color;
         }
       }
       .ant-menu-light {
+        background-color: transparent;
         border-right-color: transparent;
+      }
+      .ant-menu-submenu > .ant-menu {
+        background-color: transparent;
       }
     }
   }

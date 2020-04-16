@@ -18,6 +18,7 @@ const SiderMenuWrapper: React.FC<SiderMenuProps> = props => {
     style,
     className,
     hide,
+    siderMenuStyle,
   } = props;
   const { setFlatMenus, setFlatMenuKeys } = MenuCounter.useContainer();
 
@@ -73,7 +74,7 @@ const SiderMenuWrapper: React.FC<SiderMenuProps> = props => {
     <SiderMenu
       className={classNames('ant-pro-sider-menu', className)}
       {...omitProps}
-      style={style}
+      style={siderMenuStyle}
     />
   );
 };

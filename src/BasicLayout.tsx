@@ -89,6 +89,8 @@ export interface BasicLayoutProps
 
   className?: string;
 
+  siderMenuStyle?: CSSProperties;
+
   /**
    * 兼用 content的 margin
    */

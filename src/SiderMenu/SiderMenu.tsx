@@ -50,6 +50,7 @@ export interface SiderMenuProps
   extends Pick<BaseMenuProps, Exclude<keyof BaseMenuProps, ['onCollapse']>> {
   logo?: React.ReactNode;
   siderWidth?: number;
+  siderMenuStyle?: CSSProperties;
   menuHeaderRender?: WithFalse<
     (
       logo: React.ReactNode,
