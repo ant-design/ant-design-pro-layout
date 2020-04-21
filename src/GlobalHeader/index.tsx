@@ -2,11 +2,9 @@ import './index.less';
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { HeaderViewProps } from '../Header';
 import { defaultRenderLogo, SiderMenuProps } from '../SiderMenu/SiderMenu';
 import { isBrowser } from '../utils/utils';
-import { WithFalse } from '../typings';
 
 export interface GlobalHeaderProps {
   collapsed?: boolean;
@@ -14,15 +12,11 @@ export interface GlobalHeaderProps {
   isMobile?: boolean;
   logo?: React.ReactNode;
   menuRender?: HeaderViewProps['menuRender'];
-  collapsedButtonRender?: WithFalse<(collapsed?: boolean) => React.ReactNode>;
   rightContentRender?: HeaderViewProps['rightContentRender'];
   className?: string;
   style?: React.CSSProperties;
   menuHeaderRender?: SiderMenuProps['menuHeaderRender'];
 }
-
-const defaultRenderCollapsedButton = (collapsed?: boolean) =>
-  collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />;
 
 const renderLogo = (
   menuHeaderRender: SiderMenuProps['menuHeaderRender'],
@@ -52,24 +46,6 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     this.triggerResizeEvent();
   };
 
-  renderCollapsedButton = () => {
-    const {
-      collapsed,
-      collapsedButtonRender = defaultRenderCollapsedButton,
-      menuRender,
-    } = this.props;
-
-    if (collapsedButtonRender !== false && menuRender !== false) {
-      return (
-        <span className="ant-pro-global-header-trigger" onClick={this.toggle}>
-          {collapsedButtonRender(collapsed)}
-        </span>
-      );
-    }
-
-    return null;
-  };
-
   render(): React.ReactNode {
     const {
       isMobile,
@@ -89,7 +65,6 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     return (
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
-        {this.renderCollapsedButton()}
         <div style={{ flex: 1 }} />
         {rightContentRender && rightContentRender(this.props)}
       </div>

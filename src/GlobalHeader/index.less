@@ -1,4 +1,6 @@
 @import '~antd/es/style/themes/default.less';
+@import '../BasicLayout.less';
+
 @pro-layout-global-header-prefix-cls: ~'@{ant-prefix}-pro-global-header';
 
 @pro-layout-header-bg: @component-background;
@@ -9,7 +11,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: @layout-header-height;
+  height: @pro-layout-header-height;
   padding: 0;
   background: @pro-layout-header-bg;
   box-shadow: @pro-layout-header-box-shadow;
@@ -17,10 +19,10 @@
   &-logo {
     display: inline-flex;
     align-items: center;
-    height: @layout-header-height;
-    padding: 0 0 0 24px;
+    height: @pro-layout-header-height;
+    padding: 0 0 0 16px;
     font-size: 20px;
-    line-height: @layout-header-height;
+    line-height: @pro-layout-header-height;
     vertical-align: top;
     cursor: pointer;
     img {
@@ -39,19 +41,8 @@
     }
   }
 
-  &-trigger {
-    height: @layout-header-height;
-    padding: 0 24px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s, padding 0s;
-    &:hover {
-      background: @pro-layout-header-hover-bg;
-    }
-  }
-
   .dark {
-    height: @layout-header-height;
+    height: @pro-layout-header-height;
     .action {
       color: rgba(255, 255, 255, 0.85);
       > i {

@@ -7,6 +7,7 @@ import './index.less';
 import { WithFalse } from '../typings';
 import BaseMenu, { BaseMenuProps } from './BaseMenu';
 import MenuCounter from './Counter';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
@@ -57,6 +58,7 @@ export interface SiderMenuProps
       props?: SiderMenuProps,
     ) => React.ReactNode
   >;
+  collapsedButtonRender?: WithFalse<(collapsed?: boolean) => React.ReactNode>;
   breakpoint?: SiderProps['breakpoint'] | false;
   onMenuHeaderClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   hide?: boolean;
@@ -66,17 +68,21 @@ export interface SiderMenuProps
   onOpenChange?: (openKeys: WithFalse<string[]>) => void;
 }
 
-const SiderMenu: React.FC<SiderMenuProps> = (props) => {
+const defaultRenderCollapsedButton = (collapsed?: boolean) =>
+  collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />;
+
+const SiderMenu: React.FC<SiderMenuProps> = props => {
   const {
     collapsed,
     fixSiderbar,
     onCollapse,
     theme,
-    siderWidth = 256,
+    siderWidth = 208,
     isMobile,
     onMenuHeaderClick,
     breakpoint = 'lg',
     style,
+    collapsedButtonRender = defaultRenderCollapsedButton,
     links,
     onOpenChange,
   } = props;
@@ -95,14 +101,16 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       trigger={null}
       collapsed={collapsed}
       breakpoint={breakpoint === false ? undefined : breakpoint}
-      onCollapse={(collapse) => {
+      onCollapse={collapse => {
         if (!isMobile) {
           if (onCollapse) {
             onCollapse(collapse);
           }
         }
       }}
-      style={style}
+      style={{
+        ...style,
+      }}
       width={siderWidth}
       theme={theme}
       className={siderClassName}
@@ -116,14 +124,24 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
           {headerDom}
         </div>
       )}
-      {flatMenus && (
-        <BaseMenu
-          {...props}
-          mode="inline"
-          handleOpenChange={onOpenChange}
-          style={{ padding: '16px 0', width: '100%' }}
-        />
-      )}
+      <div
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+        }}
+      >
+        {flatMenus && (
+          <BaseMenu
+            {...props}
+            mode="inline"
+            handleOpenChange={onOpenChange}
+            style={{
+              padding: '16px 0',
+              width: '100%',
+            }}
+          />
+        )}
+      </div>
       {links && links.length > 0 && (
         <div className="ant-pro-sider-menu-links">
           <Menu
@@ -137,6 +155,15 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
               // eslint-disable-next-line react/no-array-index-key
               <Menu.Item key={index}>{node}</Menu.Item>
             ))}
+            <Menu.Item
+              onClick={() => {
+                if (onCollapse) {
+                  onCollapse(!collapsed);
+                }
+              }}
+            >
+              {collapsedButtonRender && collapsedButtonRender(collapsed)}
+            </Menu.Item>
           </Menu>
         </div>
       )}

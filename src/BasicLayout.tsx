@@ -195,7 +195,7 @@ const getPaddingLeft = (
  * 🏄‍ Support multiple topics and layout types
  * @param props
  */
-const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
+const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const {
     children,
     onCollapse: propsOnCollapse,
@@ -209,7 +209,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     },
     style,
     disableContentMargin,
-    siderWidth = 256,
+    siderWidth = 208,
     menu,
     isChildrenLayout: propsIsChildrenLayout,
     menuDataRender,

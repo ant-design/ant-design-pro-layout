@@ -1,6 +1,7 @@
 @import '~antd/es/style/themes/default.less';
 
 @basicLayout-prefix-cls: ~'@{ant-prefix}-pro-basicLayout';
+@pro-layout-header-height: 48px;
 
 .@{basicLayout-prefix-cls} {
   &:not('.ant-pro-basicLayout-mobile') {
@@ -66,22 +67,24 @@
 
   .@{basicLayout-prefix-cls}-has-header {
     .@{basicLayout-prefix-cls}-is-children {
-      min-height: calc(100vh - @layout-header-height);
+      min-height: calc(100vh - @pro-layout-header-height);
       &.@{basicLayout-prefix-cls}-fix-siderbar {
-        height: calc(100vh - @layout-header-height);
+        height: calc(100vh - @pro-layout-header-height);
       }
     }
   }
 
   // tech-page-container
   .@{basicLayout-prefix-cls}-has-header .tech-page-container {
-    height: calc(100vh - @layout-header-height);
+    height: calc(100vh - @pro-layout-header-height);
   }
 
   .@{basicLayout-prefix-cls}-has-header
     .@{basicLayout-prefix-cls}-is-children.@{basicLayout-prefix-cls}-has-header {
     .tech-page-container {
-      height: calc(100vh - @layout-header-height - @layout-header-height);
+      height: calc(
+        100vh - @pro-layout-header-height - @pro-layout-header-height;
+      );
     }
   }
 }
