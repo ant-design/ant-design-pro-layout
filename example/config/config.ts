@@ -95,24 +95,22 @@ export default {
         {
           path: 'single',
           name: 'Single',
+          icon: 'smile',
           routes: [
             {
               path: 'welcome',
               name: 'two',
-              icon: 'smile',
               component: './Welcome',
             },
             {
               path: 'welcome2',
               name: 'two2',
-              icon: 'smile',
               component: './Welcome',
             },
             {
               path: 'welcome3/:id?',
               name: 'two3',
               hideInMenu: true,
-              icon: 'smile',
               component: './Welcome',
             },
           ],
