@@ -19,22 +19,22 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    height: 64px;
+    padding: 16px;
     background: @layout-sider-background;
     cursor: pointer;
-    transition: all 0.3s;
 
     > a {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 64px;
     }
 
     img {
       display: inline-block;
       height: 32px;
       vertical-align: middle;
+      transition: height 0.3s;
     }
     h1 {
       display: inline-block;
@@ -83,6 +83,13 @@
       min-width: 40px !important;
       max-width: 40px !important;
 
+      .@{pro-layout-sider-menu-prefix-cls}-logo {
+        padding: 16px 8px;
+        img {
+          height: 24px;
+        }
+      }
+
       .@{ant-prefix}-menu-inline-collapsed {
         width: 40px;
       }
@@ -105,6 +112,7 @@
       left: 0;
       height: 100%;
       overflow: auto;
+      overflow-x: hidden;
       box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
       > .ant-menu-root {
         :not(.@{pro-layout-sider-menu-prefix-cls}-link-menu) {
@@ -151,6 +159,10 @@
       .ant-menu-light {
         border-right-color: transparent;
       }
+
+      .@{pro-layout-sider-menu-prefix-cls}-collapsed-button {
+        border-top: @border-width-base @border-style-base @border-color-split;
+      }
     }
   }
 
@@ -164,6 +176,10 @@
     ul.ant-menu-root {
       height: auto;
     }
+  }
+
+  &-collapsed-button {
+    border-top: @border-width-base @border-style-base #303030;
   }
 
   .top-nav-menu li.ant-menu-item {
@@ -195,9 +211,6 @@
   .ant-menu-submenu-title .sider-menu-item-img + span {
     opacity: 1;
     transition: opacity 0.3s @ease-in-out, width 0.3s @ease-in-out;
-  }
-  .ant-drawer-body {
-    padding: 0;
   }
 }
 
