@@ -58,6 +58,7 @@ export interface SiderMenuProps
       props?: SiderMenuProps,
     ) => React.ReactNode
   >;
+  menuExtraRender?: WithFalse<(props: SiderMenuProps) => React.ReactNode>;
   collapsedButtonRender?: WithFalse<(collapsed?: boolean) => React.ReactNode>;
   breakpoint?: SiderProps['breakpoint'] | false;
   onMenuHeaderClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -71,7 +72,7 @@ export interface SiderMenuProps
 const defaultRenderCollapsedButton = (collapsed?: boolean) =>
   collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />;
 
-const SiderMenu: React.FC<SiderMenuProps> = (props) => {
+const SiderMenu: React.FC<SiderMenuProps> = props => {
   const {
     collapsed,
     fixSiderbar,
@@ -82,15 +83,17 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
     onMenuHeaderClick,
     breakpoint = 'lg',
     style,
+    menuExtraRender = false,
     collapsedButtonRender = defaultRenderCollapsedButton,
     links,
+    prefixCls = 'ant-pro',
     onOpenChange,
   } = props;
-
+  const baseClassName = `${prefixCls}-sider`;
   const { flatMenus } = MenuCounter.useContainer();
-  const siderClassName = classNames('ant-pro-sider-menu-sider', {
-    'fix-sider-bar': fixSiderbar,
-    light: theme === 'light',
+  const siderClassName = classNames(`${baseClassName}`, {
+    [`${baseClassName}-fixed`]: fixSiderbar,
+    [`${baseClassName}-light`]: theme === 'light',
   });
 
   const headerDom = defaultRenderLogoAndTitle(props);
@@ -101,13 +104,14 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       trigger={null}
       collapsed={collapsed}
       breakpoint={breakpoint === false ? undefined : breakpoint}
-      onCollapse={(collapse) => {
+      onCollapse={collapse => {
         if (!isMobile) {
           if (onCollapse) {
             onCollapse(collapse);
           }
         }
       }}
+      collapsedWidth={40}
       style={{
         ...style,
       }}
@@ -117,13 +121,14 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
     >
       {headerDom && (
         <div
-          className="ant-pro-sider-menu-logo"
+          className={`${baseClassName}-logo`}
           onClick={onMenuHeaderClick}
           id="logo"
         >
           {headerDom}
         </div>
       )}
+      {menuExtraRender && <div>{menuExtraRender(props)}</div>}
       <div
         style={{
           flex: 1,
@@ -143,10 +148,10 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
         )}
       </div>
       {links && links.length > 0 && (
-        <div className="ant-pro-sider-menu-links">
+        <div className={`${baseClassName}-links`}>
           <Menu
             theme={theme}
-            className="ant-pro-sider-menu-link-menu"
+            className={`${baseClassName}-link-menu`}
             selectedKeys={[]}
             openKeys={[]}
             mode="inline"
@@ -156,7 +161,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
               <Menu.Item key={index}>{node}</Menu.Item>
             ))}
             <Menu.Item
-              className="ant-pro-sider-menu-collapsed-button"
+              className={`${baseClassName}-collapsed-button`}
               onClick={() => {
                 if (onCollapse) {
                   onCollapse(!collapsed);
