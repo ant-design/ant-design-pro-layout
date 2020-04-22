@@ -19,7 +19,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 48px;
     padding: 16px;
     background: @layout-sider-background;
     cursor: pointer;
@@ -179,7 +178,10 @@
   }
 
   &-collapsed-button {
-    border-top: @border-width-base @border-style-base #131b24;
+    border-top: @border-width-base @border-style-base rgba(0, 0, 0, 0.25);
+    .anticon {
+      font-size: 16px;
+    }
   }
 
   .top-nav-menu li.@{ant-prefix}-menu-item {
