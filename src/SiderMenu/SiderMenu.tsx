@@ -2,12 +2,12 @@ import React, { CSSProperties } from 'react';
 import { Layout, Menu } from 'antd';
 import classNames from 'classnames';
 import { SiderProps } from 'antd/es/layout/Sider';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 import './index.less';
 import { WithFalse } from '../typings';
 import BaseMenu, { BaseMenuProps } from './BaseMenu';
 import MenuCounter from './Counter';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
