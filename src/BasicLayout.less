@@ -4,37 +4,18 @@
 @pro-layout-header-height: 48px;
 
 .@{basicLayout-prefix-cls} {
-  &:not('.ant-pro-basicLayout-mobile') {
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.06);
-      border-radius: 3px;
-      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
-    }
-
-    /* 滚动条滑块 */
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.12);
-      border-radius: 3px;
-      -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-  }
   // BFC
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100%;
 
-  .ant-layout-header {
-    &:not(.ant-pro-top-menu) {
+  .@{ant-prefix}-layout-header {
+    &:not(.@{ant-prefix}-pro-top-menu) {
       background: @component-background;
     }
 
-    &.ant-pro-fixed-header {
+    &.@{ant-prefix}-pro-fixed-header {
       position: fixed;
       top: 0;
     }
@@ -53,7 +34,7 @@
         margin: 0;
       }
     }
-    > .ant-layout {
+    > .@{ant-prefix}-layout {
       max-height: 100%;
     }
   }

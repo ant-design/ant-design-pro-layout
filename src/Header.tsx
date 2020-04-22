@@ -80,8 +80,9 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
         <Header
           style={{
             padding: 0,
+            height: 48,
             width: needSettingWidth
-              ? `calc(100% - ${collapsed ? 80 : siderWidth}px)`
+              ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
               : '100%',
             zIndex: 9,
             right: fixedHeader ? 0 : undefined,
