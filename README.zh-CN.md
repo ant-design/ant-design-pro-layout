@@ -58,6 +58,8 @@ render(<BasicLayout />, document.getElementById('root'));
 | onCollapse | 菜单的折叠收起事件 | (collapsed: boolean) => void | - |
 | onPageChange | 页面切换时触发 | (location: Location) => void | - |
 | headerRender | 自定义头的 render 方法 | (props: BasicLayoutProps) => ReactNode | - |
+| headerTitleRender | 自定义头标题的方法 | (props: BasicLayoutProps) => ReactNode | - |
+| headerContentRender | 自定义头内容的方法 | (props: BasicLayoutProps) => ReactNode | - |
 | rightContentRender | 自定义头右部的 render 方法 | (props: HeaderViewProps) => ReactNode | - |
 | collapsedButtonRender | 自定义 collapsed button 的方法 | (collapsed: boolean) => ReactNode | - |
 | footerRender | 自定义页脚的 render 方法 | (props: BasicLayoutProps) => ReactNode | - |
@@ -115,7 +117,7 @@ import { RouteContext } from '@ant-design/pro-layout';
 
 const Page = () => (
   <RouteContext.Consumer>
-    {(value) => {
+    {value => {
       return value.title;
     }}
   </RouteContext.Consumer>

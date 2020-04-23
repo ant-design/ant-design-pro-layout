@@ -60,6 +60,8 @@ render(<ProLayout />, document.getElementById('root'));
 | onPageChange | Triggered when page switching | (location: Location) => void | - |
 | onCollapse | folding collapse event of menu | (collapsed: boolean) => void | - |
 | headerRender | custom header render method | (props: BasicLayoutProps) => ReactNode | - |
+| headerTitleRender | custom header title render method | (props: BasicLayoutProps) => ReactNode | - |
+| headerContentRender | custom header content render method | (props: BasicLayoutProps) => ReactNode | - |
 | rightContentRender | header right content render method | (props: HeaderViewProps) => ReactNode | - |
 | collapsedButtonRender | custom collapsed button method | (collapsed: boolean) => ReactNode | - |
 | footerRender | custom footer render method | (props: BasicLayoutProps) => ReactNode | - |
@@ -122,7 +124,7 @@ import { RouteContext } from '@ant-design/pro-layout';
 
 const Page = () => (
   <RouteContext.Consumer>
-    {(value) => {
+    {value => {
       return value.title;
     }}
   </RouteContext.Consumer>
