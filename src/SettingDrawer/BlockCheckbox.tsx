@@ -39,7 +39,7 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
     {
       key: 'mix',
       url:
-        'https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg',
+        'https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg',
       title: formatMessage({ id: 'app.setting.mixmenu' }),
     },
   ];
