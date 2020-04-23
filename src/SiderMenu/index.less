@@ -8,6 +8,7 @@
 .@{pro-layout-sider-menu-prefix-cls} {
   position: relative;
   background-color: @layout-sider-background;
+  border-right: 0;
   transition: background-color 0.3s;
 
   &.@{ant-prefix}-menu-vertical .@{ant-prefix}-menu-item:not(:last-child),
@@ -148,9 +149,6 @@
   }
 
   .@{ant-prefix}-menu-inline {
-    background-color: transparent !important;
-    border-right: 0;
-
     .@{ant-prefix}-menu-item,
     .@{ant-prefix}-menu-submenu-title {
       width: 100%;

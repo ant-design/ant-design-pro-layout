@@ -449,6 +449,9 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
     if (key === 'layout') {
       nextState.contentWidth = value === 'top' ? 'Fixed' : 'Fluid';
     }
+    if (key === 'layout' && value === 'mix') {
+      nextState.navTheme = 'light';
+    }
     setSettingState(nextState);
   };
 

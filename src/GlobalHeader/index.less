@@ -15,6 +15,23 @@
   padding: 0 16px;
   background: @pro-layout-header-bg;
   box-shadow: @pro-layout-header-box-shadow;
+  > * {
+    height: 100%;
+  }
+
+  &-layout {
+    &-mix {
+      background-color: @layout-sider-background;
+      .@{pro-layout-global-header-prefix-cls}-logo {
+        h1 {
+          color: @btn-primary-color;
+        }
+      }
+      .anticon {
+        color: @btn-primary-color;
+      }
+    }
+  }
 
   &-logo {
     position: relative;

@@ -19,6 +19,7 @@ export interface GlobalHeaderProps extends Partial<ProSettings> {
   menuRender?: HeaderViewProps['menuRender'];
   rightContentRender?: HeaderViewProps['rightContentRender'];
   className?: string;
+  prefixCls?: string;
   style?: React.CSSProperties;
   menuHeaderRender?: SiderMenuProps['menuHeaderRender'];
 }
@@ -61,11 +62,15 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       style,
       layout,
       children,
+      prefixCls,
     } = this.props;
-    const className = classNames(propClassName, 'ant-pro-global-header');
+    const baseClassName = `${prefixCls}-global-header`;
+    const className = classNames(propClassName, baseClassName, {
+      [`${baseClassName}-layout-${layout}`]: layout,
+    });
 
     const logoDom = (
-      <span className="ant-pro-global-header-logo" key="logo">
+      <span className={`${baseClassName}-logo`} key="logo">
         {defaultRenderLogo(logo)}
       </span>
     );
@@ -73,7 +78,7 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
         {layout === 'mix' && (
-          <div className="ant-pro-global-header-logo">
+          <div className={`${baseClassName}-logo`}>
             {defaultRenderLogoAndTitle(
               { ...this.props, collapsed: false },
               'headerTitleRender',

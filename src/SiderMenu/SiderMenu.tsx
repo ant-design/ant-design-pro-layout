@@ -146,6 +146,7 @@ const SiderMenu: React.FC<SiderMenuProps> = props => {
             style={{
               width: '100%',
             }}
+            className={`${baseClassName}-menu`}
           />
         )}
       </div>

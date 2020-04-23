@@ -20,8 +20,13 @@
 
   &.light {
     background-color: @component-background;
-    h1 {
-      color: @primary-color;
+    .@{top-nav-header-prefix-cls}-logo {
+      h1 {
+        color: @primary-color;
+      }
+    }
+    .anticon {
+      color: inherit;
     }
   }
 
@@ -38,9 +43,10 @@
       display: flex;
       flex: 1;
     }
-    .right {
-      width: 324px;
-    }
+  }
+
+  .anticon {
+    color: @btn-primary-color;
   }
 
   &-logo {
