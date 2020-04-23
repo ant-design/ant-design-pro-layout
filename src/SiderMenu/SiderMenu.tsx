@@ -23,21 +23,22 @@ export const defaultRenderLogo = (logo: React.ReactNode): React.ReactNode => {
 
 export const defaultRenderLogoAndTitle = (
   props: SiderMenuProps,
+  renderKey: string = 'menuHeaderRender',
 ): React.ReactNode => {
   const {
     logo = 'https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg',
     title,
-    menuHeaderRender,
   } = props;
-  if (menuHeaderRender === false) {
+  const renderFunction = props[renderKey || ''];
+  if (renderFunction === false) {
     return null;
   }
   const logoDom = defaultRenderLogo(logo);
   const titleDom = <h1>{title}</h1>;
 
-  if (menuHeaderRender) {
+  if (renderFunction) {
     // when collapsed, no render title
-    return menuHeaderRender(logoDom, props.collapsed ? null : titleDom, props);
+    return renderFunction(logoDom, props.collapsed ? null : titleDom, props);
   }
   return (
     <a href="/">

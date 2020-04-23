@@ -20,6 +20,8 @@ export interface HeaderViewProps
   logo?: React.ReactNode;
   menuRender?: BasicLayoutProps['menuRender'];
   headerRender?: BasicLayoutProps['headerRender'];
+  headerTitleRender?: BasicLayoutProps['headerTitleRender'];
+  headerContentRender?: BasicLayoutProps['headerContentRender'];
   rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   siderWidth?: number;
   hasSiderMenu?: boolean;
@@ -31,9 +33,20 @@ interface HeaderViewState {
 
 class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
   renderContent = () => {
-    const { isMobile, onCollapse, navTheme, layout, headerRender } = this.props;
+    const {
+      isMobile,
+      onCollapse,
+      navTheme,
+      layout,
+      headerRender,
+      headerContentRender,
+    } = this.props;
     const isTop = layout === 'top';
-    let defaultDom = <GlobalHeader onCollapse={onCollapse} {...this.props} />;
+    let defaultDom = (
+      <GlobalHeader onCollapse={onCollapse} {...this.props}>
+        {headerContentRender && headerContentRender(this.props)}
+      </GlobalHeader>
+    );
     if (isTop && !isMobile) {
       defaultDom = (
         <TopNavHeader

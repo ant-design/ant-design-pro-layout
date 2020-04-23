@@ -11,7 +11,7 @@ import {
 import { isBrowser } from '../utils/utils';
 import { ProSettings } from '../defaultSettings';
 
-export interface GlobalHeaderProps extends ProSettings {
+export interface GlobalHeaderProps extends Partial<ProSettings> {
   collapsed?: boolean;
   onCollapse?: (collapsed: boolean) => void;
   isMobile?: boolean;
@@ -60,6 +60,7 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       className: propClassName,
       style,
       layout,
+      children,
     } = this.props;
     const className = classNames(propClassName, 'ant-pro-global-header');
 
@@ -73,10 +74,13 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
         {layout === 'mix' && (
           <div className="ant-pro-global-header-logo">
-            {defaultRenderLogoAndTitle({ ...this.props, collapsed: false })}
+            {defaultRenderLogoAndTitle(
+              { ...this.props, collapsed: false },
+              'headerTitleRender',
+            )}
           </div>
         )}
-        <div style={{ flex: 1 }} />
+        <div style={{ flex: 1 }}>{children}</div>
         {rightContentRender && rightContentRender(this.props)}
       </div>
     );

@@ -59,6 +59,10 @@ export interface BasicLayoutProps
   headerRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
+  headerTitleRender?: WithFalse<
+    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+  >;
+  headerContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   footerRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
