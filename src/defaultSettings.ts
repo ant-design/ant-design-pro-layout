@@ -2,17 +2,17 @@ import { MenuTheme } from 'antd/es/menu/MenuContext';
 
 export type ContentWidth = 'Fluid' | 'Fixed';
 
-export interface Settings {
+export interface ProSettings {
   /**
    * theme for nav menu
    */
   navTheme: MenuTheme | 'realDark' | undefined;
   /**
-   * nav menu position: `sidemenu` or `topmenu`
+   * nav menu position: `side` or `top`
    */
-  layout: 'sidemenu' | 'topmenu';
+  layout: 'side' | 'top' | 'mix';
   /**
-   * layout of content: `Fluid` or `Fixed`, only works when layout is topmenu
+   * layout of content: `Fluid` or `Fixed`, only works when layout is top
    */
   contentWidth: ContentWidth;
 
@@ -35,9 +35,9 @@ export interface Settings {
   colorWeak?: boolean;
 }
 
-const defaultSettings: Settings = {
+const defaultSettings: ProSettings = {
   navTheme: 'dark',
-  layout: 'sidemenu',
+  layout: 'side',
   contentWidth: 'Fluid',
   fixedHeader: false,
   fixSiderbar: false,

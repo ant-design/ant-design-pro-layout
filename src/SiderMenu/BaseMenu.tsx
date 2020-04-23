@@ -10,7 +10,7 @@ import warning from 'warning';
 
 import { MenuMode, MenuProps } from 'antd/es/menu';
 import { MenuTheme } from 'antd/es/menu/MenuContext';
-import defaultSettings, { Settings } from '../defaultSettings';
+import defaultSettings, { ProSettings } from '../defaultSettings';
 import { getSelectedMenuKeys } from './SiderMenuUtils';
 import { isUrl, getOpenKeysFromMenuData } from '../utils/utils';
 
@@ -28,7 +28,7 @@ let firstConsole = true;
 export interface BaseMenuProps
   extends Partial<RouterTypes<Route>>,
     Omit<MenuProps, 'openKeys' | 'onOpenChange'>,
-    Partial<Settings> {
+    Partial<ProSettings> {
   className?: string;
   collapsed?: boolean;
   handleOpenChange?: (openKeys: string[]) => void;
@@ -111,9 +111,9 @@ class MenuUtil {
 
   getNavMenuItems = (menusData: MenuDataItem[] = []): React.ReactNode[] =>
     menusData
-      .filter((item) => item.name && !item.hideInMenu)
-      .map((item) => this.getSubMenuOrItem(item))
-      .filter((item) => item);
+      .filter(item => item.name && !item.hideInMenu)
+      .map(item => this.getSubMenuOrItem(item))
+      .filter(item => item);
 
   /**
    * get SubMenu or Item
@@ -122,7 +122,7 @@ class MenuUtil {
     if (
       Array.isArray(item.children) &&
       !item.hideChildrenInMenu &&
-      item.children.some((child) => child && !!child.name)
+      item.children.some(child => child && !!child.name)
     ) {
       const name = this.getIntlName(item);
       const { subMenuItemRender } = this.props;
@@ -242,7 +242,7 @@ const getOpenKeysProps = (
   openKeys?: undefined | string[];
 } => {
   let openKeysProps = {};
-  if (openKeys && !collapsed && layout === 'sidemenu') {
+  if (openKeys && !collapsed && layout === 'side') {
     openKeysProps = {
       openKeys,
     };
@@ -250,7 +250,7 @@ const getOpenKeysProps = (
   return openKeysProps;
 };
 
-const BaseMenu: React.FC<BaseMenuProps> = (props) => {
+const BaseMenu: React.FC<BaseMenuProps> = props => {
   const {
     theme,
     mode,
@@ -313,7 +313,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
     {
       value: propsSelectedKeys,
       onChange: onSelect
-        ? (keys) => {
+        ? keys => {
             if (onSelect && keys) {
               onSelect(keys as any);
             }
@@ -397,7 +397,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
 };
 
 BaseMenu.defaultProps = {
-  postMenuData: (data) => data || [],
+  postMenuData: data => data || [],
 };
 
 export default BaseMenu;

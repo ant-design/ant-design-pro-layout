@@ -12,23 +12,32 @@
   display: flex;
   align-items: center;
   height: @pro-layout-header-height;
-  padding: 0;
+  padding: 0 16px;
   background: @pro-layout-header-bg;
   box-shadow: @pro-layout-header-box-shadow;
 
   &-logo {
-    display: inline-flex;
-    align-items: center;
-    height: @pro-layout-header-height;
-    padding: 0 0 0 16px;
-    font-size: 20px;
+    position: relative;
+    min-width: 165px;
+    overflow: hidden;
     line-height: @pro-layout-header-height;
-    vertical-align: top;
-    cursor: pointer;
-    img {
-      display: inline-block;
-      height: 32px;
-      vertical-align: middle;
+    transition: all 0.3s;
+    a {
+      display: flex;
+      align-items: center;
+      height: @pro-layout-header-height;
+      img {
+        height: 28px;
+      }
+      h1 {
+        height: 32px;
+        margin: 0 0 0 8px;
+        margin: 0 0 0 12px;
+        color: @primary-color;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 32px;
+      }
     }
   }
 

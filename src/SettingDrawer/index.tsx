@@ -13,7 +13,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import useMergeValue from 'use-merge-value';
 import omit from 'omit.js';
-import defaultSettings, { Settings } from '../defaultSettings';
+import defaultSettings, { ProSettings } from '../defaultSettings';
 
 import BlockCheckbox from './BlockCheckbox';
 import ThemeColor from './ThemeColor';
@@ -45,7 +45,7 @@ export interface SettingItemProps {
 }
 
 export interface SettingDrawerProps {
-  settings?: MergerSettingsType<Settings>;
+  settings?: MergerSettingsType<ProSettings>;
   collapse?: boolean;
   getContainer?: any;
   publicPath?: string;
@@ -54,19 +54,19 @@ export interface SettingDrawerProps {
   hideHintAlert?: boolean;
   hideCopyButton?: boolean;
   onCollapseChange?: (collapse: boolean) => void;
-  onSettingChange?: (settings: MergerSettingsType<Settings>) => void;
+  onSettingChange?: (settings: MergerSettingsType<ProSettings>) => void;
 }
 
-export interface SettingDrawerState extends MergerSettingsType<Settings> {
+export interface SettingDrawerState extends MergerSettingsType<ProSettings> {
   collapse?: boolean;
   language?: string;
 }
 
-let oldSetting: MergerSettingsType<Settings> = {};
+let oldSetting: MergerSettingsType<ProSettings> = {};
 
-const getDifferentSetting = (state: Partial<Settings>) => {
-  const stateObj: Partial<Settings> = {};
-  Object.keys(state).forEach((key) => {
+const getDifferentSetting = (state: Partial<ProSettings>) => {
+  const stateObj: Partial<ProSettings> = {};
+  Object.keys(state).forEach(key => {
     if (state[key] !== oldSetting[key] && key !== 'collapse') {
       stateObj[key] = state[key];
     }
@@ -225,7 +225,7 @@ const getThemeList = () => {
     },
   ];
 
-  if (list.find((item) => item.theme === 'dark')) {
+  if (list.find(item => item.theme === 'dark')) {
     themeList.push({
       key: 'realDark',
       url:
@@ -237,7 +237,7 @@ const getThemeList = () => {
     });
   }
   // insert  theme color List
-  list.forEach((item) => {
+  list.forEach(item => {
     const color = (item.modifyVars || {})['@primary-color'];
     if (item.theme === 'dark' && color) {
       darkColorList.push({
@@ -267,7 +267,7 @@ const getThemeList = () => {
  * @param param0
  */
 const initState = (
-  settings: Partial<Settings>,
+  settings: Partial<ProSettings>,
   onSettingChange: SettingDrawerProps['onSettingChange'],
   publicPath?: string,
 ) => {
@@ -280,7 +280,7 @@ const initState = (
   if (window.location.search) {
     const params = parse(window.location.search.replace('?', ''));
     const replaceSetting = {};
-    Object.keys(params).forEach((key) => {
+    Object.keys(params).forEach(key => {
       if (defaultSettings[key]) {
         replaceSetting[key] = params[key];
       }
@@ -319,7 +319,7 @@ const initState = (
   }
 };
 
-const getParamsFromUrl = (settings: MergerSettingsType<Settings>) => {
+const getParamsFromUrl = (settings: MergerSettingsType<ProSettings>) => {
   if (!isBrowser()) {
     return defaultSettings;
   }
@@ -335,7 +335,7 @@ const getParamsFromUrl = (settings: MergerSettingsType<Settings>) => {
   };
 };
 
-const genCopySettingJson = (settingState: MergerSettingsType<Settings>) =>
+const genCopySettingJson = (settingState: MergerSettingsType<ProSettings>) =>
   JSON.stringify(
     omit(
       {
@@ -352,7 +352,7 @@ const genCopySettingJson = (settingState: MergerSettingsType<Settings>) =>
  * 可视化配置组件
  * @param props
  */
-const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
+const SettingDrawer: React.FC<SettingDrawerProps> = props => {
   const {
     settings: propsSettings = {},
     hideLoading = false,
@@ -369,7 +369,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     onChange: props.onCollapseChange,
   });
   const [language, setLanguage] = useState<string>(getLanguage());
-  const [settingState, setSettingState] = useMergeValue<Partial<Settings>>(
+  const [settingState, setSettingState] = useMergeValue<Partial<ProSettings>>(
     () => getParamsFromUrl(propsSettings),
     {
       value: propsSettings,
@@ -447,7 +447,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     }
 
     if (key === 'layout') {
-      nextState.contentWidth = value === 'topmenu' ? 'Fixed' : 'Fluid';
+      nextState.contentWidth = value === 'top' ? 'Fixed' : 'Fluid';
     }
     setSettingState(nextState);
   };
@@ -526,7 +526,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
           <BlockCheckbox
             list={themeList.themeList}
             value={navTheme}
-            onChange={(value) => changeSetting('navTheme', value, hideLoading)}
+            onChange={value => changeSetting('navTheme', value, hideLoading)}
           />
         </Body>
 
@@ -539,9 +539,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
               : themeList.colorList[navTheme === 'realDark' ? 'dark' : 'light']
           }
           formatMessage={formatMessage}
-          onChange={(color) =>
-            changeSetting('primaryColor', color, hideLoading)
-          }
+          onChange={color => changeSetting('primaryColor', color, hideLoading)}
         />
 
         <Divider />
@@ -549,7 +547,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
         <Body title={formatMessage({ id: 'app.setting.navigationmode' })}>
           <BlockCheckbox
             value={layout}
-            onChange={(value) => changeSetting('layout', value, hideLoading)}
+            onChange={value => changeSetting('layout', value, hideLoading)}
           />
         </Body>
         <LayoutSetting settings={settingState} changeSetting={changeSetting} />
@@ -566,7 +564,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
                   <Switch
                     size="small"
                     checked={!!colorWeak}
-                    onChange={(checked) => changeSetting('colorWeak', checked)}
+                    onChange={checked => changeSetting('colorWeak', checked)}
                   />
                 ),
               },

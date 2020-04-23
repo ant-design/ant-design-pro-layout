@@ -83,6 +83,7 @@ const SiderMenu: React.FC<SiderMenuProps> = props => {
     onMenuHeaderClick,
     breakpoint = 'lg',
     style,
+    layout,
     menuExtraRender = false,
     collapsedButtonRender = defaultRenderCollapsedButton,
     links,
@@ -93,9 +94,9 @@ const SiderMenu: React.FC<SiderMenuProps> = props => {
   const { flatMenus } = MenuCounter.useContainer();
   const siderClassName = classNames(`${baseClassName}`, {
     [`${baseClassName}-fixed`]: fixSiderbar,
+    [`${baseClassName}-layout-${layout}`]: layout,
     [`${baseClassName}-light`]: theme === 'light',
   });
-
   const headerDom = defaultRenderLogoAndTitle(props);
   const extraDom = menuExtraRender && menuExtraRender(props);
   return (

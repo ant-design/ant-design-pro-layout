@@ -25,13 +25,13 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
 
   const list = propsList || [
     {
-      key: 'sidemenu',
+      key: 'side',
       url:
         'https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg',
       title: formatMessage({ id: 'app.setting.sidemenu' }),
     },
     {
-      key: 'topmenu',
+      key: 'top',
       url:
         'https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg',
       title: formatMessage({ id: 'app.setting.topmenu' }),
@@ -40,7 +40,7 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
 
   return (
     <div className={baseClassName} key={value}>
-      {list.map((item) => (
+      {list.map(item => (
         <Tooltip title={item.title} key={item.key}>
           <div
             className={`${baseClassName}-item`}

@@ -6,13 +6,15 @@ import { Layout } from 'antd';
 
 import { BasicLayoutProps } from './BasicLayout';
 import GlobalHeader, { GlobalHeaderProps } from './GlobalHeader';
-import { Settings } from './defaultSettings';
+import { ProSettings } from './defaultSettings';
 import TopNavHeader from './TopNavHeader';
 import { WithFalse } from './typings';
 
 const { Header } = Layout;
 
-export interface HeaderViewProps extends Partial<Settings>, GlobalHeaderProps {
+export interface HeaderViewProps
+  extends Partial<ProSettings>,
+    GlobalHeaderProps {
   isMobile?: boolean;
   collapsed?: boolean;
   logo?: React.ReactNode;
@@ -30,7 +32,7 @@ interface HeaderViewState {
 class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
   renderContent = () => {
     const { isMobile, onCollapse, navTheme, layout, headerRender } = this.props;
-    const isTop = layout === 'topmenu';
+    const isTop = layout === 'top';
     let defaultDom = <GlobalHeader onCollapse={onCollapse} {...this.props} />;
     if (isTop && !isMobile) {
       defaultDom = (
@@ -55,37 +57,44 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       className: propsClassName,
       style,
       collapsed,
-      siderWidth = 256,
+      siderWidth = 208,
       hasSiderMenu,
       headerRender,
       isMobile,
     } = this.props;
+    const needFixedHeader = fixedHeader || layout === 'mix';
+    const isTop = layout === 'top';
 
-    const isTop = layout === 'topmenu';
-
-    const needSettingWidth = fixedHeader && hasSiderMenu && !isTop && !isMobile;
+    const needSettingWidth =
+      needFixedHeader && hasSiderMenu && !isTop && !isMobile;
 
     const className = classNames(propsClassName, {
-      'ant-pro-fixed-header': fixedHeader,
+      'ant-pro-fixed-header': needFixedHeader,
       'ant-pro-top-menu': isTop,
     });
 
     if (headerRender === false) {
       return null;
     }
-
     return (
       <>
-        {fixedHeader && <Header />}
+        {needFixedHeader && (
+          <Header
+            style={{
+              height: 48,
+            }}
+          />
+        )}
         <Header
           style={{
             padding: 0,
             height: 48,
-            width: needSettingWidth
-              ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
-              : '100%',
-            zIndex: 9,
-            right: fixedHeader ? 0 : undefined,
+            width:
+              layout !== 'mix' && needSettingWidth
+                ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
+                : '100%',
+            zIndex: layout === 'mix' ? 100 : 9,
+            right: needFixedHeader ? 0 : undefined,
             ...style,
           }}
           className={className}

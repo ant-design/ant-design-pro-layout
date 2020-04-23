@@ -36,7 +36,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const [collapsed, handleMenuCollapse] = useState<boolean>(false);
   const [settings, setSettings] = useState<Partial<Settings>>({
     ...defaultSettings,
-    fixSiderbar: true,
   });
   return (
     <>

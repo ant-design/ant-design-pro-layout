@@ -3,10 +3,15 @@ import './index.less';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { HeaderViewProps } from '../Header';
-import { defaultRenderLogo, SiderMenuProps } from '../SiderMenu/SiderMenu';
+import {
+  defaultRenderLogo,
+  SiderMenuProps,
+  defaultRenderLogoAndTitle,
+} from '../SiderMenu/SiderMenu';
 import { isBrowser } from '../utils/utils';
+import { ProSettings } from '../defaultSettings';
 
-export interface GlobalHeaderProps {
+export interface GlobalHeaderProps extends ProSettings {
   collapsed?: boolean;
   onCollapse?: (collapsed: boolean) => void;
   isMobile?: boolean;
@@ -54,6 +59,7 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       menuHeaderRender,
       className: propClassName,
       style,
+      layout,
     } = this.props;
     const className = classNames(propClassName, 'ant-pro-global-header');
 
@@ -65,6 +71,11 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     return (
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
+        {layout === 'mix' && (
+          <div className="ant-pro-global-header-logo">
+            {defaultRenderLogoAndTitle({ ...this.props, collapsed: false })}
+          </div>
+        )}
         <div style={{ flex: 1 }} />
         {rightContentRender && rightContentRender(this.props)}
       </div>

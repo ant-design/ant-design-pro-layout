@@ -19,7 +19,7 @@ import {
   WithFalse,
 } from './typings';
 import { getPageTitleInfo, GetPageTitleProps } from './getPageTitle';
-import defaultSettings, { Settings } from './defaultSettings';
+import defaultSettings, { ProSettings } from './defaultSettings';
 import getLocales, { localeType } from './locales';
 import { BaseMenuProps } from './SiderMenu/BaseMenu';
 import Footer from './Footer';
@@ -38,7 +38,7 @@ export interface BasicLayoutProps
   extends Partial<RouterTypes<Route>>,
     SiderMenuProps,
     HeaderViewProps,
-    Partial<Settings> {
+    Partial<ProSettings> {
   pure?: boolean;
   /**
    * logo url
@@ -128,7 +128,7 @@ const renderSiderMenu = (props: BasicLayoutProps): React.ReactNode => {
   if (props.menuRender === false || props.pure) {
     return null;
   }
-  if (layout === 'topmenu' && !isMobile) {
+  if (layout === 'top' && !isMobile) {
     return <SiderMenu {...props} hide />;
   }
   if (menuRender) {
@@ -216,7 +216,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     loading,
     ...rest
   } = props;
-
+  const { prefixCls } = rest;
   const formatMessage = ({
     id,
     defaultMessage,
@@ -297,7 +297,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 
   // If it is a fix menu, calculate padding
   // don't need padding in phone mode
-  const hasLeftPadding = fixSiderbar && PropsLayout !== 'topmenu' && !isMobile;
+  const hasLeftPadding = fixSiderbar && PropsLayout !== 'top' && !isMobile;
 
   const [collapsed, onCollapse] = useMergeValue<boolean>(false, {
     value: props.collapsed,
@@ -371,17 +371,18 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       ? propsIsChildrenLayout
       : contextIsChildrenLayout;
 
+  const baseClassName = `${prefixCls}-basicLayout`;
   // gen className
   const className = classNames(
     props.className,
     'ant-design-pro',
-    'ant-pro-basicLayout',
+    baseClassName,
     {
       [`screen-${colSize}`]: colSize,
-      'ant-pro-basicLayout-topmenu': PropsLayout === 'topmenu',
-      'ant-pro-basicLayout-is-children': isChildrenLayout,
-      'ant-pro-basicLayout-fix-siderbar': fixSiderbar,
-      'ant-pro-basicLayout-mobile': isMobile,
+      [`${baseClassName}-top-menu`]: PropsLayout === 'top',
+      [`${baseClassName}-is-children`]: isChildrenLayout,
+      [`${baseClassName}-fix-siderbar`]: fixSiderbar,
+      [`${baseClassName}-mobile`]: isMobile,
     },
   );
 
@@ -398,9 +399,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     genLayoutStyle.minHeight = 0;
   }
 
-  const contentClassName = classNames('ant-pro-basicLayout-content', {
-    'ant-pro-basicLayout-has-header': headerDom,
-    'ant-pro-basicLayout-content-disable-margin': disableContentMargin,
+  const contentClassName = classNames(`${baseClassName}-content`, {
+    [`${baseClassName}-has-header'`]: headerDom,
+    [`${baseClassName}-content-disable-margin`]: disableContentMargin,
   });
 
   // warning info
@@ -447,7 +448,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             {siderMenuDom}
             <Layout style={genLayoutStyle}>
               {headerDom}
-
               <WrapContent
                 className={contentClassName}
                 isChildrenLayout={isChildrenLayout}
@@ -468,6 +468,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 BasicLayout.defaultProps = {
   logo: 'https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg',
   ...defaultSettings,
+  prefixCls: 'ant-pro',
   location: isBrowser() ? window.location : undefined,
 };
 export default BasicLayout;

@@ -4,10 +4,10 @@ import React, { useContext, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import RouteContext from '../RouteContext';
-import { Settings } from '../defaultSettings';
+import { ProSettings } from '../defaultSettings';
 
 interface GridContentProps {
-  contentWidth?: Settings['contentWidth'];
+  contentWidth?: ProSettings['contentWidth'];
   children: React.ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -18,7 +18,7 @@ interface GridContentProps {
  * contentWidth=Fixed, width will is 1200
  * @param props
  */
-const GridContent: React.SFC<GridContentProps> = (props) => {
+const GridContent: React.SFC<GridContentProps> = props => {
   const value = useContext(RouteContext);
   const {
     children,

@@ -14,7 +14,7 @@ import getMenuData from './utils/getMenuData';
 import getPageTitle from './getPageTitle';
 import PageLoading from './PageLoading';
 
-export { Settings } from './defaultSettings';
+export { ProSettings as Settings } from './defaultSettings';
 
 export { MenuDataItem } from './typings';
 

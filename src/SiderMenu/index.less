@@ -7,6 +7,8 @@
 
 .@{pro-layout-sider-menu-prefix-cls} {
   position: relative;
+  background-color: @layout-sider-background;
+  transition: background-color 0.3s;
 
   &.@{ant-prefix}-menu-vertical .@{ant-prefix}-menu-item:not(:last-child),
   &.@{ant-prefix}-menu-vertical-left .@{ant-prefix}-menu-item:not(:last-child),
@@ -15,12 +17,15 @@
     margin-bottom: 4px;
   }
 
+  &-layout-mix {
+    padding-top: 48px;
+  }
+
   &-logo {
     position: relative;
     display: flex;
     align-items: center;
     padding: 16px;
-    background: @layout-sider-background;
     cursor: pointer;
     transition: padding 0.2s;
 
@@ -140,15 +145,15 @@
         overflow-y: auto;
       }
     }
+  }
 
-    .@{ant-prefix}-menu-inline {
-      background-color: transparent;
-      border-right: 0;
+  .@{ant-prefix}-menu-inline {
+    background-color: transparent !important;
+    border-right: 0;
 
-      .@{ant-prefix}-menu-item,
-      .@{ant-prefix}-menu-submenu-title {
-        width: 100%;
-      }
+    .@{ant-prefix}-menu-item,
+    .@{ant-prefix}-menu-submenu-title {
+      width: 100%;
     }
   }
 
@@ -171,7 +176,6 @@
     background-color: @white;
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     .@{pro-layout-sider-menu-prefix-cls}-logo {
-      background-color: @white;
       h1 {
         color: @primary-color;
       }

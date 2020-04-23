@@ -12,6 +12,7 @@ class WrapContent extends React.Component<{
   className?: string;
   style?: CSSProperties;
   location?: any;
+  prefixCls?: string;
   contentHeight?: number | string;
 }> {
   ref: HTMLDivElement | null = null;
@@ -27,7 +28,13 @@ class WrapContent extends React.Component<{
   }
 
   render() {
-    const { style, className, children, isChildrenLayout } = this.props;
+    const {
+      style,
+      prefixCls,
+      className,
+      children,
+      isChildrenLayout,
+    } = this.props;
     return (
       <Content className={className} style={style}>
         <ConfigProvider
@@ -39,10 +46,10 @@ class WrapContent extends React.Component<{
           }}
         >
           <div
-            ref={(ele) => {
+            ref={ele => {
               this.ref = ele;
             }}
-            className="ant-pro-basicLayout-children-content-wrap"
+            className={`${prefixCls}-basicLayout-children-content-wrap`}
           >
             <GridContent>{children}</GridContent>
           </div>
