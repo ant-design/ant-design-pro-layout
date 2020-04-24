@@ -20,11 +20,7 @@ const plugins: IPlugin[] = [
         // default true, when it is true, will use `navigator.language` overwrite default
         baseNavigator: true,
       },
-      dynamicImport: {
-        loadingComponent: './components/PageLoading/index',
-        webpackChunkName: true,
-        level: 3,
-      },
+      dynamicImport: false,
     },
   ],
   [
@@ -50,6 +46,7 @@ export default {
   targets: {
     ie: 11,
   },
+  history: 'hash',
   theme: {
     '@primary-color': defaultSettings.primaryColor,
   },
