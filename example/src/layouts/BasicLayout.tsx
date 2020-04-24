@@ -32,7 +32,7 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
   };
 };
 
-const BasicLayout: React.FC<BasicLayoutProps> = props => {
+const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const [collapsed, handleMenuCollapse] = useState<boolean>(false);
   const [settings, setSettings] = useState<Partial<Settings>>({
     ...defaultSettings,
@@ -41,12 +41,16 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     <>
       <ProLayout
         logo={logo}
-        menuHeaderRender={(logoDom, titleDom) => (
-          <Link to="/">
-            {logoDom}
-            {titleDom}
-          </Link>
-        )}
+        menuHeaderRender={
+          settings.layout !== 'mix'
+            ? (logoDom, titleDom) => (
+                <Link to="/">
+                  {logoDom}
+                  {titleDom}
+                </Link>
+              )
+            : false
+        }
         links={[
           <>
             <HeartTwoTone />
@@ -103,7 +107,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         // hideCopyButton
         // hideHintAlert
         settings={settings}
-        onSettingChange={config => setSettings(config)}
+        onSettingChange={(config) => setSettings(config)}
       />
     </>
   );

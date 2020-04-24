@@ -111,9 +111,9 @@ class MenuUtil {
 
   getNavMenuItems = (menusData: MenuDataItem[] = []): React.ReactNode[] =>
     menusData
-      .filter(item => item.name && !item.hideInMenu)
-      .map(item => this.getSubMenuOrItem(item))
-      .filter(item => item);
+      .filter((item) => item.name && !item.hideInMenu)
+      .map((item) => this.getSubMenuOrItem(item))
+      .filter((item) => item);
 
   /**
    * get SubMenu or Item
@@ -122,7 +122,7 @@ class MenuUtil {
     if (
       Array.isArray(item.children) &&
       !item.hideChildrenInMenu &&
-      item.children.some(child => child && !!child.name)
+      item.children.some((child) => child && !!child.name)
     ) {
       const name = this.getIntlName(item);
       const { subMenuItemRender } = this.props;
@@ -250,7 +250,7 @@ const getOpenKeysProps = (
   return openKeysProps;
 };
 
-const BaseMenu: React.FC<BaseMenuProps> = props => {
+const BaseMenu: React.FC<BaseMenuProps> = (props) => {
   const {
     theme,
     mode,
@@ -313,7 +313,7 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
     {
       value: propsSelectedKeys,
       onChange: onSelect
-        ? keys => {
+        ? (keys) => {
             if (onSelect && keys) {
               onSelect(keys as any);
             }
@@ -385,6 +385,7 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
       mode={mode}
       defaultOpenKeys={defaultOpenKeysRef.current}
       theme={theme}
+      inlineIndent={16}
       selectedKeys={selectedKeys}
       style={style}
       className={cls}
@@ -397,7 +398,7 @@ const BaseMenu: React.FC<BaseMenuProps> = props => {
 };
 
 BaseMenu.defaultProps = {
-  postMenuData: data => data || [],
+  postMenuData: (data) => data || [],
 };
 
 export default BaseMenu;
