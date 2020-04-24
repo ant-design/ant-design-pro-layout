@@ -37,6 +37,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const [settings, setSettings] = useState<Partial<Settings>>({
     ...defaultSettings,
   });
+  console.log();
   return (
     <>
       <ProLayout
@@ -82,7 +83,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         onMenuHeaderClick={() => history.push('/')}
         footerRender={() => <DefaultFooter />}
         menuExtraRender={({ collapsed }) =>
-          !collapsed && (
+          !collapsed &&
+          props.location?.pathname === '/welcome/welcome' && (
             <Select
               defaultValue="product"
               size="small"
