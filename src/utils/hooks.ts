@@ -3,13 +3,18 @@ import { isBrowser } from './utils';
 import defaultSettings from '../defaultSettings';
 
 export function useDocumentTitle(
-  title: string,
+  titleInfo: {
+    title: string;
+    id: string;
+    pageName: string;
+  },
   appDefaultTitle: string = defaultSettings.title,
 ) {
-  const titleText = typeof title === 'string' ? title : appDefaultTitle;
+  const titleText =
+    typeof titleInfo.pageName === 'string' ? titleInfo.title : appDefaultTitle;
   useEffect(() => {
     if (isBrowser() && titleText) {
       document.title = titleText;
     }
-  }, [title]);
+  }, [titleInfo.title]);
 }
