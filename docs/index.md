@@ -134,9 +134,9 @@ render(<BasicLayout />, document.getElementById('root'));
 | hideLoading | 删除主题切换时的 message 提示 | boolean | - |
 | hideCopyButton | 删除下方的拷贝设置按钮 | boolean | - |
 
-### PageHeaderWrapper
+### PageContainer
 
-PageHeaderWrapper 封装了 ant design 的 PageHeader 组件，增加了 tabList，和 content。 根据当前的路由填入 title 和 breadcrumb。它依赖 Layout 的 route 属性。当然你可以传入参数来复写默认值。 PageHeaderWrapper 支持 [Tabs](https://ant.design/components/tabs-cn/) 和 [PageHeader](https://ant.design/components/page-header-cn/) 的所有属性。
+PageContainer 封装了 ant design 的 PageHeader 组件，增加了 tabList，和 content。 根据当前的路由填入 title 和 breadcrumb。它依赖 Layout 的 route 属性。当然你可以传入参数来复写默认值。 PageContainer 支持 [Tabs](https://ant.design/components/tabs-cn/) 和 [PageHeader](https://ant.design/components/page-header-cn/) 的所有属性。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

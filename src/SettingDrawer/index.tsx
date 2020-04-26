@@ -23,6 +23,7 @@ import LayoutSetting, { renderLayoutSettingItem } from './LayoutChange';
 
 interface BodyProps {
   title: string;
+  prefixCls: string;
 }
 
 type MergerSettingsType<T> = Partial<T> & {
@@ -30,9 +31,9 @@ type MergerSettingsType<T> = Partial<T> & {
   colorWeak?: boolean;
 };
 
-const Body: React.FC<BodyProps> = ({ children, title }) => (
+const Body: React.FC<BodyProps> = ({ children, prefixCls, title }) => (
   <div style={{ marginBottom: 24 }}>
-    <h3 className="ant-pro-setting-drawer-title">{title}</h3>
+    <h3 className={`${prefixCls}-drawer-title`}>{title}</h3>
     {children}
   </div>
 );
@@ -52,6 +53,7 @@ export interface SettingDrawerProps {
   hideLoading?: boolean;
   hideColors?: boolean;
   hideHintAlert?: boolean;
+  prefixCls?: string;
   hideCopyButton?: boolean;
   onCollapseChange?: (collapse: boolean) => void;
   onSettingChange?: (settings: MergerSettingsType<ProSettings>) => void;
@@ -66,7 +68,7 @@ let oldSetting: MergerSettingsType<ProSettings> = {};
 
 const getDifferentSetting = (state: Partial<ProSettings>) => {
   const stateObj: Partial<ProSettings> = {};
-  Object.keys(state).forEach(key => {
+  Object.keys(state).forEach((key) => {
     if (state[key] !== oldSetting[key] && key !== 'collapse') {
       stateObj[key] = state[key];
     }
@@ -225,7 +227,7 @@ const getThemeList = () => {
     },
   ];
 
-  if (list.find(item => item.theme === 'dark')) {
+  if (list.find((item) => item.theme === 'dark')) {
     themeList.push({
       key: 'realDark',
       url:
@@ -237,7 +239,7 @@ const getThemeList = () => {
     });
   }
   // insert  theme color List
-  list.forEach(item => {
+  list.forEach((item) => {
     const color = (item.modifyVars || {})['@primary-color'];
     if (item.theme === 'dark' && color) {
       darkColorList.push({
@@ -280,7 +282,7 @@ const initState = (
   if (window.location.search) {
     const params = parse(window.location.search.replace('?', ''));
     const replaceSetting = {};
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
       if (defaultSettings[key]) {
         replaceSetting[key] = params[key];
       }
@@ -352,7 +354,7 @@ const genCopySettingJson = (settingState: MergerSettingsType<ProSettings>) =>
  * 可视化配置组件
  * @param props
  */
-const SettingDrawer: React.FC<SettingDrawerProps> = props => {
+const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
   const {
     settings: propsSettings = {},
     hideLoading = false,
@@ -361,6 +363,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
     hideCopyButton,
     getContainer,
     onSettingChange,
+    prefixCls = 'ant-pro',
   } = props;
   const firstRender = useRef<boolean>(true);
 
@@ -485,6 +488,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
       search: stringify(diffParams),
     });
   }, [JSON.stringify(settingState)]);
+  const baseClassName = `${prefixCls}-setting`;
 
   return (
     <Drawer
@@ -495,7 +499,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
       getContainer={getContainer}
       handler={
         <div
-          className="ant-pro-setting-drawer-handle"
+          className={`${baseClassName}-drawer-handle`}
           onClick={() => setShow(!show)}
         >
           {show ? (
@@ -519,17 +523,19 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
         zIndex: 999,
       }}
     >
-      <div className="ant-pro-setting-drawer-content">
+      <div className={`${baseClassName}-drawer-content`}>
         <Body
           title={formatMessage({
             id: 'app.setting.pagestyle',
             defaultMessage: 'Page style setting',
           })}
+          prefixCls={baseClassName}
         >
           <BlockCheckbox
+            prefixCls={baseClassName}
             list={themeList.themeList}
             value={navTheme}
-            onChange={value => changeSetting('navTheme', value, hideLoading)}
+            onChange={(value) => changeSetting('navTheme', value, hideLoading)}
           />
         </Body>
 
@@ -542,21 +548,30 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
               : themeList.colorList[navTheme === 'realDark' ? 'dark' : 'light']
           }
           formatMessage={formatMessage}
-          onChange={color => changeSetting('primaryColor', color, hideLoading)}
+          onChange={(color) =>
+            changeSetting('primaryColor', color, hideLoading)
+          }
         />
 
         <Divider />
 
-        <Body title={formatMessage({ id: 'app.setting.navigationmode' })}>
+        <Body
+          prefixCls={baseClassName}
+          title={formatMessage({ id: 'app.setting.navigationmode' })}
+        >
           <BlockCheckbox
+            prefixCls={baseClassName}
             value={layout}
-            onChange={value => changeSetting('layout', value, hideLoading)}
+            onChange={(value) => changeSetting('layout', value, hideLoading)}
           />
         </Body>
         <LayoutSetting settings={settingState} changeSetting={changeSetting} />
         <Divider />
 
-        <Body title={formatMessage({ id: 'app.setting.othersettings' })}>
+        <Body
+          prefixCls={baseClassName}
+          title={formatMessage({ id: 'app.setting.othersettings' })}
+        >
           <List
             split={false}
             renderItem={renderLayoutSettingItem}
@@ -567,7 +582,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = props => {
                   <Switch
                     size="small"
                     checked={!!colorWeak}
-                    onChange={checked => changeSetting('colorWeak', checked)}
+                    onChange={(checked) => changeSetting('colorWeak', checked)}
                   />
                 ),
               },

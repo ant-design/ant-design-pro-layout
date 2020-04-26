@@ -11,6 +11,7 @@ interface GridContentProps {
   children: React.ReactNode;
   className?: string;
   style?: CSSProperties;
+  prefixCls?: string;
 }
 
 /**
@@ -18,18 +19,19 @@ interface GridContentProps {
  * contentWidth=Fixed, width will is 1200
  * @param props
  */
-const GridContent: React.SFC<GridContentProps> = props => {
+const GridContent: React.SFC<GridContentProps> = (props) => {
   const value = useContext(RouteContext);
   const {
     children,
     contentWidth: propsContentWidth,
     className: propsClassName,
     style,
+    prefixCls = 'ant-pro',
   } = props;
   const contentWidth = propsContentWidth || value.contentWidth;
-  let className = 'ant-pro-grid-content';
+  let className = `${prefixCls}-grid-content`;
   if (contentWidth === 'Fixed') {
-    className = 'ant-pro-grid-content wide';
+    className = `${prefixCls}-grid-content wide`;
   }
   return (
     <div className={classNames(className, propsClassName)} style={style}>

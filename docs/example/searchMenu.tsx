@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import ProLayout, {
-  PageHeaderWrapper,
+  PageContainer,
   MenuDataItem,
   // eslint-disable-next-line import/no-unresolved
 } from '@ant-design/pro-layout';
@@ -13,7 +13,7 @@ const filterByMenuDate = (
   keyWord: string,
 ): MenuDataItem[] =>
   data
-    .map(item => {
+    .map((item) => {
       if (
         (item.name && item.name.includes(keyWord)) ||
         filterByMenuDate(item.children || [], keyWord).length > 0
@@ -26,7 +26,7 @@ const filterByMenuDate = (
 
       return undefined;
     })
-    .filter(item => item) as MenuDataItem[];
+    .filter((item) => item) as MenuDataItem[];
 
 export default () => {
   const [keyWord, setKeyWord] = useState('');
@@ -44,18 +44,18 @@ export default () => {
         menuExtraRender={({ collapsed }) =>
           !collapsed && (
             <Input.Search
-              onSearch={e => {
+              onSearch={(e) => {
                 setKeyWord(e);
               }}
             />
           )
         }
         menuDataRender={() => complexMenu}
-        postMenuData={menus => filterByMenuDate(menus || [], keyWord)}
+        postMenuData={(menus) => filterByMenuDate(menus || [], keyWord)}
       >
-        <PageHeaderWrapper content="欢迎使用">
+        <PageContainer content="欢迎使用">
           <div>Hello World</div>
-        </PageHeaderWrapper>
+        </PageContainer>
       </ProLayout>
     </div>
   );

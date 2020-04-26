@@ -1,10 +1,10 @@
 import React from 'react';
-import { PageHeaderWrapper } from '../../../src';
+import { PageContainer } from '../../../src';
 
 export default (): React.ReactNode => {
   console.log('run');
   return (
-    <PageHeaderWrapper>
+    <PageContainer>
       <div style={{ textAlign: 'center', minHeight: '120vh' }}>
         Want to add more pages? Please refer to{' '}
         <a
@@ -16,6 +16,6 @@ export default (): React.ReactNode => {
         </a>
         。
       </div>
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };

@@ -15,35 +15,40 @@ export interface PageHeaderTabConfig {
   tabProps?: TabsProps;
 }
 
-export interface PageHeaderWrapperProps
+export interface PageContainerProps
   extends PageHeaderTabConfig,
     Omit<PageHeaderProps, 'title'> {
   title?: React.ReactNode | false;
   content?: React.ReactNode;
   extraContent?: React.ReactNode;
-  pageHeaderRender?: (props: PageHeaderWrapperProps) => React.ReactNode;
+  prefixCls?: string;
+  pageHeaderRender?: (props: PageContainerProps) => React.ReactNode;
 }
-
-const prefixedClassName = 'ant-pro-page-header-wrap';
 
 /**
  * render Footer tabList
  * In order to be compatible with the old version of the PageHeader
  * basically all the functions are implemented.
  */
-const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
+const renderFooter: React.SFC<Omit<
+  PageContainerProps & {
+    prefixedClassName: string;
+  },
+  'title'
+>> = ({
   tabList,
   tabActiveKey,
   onTabChange,
   tabBarExtraContent,
   tabProps,
+  prefixedClassName,
 }) => {
   if (tabList && tabList.length) {
     return (
       <Tabs
         className={`${prefixedClassName}-tabs`}
         activeKey={tabActiveKey}
-        onChange={key => {
+        onChange={(key) => {
           if (onTabChange) {
             onTabChange(key);
           }
@@ -51,7 +56,7 @@ const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
         tabBarExtraContent={tabBarExtraContent}
         {...tabProps}
       >
-        {tabList.map(item => (
+        {tabList.map((item) => (
           <Tabs.TabPane {...item} tab={item.tab} key={item.key} />
         ))}
       </Tabs>
@@ -63,6 +68,7 @@ const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
 const renderPageHeader = (
   content: React.ReactNode,
   extraContent: React.ReactNode,
+  prefixedClassName: string,
 ): React.ReactNode => {
   if (!content && !extraContent) {
     return null;
@@ -86,8 +92,8 @@ const renderPageHeader = (
 };
 
 const defaultPageHeaderRender = (
-  props: PageHeaderWrapperProps,
-  value: RouteContextType,
+  props: PageContainerProps,
+  value: RouteContextType & { prefixedClassName: string },
 ): React.ReactNode => {
   const {
     title,
@@ -111,23 +117,34 @@ const defaultPageHeaderRender = (
       {...value}
       title={pageHeaderTitle}
       {...restProps}
-      footer={renderFooter(restProps)}
+      footer={renderFooter({
+        ...restProps,
+        prefixedClassName: value.prefixedClassName,
+      })}
       prefixCls={prefixCls}
     >
-      {renderPageHeader(content, extraContent)}
+      {renderPageHeader(content, extraContent, value.prefixedClassName)}
     </PageHeader>
   );
 };
 
-const PageHeaderWrapper: React.SFC<PageHeaderWrapperProps> = props => {
-  const { children, style } = props;
+const PageContainer: React.SFC<PageContainerProps> = (props) => {
+  const { children, style, prefixCls = 'ant-pro' } = props;
   const value = useContext(RouteContext);
+
+  const prefixedClassName = `${prefixCls}-page-container`;
+
   const className = classNames(prefixedClassName, props.className);
+
   return (
     <div style={style} className={className}>
-      <div className={`${prefixedClassName}-page-header-warp`}>
+      <div className={`${prefixedClassName}-warp`}>
         <GridContent>
-          {defaultPageHeaderRender(props, { ...value, prefixCls: undefined })}
+          {defaultPageHeaderRender(props, {
+            ...value,
+            prefixCls: undefined,
+            prefixedClassName,
+          })}
         </GridContent>
       </div>
       {children ? (
@@ -141,4 +158,4 @@ const PageHeaderWrapper: React.SFC<PageHeaderWrapperProps> = props => {
   );
 };
 
-export default PageHeaderWrapper;
+export default PageContainer;

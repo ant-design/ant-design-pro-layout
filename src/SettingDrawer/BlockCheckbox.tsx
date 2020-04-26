@@ -12,15 +12,17 @@ export interface BlockCheckboxProps {
     key: string;
     url: string;
   }[];
+  prefixCls: string;
 }
-
-const baseClassName = 'ant-pro-setting-drawer-block-checbox';
 
 const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
   value,
   onChange,
   list: propsList,
+  prefixCls,
 }) => {
+  const baseClassName = `${prefixCls}-drawer-block-checkbox`;
+
   const formatMessage = getFormatMessage();
 
   const list = propsList || [
@@ -46,7 +48,7 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
 
   return (
     <div className={baseClassName} key={value}>
-      {list.map(item => (
+      {list.map((item) => (
         <Tooltip title={item.title} key={item.key}>
           <div
             className={`${baseClassName}-item`}

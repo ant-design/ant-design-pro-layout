@@ -94,9 +94,9 @@ import { SettingDrawer } from '@ant-design/pro-layout';
 | onSettingChange | The setting changes event | (settings: [Settings](#Settings)) => void | - |
 | hideHintAlert | remove hint info | boolean | - |
 
-### PageHeaderWrapper
+### PageContainer
 
-PageHeaderWrapper encapsulates the PageHeader component of ant design, adds tabList, and content. Fill in the title and breadcrumb based on the current route. It depends on the route property of the Layout. Of course you can pass in parameters to override the default values. PageHeaderWrapper supports all the attributes of [Tabs](https://ant.design/components/tabs-cn/) and [PageHeader](https://ant.design/components/page-header-cn/).
+PageContainer encapsulates the PageHeader component of ant design, adds tabList, and content. Fill in the title and breadcrumb based on the current route. It depends on the route property of the Layout. Of course you can pass in parameters to override the default values. PageContainer supports all the attributes of [Tabs](https://ant.design/components/tabs-cn/) and [PageHeader](https://ant.design/components/page-header-cn/).
 
 | Property | Description | Type | Default Value |
 | --- | --- | --- | --- |
@@ -124,7 +124,7 @@ import { RouteContext } from '@ant-design/pro-layout';
 
 const Page = () => (
   <RouteContext.Consumer>
-    {value => {
+    {(value) => {
       return value.title;
     }}
   </RouteContext.Consumer>

@@ -8,7 +8,7 @@ import SettingDrawer, {
 
 import DefaultFooter, { FooterProps } from './Footer';
 import GridContent from './GridContent';
-import PageHeaderWrapper from './PageHeaderWrapper';
+import PageContainer from './PageContainer';
 import RouteContext from './RouteContext';
 import getMenuData from './utils/getMenuData';
 import getPageTitle from './getPageTitle';
@@ -35,7 +35,7 @@ export {
   SettingDrawerProps,
   getPageTitle,
   getMenuData,
-  PageHeaderWrapper,
+  PageContainer,
 };
 
 export default BasicLayout;

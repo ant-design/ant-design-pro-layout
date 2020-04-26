@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ProLayout, { PageHeaderWrapper } from '@ant-design/pro-layout';
+// eslint-disable-next-line import/no-unresolved
+import ProLayout, { PageContainer } from '@ant-design/pro-layout';
 import { Button } from 'antd';
 import defaultProps from './defaultProps';
 
@@ -44,7 +45,7 @@ export default () => {
         )}
         {...defaultProps}
       >
-        <PageHeaderWrapper content="欢迎使用">Hello World</PageHeaderWrapper>
+        <PageContainer content="欢迎使用">Hello World</PageContainer>
       </ProLayout>
     </>
   );

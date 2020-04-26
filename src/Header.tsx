@@ -74,6 +74,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       hasSiderMenu,
       headerRender,
       isMobile,
+      prefixCls,
     } = this.props;
     const needFixedHeader = fixedHeader || layout === 'mix';
     const isTop = layout === 'top';
@@ -82,13 +83,19 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       needFixedHeader && hasSiderMenu && !isTop && !isMobile;
 
     const className = classNames(propsClassName, {
-      'ant-pro-fixed-header': needFixedHeader,
-      'ant-pro-top-menu': isTop,
+      [`${prefixCls}-fixed-header`]: needFixedHeader,
+      [`${prefixCls}-top-menu`]: isTop,
     });
 
     if (headerRender === false) {
       return null;
     }
+
+    const width =
+      layout !== 'mix' && needSettingWidth
+        ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
+        : '100%';
+    const right = needFixedHeader ? 0 : undefined;
     return (
       <>
         {needFixedHeader && (
@@ -102,12 +109,9 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
           style={{
             padding: 0,
             height: 48,
-            width:
-              layout !== 'mix' && needSettingWidth
-                ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
-                : '100%',
+            width,
             zIndex: layout === 'mix' ? 100 : 9,
-            right: needFixedHeader ? 0 : undefined,
+            right,
             ...style,
           }}
           className={className}
