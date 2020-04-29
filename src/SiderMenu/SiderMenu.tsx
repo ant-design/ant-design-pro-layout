@@ -73,7 +73,7 @@ export interface SiderMenuProps
 const defaultRenderCollapsedButton = (collapsed?: boolean) =>
   collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />;
 
-const SiderMenu: React.FC<SiderMenuProps> = (props) => {
+const SiderMenu: React.FC<SiderMenuProps> = props => {
   const {
     collapsed,
     fixSiderbar,
@@ -106,7 +106,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       trigger={null}
       collapsed={collapsed}
       breakpoint={breakpoint === false ? undefined : breakpoint}
-      onCollapse={(collapse) => {
+      onCollapse={collapse => {
         if (!isMobile) {
           if (onCollapse) {
             onCollapse(collapse);
@@ -132,9 +132,8 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       )}
       {extraDom && (
         <div
-          className={`${baseClassName}-extra ${
-            !headerDom && `${baseClassName}-extra-no-logo`
-          }`}
+          className={`${baseClassName}-extra ${!headerDom &&
+            `${baseClassName}-extra-no-logo`}`}
         >
           {extraDom}
         </div>
@@ -144,6 +143,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
           flex: 1,
           overflowY: 'auto',
           overflowX: 'hidden',
+          marginLeft: -8,
         }}
       >
         {flatMenus && (
