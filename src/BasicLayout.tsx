@@ -404,7 +404,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   }
 
   const contentClassName = classNames(`${baseClassName}-content`, {
-    [`${baseClassName}-has-header'`]: headerDom,
+    [`${baseClassName}-has-header`]: headerDom,
     [`${baseClassName}-content-disable-margin`]: disableContentMargin,
   });
 

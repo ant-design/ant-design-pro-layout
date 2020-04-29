@@ -47,25 +47,22 @@
   }
 
   .@{basicLayout-prefix-cls}-has-header {
-    .@{basicLayout-prefix-cls}-is-children {
-      min-height: calc(100vh - @pro-layout-header-height);
-      &.@{basicLayout-prefix-cls}-fix-siderbar {
-        height: calc(100vh - @pro-layout-header-height);
-      }
-    }
-  }
-
-  // tech-page-container
-  .@{basicLayout-prefix-cls}-has-header .tech-page-container {
-    height: calc(100vh - @pro-layout-header-height);
-  }
-
-  .@{basicLayout-prefix-cls}-has-header
-    .@{basicLayout-prefix-cls}-is-children.@{basicLayout-prefix-cls}-has-header {
+    // tech-page-container
     .tech-page-container {
-      height: calc(
-        100vh - @pro-layout-header-height - @pro-layout-header-height;
-      );
+      height: calc(100vh - @pro-layout-header-height);
+    }
+    .@{basicLayout-prefix-cls}-is-children.@{basicLayout-prefix-cls}-has-header {
+      .tech-page-container {
+        height: calc(
+          100vh - @pro-layout-header-height - @pro-layout-header-height;
+        );
+      }
+      .@{basicLayout-prefix-cls}-is-children {
+        min-height: calc(100vh - @pro-layout-header-height);
+        &.@{basicLayout-prefix-cls}-fix-siderbar {
+          height: calc(100vh - @pro-layout-header-height);
+        }
+      }
     }
   }
 }

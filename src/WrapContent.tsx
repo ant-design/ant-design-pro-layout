@@ -1,9 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { ConfigProvider, Layout } from 'antd';
-import ResizeObserver from 'rc-resize-observer';
 import GridContent from './GridContent';
-
-import { debounce } from './utils/utils';
 
 const { Content } = Layout;
 
@@ -16,16 +13,6 @@ class WrapContent extends React.Component<{
   contentHeight?: number | string;
 }> {
   ref: HTMLDivElement | null = null;
-
-  shouldComponentUpdate(_: any) {
-    if (_.contentHeight !== this.props.contentHeight) {
-      return true;
-    }
-    if (_.children !== this.props.children) {
-      return true;
-    }
-    return false;
-  }
 
   render() {
     const {
@@ -59,49 +46,4 @@ class WrapContent extends React.Component<{
   }
 }
 
-class ResizeObserverContent extends React.Component<
-  {
-    isChildrenLayout?: boolean;
-    className?: string;
-    style?: CSSProperties;
-    location?: any;
-    children: any;
-  },
-  {
-    contentHeight: number | undefined;
-  }
-> {
-  state: { contentHeight: number | undefined } = {
-    contentHeight: undefined,
-  };
-
-  resize = debounce(({ height }: { height: number }) => {
-    const { contentHeight } = this.state;
-    if (contentHeight !== height) {
-      this.setState({
-        contentHeight: height,
-      });
-    }
-  }, 10);
-
-  componentWillUnmount() {
-    window.clearTimeout(this.resize.id);
-  }
-
-  render() {
-    const { contentHeight } = this.state;
-    return (
-      <div
-        style={{
-          minHeight: contentHeight,
-        }}
-      >
-        <ResizeObserver onResize={this.resize}>
-          <WrapContent {...this.props} contentHeight={contentHeight} />
-        </ResizeObserver>
-      </div>
-    );
-  }
-}
-
-export default ResizeObserverContent;
+export default WrapContent;
