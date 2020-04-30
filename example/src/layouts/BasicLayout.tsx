@@ -7,19 +7,16 @@
 import ProLayout, {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
-  Settings,
   SettingDrawer,
-  DefaultFooter,
-} from '../../../src/';
+} from '../../../es/';
 import { Select } from 'antd';
 import React, { useState } from 'react';
 import { HeartTwoTone } from '@ant-design/icons';
 import defaultSettings from '../../config/defaultSettings';
-
-import Link from 'umi/link';
-import history from 'umi/router';
+import Footer from '@/components/Footer';
+import { Link, history, useIntl, useModel } from 'umi';
 import logo from '../assets/logo.svg';
-import SelectLang from '@/components/SelectLang';
+import RightContent from '@/components/RightContent';
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
@@ -34,10 +31,10 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
 
 const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const [collapsed, handleMenuCollapse] = useState<boolean>(false);
-  const [settings, setSettings] = useState<Partial<Settings>>({
-    ...defaultSettings,
-  });
-  console.log();
+  const { initialState, setInitialState } = useModel('@@initialState');
+  const { settings = defaultSettings } = initialState || {};
+  const intl = useIntl();
+
   return (
     <>
       <ProLayout
@@ -58,6 +55,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             <span>name</span>
           </>,
         ]}
+        formatMessage={intl.formatMessage}
         onCollapse={handleMenuCollapse}
         menuItemRender={(menuItemProps, defaultDom) =>
           menuItemProps.isUrl ? (
@@ -68,28 +66,14 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             </Link>
           )
         }
-        rightContentRender={() => [
-          <div
-            style={{
-              padding: '0 16px',
-              minWidth: 500,
-            }}
-          >
-            <SelectLang />
-          </div>,
-          <span />,
-        ]}
+        rightContentRender={() => <RightContent />}
         collapsed={collapsed}
         onMenuHeaderClick={() => history.push('/')}
-        footerRender={() => <DefaultFooter />}
+        footerRender={() => <Footer />}
         menuExtraRender={({ collapsed }) =>
           !collapsed &&
-          props.location?.pathname === '/welcome/welcome' && (
-            <Select
-              defaultValue="product"
-              size="small"
-              style={{ width: '100%' }}
-            >
+          props.location?.pathname === '/welcome' && (
+            <Select defaultValue="product" size="small" style={{ width: '100%' }}>
               <Select.Option value="product">Product</Select.Option>
               <Select.Option value="dev">Development</Select.Option>
               <Select.Option value="disabled" disabled>
@@ -105,11 +89,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         {props.children}
       </ProLayout>
       <SettingDrawer
-        // hideLoading
-        // hideCopyButton
-        // hideHintAlert
         settings={settings}
-        onSettingChange={(config) => setSettings(config)}
+        onSettingChange={(config) =>
+          setInitialState({
+            ...initialState,
+            settings: config,
+          })
+        }
       />
     </>
   );

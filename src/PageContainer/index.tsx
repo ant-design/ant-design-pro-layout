@@ -112,6 +112,7 @@ const defaultPageHeaderRender = (
   if (!title && title !== false) {
     pageHeaderTitle = value.title;
   }
+  console.log(value);
   return (
     <PageHeader
       {...value}

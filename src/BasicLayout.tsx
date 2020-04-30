@@ -199,7 +199,7 @@ const getPaddingLeft = (
  * 🏄‍ Support multiple topics and layout types
  * @param props
  */
-const BasicLayout: React.FC<BasicLayoutProps> = props => {
+const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const {
     children,
     onCollapse: propsOnCollapse,

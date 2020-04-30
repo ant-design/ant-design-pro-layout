@@ -10,6 +10,13 @@
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
   transition: background 0.3s, width 0.2s;
 
+  :global {
+    .ant-menu.ant-menu-dark .ant-menu-item-selected,
+    .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+      background: #252a3d;
+    }
+  }
+
   .@{ant-prefix}-menu-submenu.@{ant-prefix}-menu-submenu-horizontal {
     height: 100%;
     line-height: @pro-layout-header-height;

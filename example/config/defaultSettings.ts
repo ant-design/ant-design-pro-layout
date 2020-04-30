@@ -1,49 +1,13 @@
-import { MenuProps } from 'antd/es/menu';
-
-export type ContentWidth = 'Fluid' | 'Fixed';
-
-export interface DefaultSettings {
-  /**
-   * theme for nav menu
-   */
-  navTheme: MenuProps['theme'];
-  /**
-   * primary color of ant design
-   */
-  primaryColor: string;
-  /**
-   * nav menu position: `sidemenu` or `topmenu`
-   */
-  layout: 'side' | 'top' | 'mix';
-  /**
-   * layout of content: `Fluid` or `Fixed`, only works when layout is topmenu
-   */
-  contentWidth: ContentWidth;
-  /**
-   * sticky header
-   */
-  fixedHeader: boolean;
-  /**
-   * sticky siderbar
-   */
-  fixSiderbar: boolean;
-  menu: { locale: boolean };
-  title: string;
-  pwa: boolean;
-  // Your custom iconfont Symbol script Url
-  // eg：//at.alicdn.com/t/font_1039637_btcrd5co4w.js
-  // 注意：如果需要图标多色，Iconfont 图标项目里要进行批量去色处理
-  // Usage: https://github.com/ant-design/ant-design-pro/pull/3517
-  iconfontUrl: string;
-  colorWeak: boolean;
-}
+import { Settings } from '../../src/';
 
 export default {
   navTheme: 'light',
+  // 拂晓蓝
   primaryColor: '#1890ff',
   layout: 'mix',
   contentWidth: 'Fluid',
   fixedHeader: false,
+  autoHideHeader: false,
   fixSiderbar: true,
   colorWeak: false,
   menu: {
@@ -52,4 +16,4 @@ export default {
   title: 'Ant Design Pro',
   pwa: false,
   iconfontUrl: '',
-} as DefaultSettings;
+} as Settings;
