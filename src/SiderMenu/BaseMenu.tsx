@@ -1,7 +1,5 @@
 import './index.less';
-
 import Icon, { createFromIconfontCN } from '@ant-design/icons';
-
 import { Menu } from 'antd';
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
@@ -181,7 +179,7 @@ class MenuUtil {
     const { target } = item;
     // if local is true formatMessage all name。
     const name = this.getIntlName(item);
-    let defaultItem = <>{name}</>;
+    let defaultItem = <span>{name}</span>;
     const isHttpUrl = isUrl(itemPath);
 
     // Is it a http link
