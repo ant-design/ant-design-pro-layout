@@ -6,7 +6,6 @@ import { Menu } from 'antd';
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import useMergeValue from 'use-merge-value';
-import warning from 'warning';
 
 import { MenuMode, MenuProps } from 'antd/es/menu';
 import { MenuTheme } from 'antd/es/menu/MenuContext';
@@ -22,8 +21,6 @@ import {
   WithFalse,
 } from '../typings';
 import MenuCounter from './Counter';
-
-let firstConsole = true;
 
 export interface BaseMenuProps
   extends Partial<RouterTypes<Route>>,
@@ -89,15 +86,6 @@ const getIcon = (icon?: string | React.ReactNode): React.ReactNode => {
     if (icon.startsWith('icon-')) {
       return <IconFont type={icon} />;
     }
-    if (firstConsole) {
-      warning(
-        false,
-        `In order to ensure compatibility with antd@4, we will delete the configuration icon in the next version, details can be viewed.
-为了兼容 antd@4，我们会在下个版本删除配置 icon: string 生成icon的用法。请查看
-https://pro.ant.design/blog/antd-4.0-cn 寻找解决方式！`,
-      );
-      firstConsole = false;
-    }
   }
   return icon;
 };
@@ -151,8 +139,10 @@ class MenuUtil {
         </SubMenu>
       );
     }
+    const icon = getIcon(item.icon);
+
     return (
-      <Menu.Item key={item.key || item.path}>
+      <Menu.Item icon={icon} key={item.key || item.path}>
         {this.getMenuItemPath(item)}
       </Menu.Item>
     );
@@ -182,7 +172,6 @@ class MenuUtil {
    */
   getMenuItemPath = (item: MenuDataItem) => {
     const itemPath = this.conversionPath(item.path || '/');
-    const icon = getIcon(item.icon);
     const {
       location = { pathname: '/' },
       isMobile,
@@ -192,21 +181,18 @@ class MenuUtil {
     const { target } = item;
     // if local is true formatMessage all name。
     const name = this.getIntlName(item);
-    let defaultItem = (
-      <>
-        {icon}
-        <span>{name}</span>
-      </>
-    );
+    let defaultItem = <>{name}</>;
     const isHttpUrl = isUrl(itemPath);
+
     // Is it a http link
     if (isHttpUrl) {
       defaultItem = (
         <a href={itemPath} target={target}>
-          {icon} <span>{name}</span>
+          <span>{name}</span>
         </a>
       );
     }
+
     if (menuItemRender) {
       return menuItemRender(
         {

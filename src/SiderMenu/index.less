@@ -22,6 +22,28 @@
     padding-top: 48px;
   }
 
+  .ant-menu-inline-collapsed > .ant-menu-item .anticon + span,
+  .ant-menu-inline-collapsed
+    > .ant-menu-item-group
+    > .ant-menu-item-group-list
+    > .ant-menu-item
+    .anticon
+    + span,
+  .ant-menu-inline-collapsed
+    > .ant-menu-item-group
+    > .ant-menu-item-group-list
+    > .ant-menu-submenu
+    > .ant-menu-submenu-title
+    .anticon
+    + span,
+  .ant-menu-inline-collapsed
+    > .ant-menu-submenu
+    > .ant-menu-submenu-title
+    .anticon
+    + span {
+    display: none;
+  }
+
   &-logo {
     position: relative;
     display: flex;

@@ -55,7 +55,7 @@ function formatter(
     return [];
   }
   return data
-    .filter(item => {
+    .filter((item) => {
       if (!item) {
         return false;
       }
@@ -114,20 +114,20 @@ const memoizeOneFormatter = memoizeOne(formatter, isEqual);
  */
 const defaultFilterMenuData = (menuData: MenuDataItem[] = []): MenuDataItem[] =>
   menuData
-    .filter(item => item && item.name && !item.hideInMenu)
-    .map(item => {
+    .filter((item) => item && item.name && !item.hideInMenu)
+    .map((item) => {
       if (
         item.children &&
         Array.isArray(item.children) &&
         !item.hideChildrenInMenu &&
-        item.children.some(child => child && !!child.name)
+        item.children.some((child) => child && !!child.name)
       ) {
         const children = defaultFilterMenuData(item.children);
         if (children.length) return { ...item, children };
       }
       return { ...item, children: undefined };
     })
-    .filter(item => item);
+    .filter((item) => item);
 
 /**
  * 获取面包屑映射
@@ -139,7 +139,7 @@ const getBreadcrumbNameMap = (
   // Map is used to ensure the order of keys
   const routerMap = new Map<string, MenuDataItem>();
   const flattenMenuData = (data: MenuDataItem[], parent?: MenuDataItem) => {
-    data.forEach(menuItem => {
+    data.forEach((menuItem) => {
       if (!menuItem) {
         return;
       }

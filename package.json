@@ -69,6 +69,7 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
+    "antd": "^4.2.0",
     "classnames": "^2.2.6",
     "hash.js": "^1.1.7",
     "history": "^4.10.1",
