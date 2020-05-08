@@ -1,4 +1,3 @@
-import { history } from 'umi';
 import { queryCurrent } from './services/user';
 import defaultSettings from '../config/defaultSettings';
 import { Settings } from '../../src/';

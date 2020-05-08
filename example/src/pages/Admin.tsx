@@ -1,10 +1,10 @@
 import React from 'react';
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { Card, Typography, Alert } from 'antd';
-import { PageContainer } from '../../../lib/';
+import { PageContainer } from '../../../es/';
 
 export default (): React.ReactNode => (
-  <PageContainer title="管理页">
+  <PageContainer>
     <Card>
       <Alert
         message="umi ui 现已发布，欢迎使用 npm run ui 启动体验。"

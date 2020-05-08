@@ -60,7 +60,7 @@ export const getBreadcrumb = (
   if (!breadcrumbItem) {
     // Find the first matching path in the order defined by route config
     // 按照 route config 定义的顺序找到第一个匹配的路径
-    const targetPath = [...breadcrumbMap.keys()].find(path =>
+    const targetPath = [...breadcrumbMap.keys()].find((path) =>
       // remove ? ,不然会重复
       pathToRegexp(path.replace('?', '')).test(url),
     );
@@ -91,7 +91,7 @@ const conversionFromProps = (
 ): AntdBreadcrumbProps['routes'] => {
   const { breadcrumbList = [] } = props;
   return breadcrumbList
-    .map(item => {
+    .map((item) => {
       const { title, href } = item;
       // For application that has configured router base
       // @ts-ignore
@@ -102,7 +102,7 @@ const conversionFromProps = (
         breadcrumbName: title,
       };
     })
-    .filter(item => item.path);
+    .filter((item) => item.path);
 };
 
 const conversionFromLocation = (
@@ -117,7 +117,7 @@ const conversionFromLocation = (
   const pathSnippets = urlToList(routerLocation.pathname);
   // Loop data mosaic routing
   const extraBreadcrumbItems: AntdBreadcrumbProps['routes'] = pathSnippets
-    .map(url => {
+    .map((url) => {
       // For application that has configured router base
       // @ts-ignore
       const { routerBase = '/' } = isBrowser() ? window : {};
@@ -136,7 +136,7 @@ const conversionFromLocation = (
           }
         : { path: '', breadcrumbName: '' };
     })
-    .filter(item => item && item.path);
+    .filter((item) => item && item.path);
 
   return extraBreadcrumbItems;
 };

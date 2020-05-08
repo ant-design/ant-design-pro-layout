@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Typography, Alert } from 'antd';
 import styles from './Welcome.less';
-import { PageContainer } from '../../../lib/';
+import { PageContainer } from '../../../es/';
 
 const CodePreview: React.FC<{}> = ({ children }) => (
   <pre className={styles.pre}>

@@ -280,7 +280,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const { breadcrumb = {}, breadcrumbMap, menuData = [] } = !menuDataRender
     ? menuInfoData
     : renderMenuInfoData;
-
   /**
    *  如果 menuRender 不存在，可以做一下性能优化
    *  只要 routers 没有更新就不需要重新计算

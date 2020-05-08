@@ -280,7 +280,7 @@ const initState = (
   let loadedStyle = false;
 
   if (window.location.search) {
-    const params = parse(window.location.search.replace('?', ''));
+    const params = parse(window.location.search.replace('?', '')) || {};
     const replaceSetting = {};
     Object.keys(params).forEach((key) => {
       if (defaultSettings[key]) {
@@ -298,7 +298,7 @@ const initState = (
     if (oldSetting.navTheme !== params.navTheme && params.navTheme) {
       updateTheme(
         settings.navTheme === 'realDark',
-        params.primaryColor,
+        (params as { primaryColor: string }).primaryColor,
         true,
         publicPath,
       );
