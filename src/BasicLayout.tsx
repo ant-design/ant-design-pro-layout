@@ -425,7 +425,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     }
   }, [stringify(props.location)]);
 
-  useDocumentTitle(pageTitleInfo.title);
+  useDocumentTitle(pageTitleInfo, props.title);
 
   return (
     <MenuCounter.Provider>
@@ -452,9 +452,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             <Layout style={genLayoutStyle}>
               {headerDom}
               <WrapContent
-                className={contentClassName}
                 isChildrenLayout={isChildrenLayout}
                 {...rest}
+                className={contentClassName}
                 style={contentStyle}
               >
                 {loading ? <PageLoading /> : children}

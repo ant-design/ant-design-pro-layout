@@ -92,7 +92,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
     onOpenChange,
   } = props;
   const baseClassName = `${prefixCls}-sider`;
-  const { flatMenus } = MenuCounter.useContainer();
+  const { flatMenuKeys } = MenuCounter.useContainer();
   const siderClassName = classNames(`${baseClassName}`, {
     [`${baseClassName}-fixed`]: fixSiderbar,
     [`${baseClassName}-layout-${layout}`]: layout,
@@ -147,7 +147,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
           overflowX: 'hidden',
         }}
       >
-        {flatMenus && (
+        {flatMenuKeys && (
           <BaseMenu
             {...props}
             mode="inline"
@@ -174,7 +174,8 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
               <Menu.Item key={index}>{node}</Menu.Item>
             ))}
             <Menu.Item
-              className={`${baseClassName}-collapsed-button`} title={false}
+              className={`${baseClassName}-collapsed-button`}
+              title={false}
               onClick={() => {
                 if (onCollapse) {
                   onCollapse(!collapsed);

@@ -1,6 +1,6 @@
 {
   "name": "@ant-design/pro-layout",
-  "version": "5.0.9",
+  "version": "5.0.12",
   "description": "ant-design-pro layout, easy to use pro scaffolding.",
   "keywords": [
     "admin",
@@ -69,6 +69,7 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
+    "@umijs/route-utils": "^1.0.5",
     "antd": "^4.2.0",
     "classnames": "^2.2.6",
     "hash.js": "^1.1.7",
@@ -130,7 +131,7 @@
     "lint-staged": "^10.0.2",
     "np": "^6.1.0",
     "prettier": "^2.0.1",
-    "puppeteer": "^2.0.0",
+    "puppeteer": "^3.0.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-github-btn": "^1.1.1",

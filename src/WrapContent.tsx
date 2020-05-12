@@ -33,7 +33,7 @@ class WrapContent extends React.Component<{
           }}
         >
           <div
-            ref={ele => {
+            ref={(ele) => {
               this.ref = ele;
             }}
             className={`${prefixCls}-basicLayout-children-content-wrap`}
