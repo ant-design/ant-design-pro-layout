@@ -55,6 +55,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             <span>name</span>
           </>,
         ]}
+        collapsed={false}
         formatMessage={intl.formatMessage}
         onCollapse={handleMenuCollapse}
         menuItemRender={(menuItemProps, defaultDom) =>
@@ -67,7 +68,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           )
         }
         rightContentRender={() => <RightContent />}
-        collapsed={collapsed}
         onMenuHeaderClick={() => history.push('/')}
         footerRender={() => <Footer />}
         menuExtraRender={({ collapsed }) =>

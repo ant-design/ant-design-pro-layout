@@ -159,20 +159,22 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
           />
         )}
       </div>
-      {links && links.length > 0 && (
-        <div className={`${baseClassName}-links`}>
-          <Menu
-            inlineIndent={16}
-            theme={theme}
-            className={`${baseClassName}-link-menu`}
-            selectedKeys={[]}
-            openKeys={[]}
-            mode="inline"
-          >
-            {(links || []).map((node, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <Menu.Item key={index}>{node}</Menu.Item>
-            ))}
+      <div className={`${baseClassName}-links`}>
+        <Menu
+          inlineIndent={16}
+          theme={theme}
+          className={`${baseClassName}-link-menu`}
+          selectedKeys={[]}
+          openKeys={[]}
+          mode="inline"
+        >
+          {(links || []).map((node, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Menu.Item className={`${baseClassName}-link`} key={index}>
+              {node}
+            </Menu.Item>
+          ))}
+          {collapsedButtonRender && (
             <Menu.Item
               className={`${baseClassName}-collapsed-button`}
               title={undefined}
@@ -182,11 +184,11 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
                 }
               }}
             >
-              {collapsedButtonRender && collapsedButtonRender(collapsed)}
+              {collapsedButtonRender(collapsed)}
             </Menu.Item>
-          </Menu>
-        </div>
-      )}
+          )}
+        </Menu>
+      </div>
     </Sider>
   );
 };
