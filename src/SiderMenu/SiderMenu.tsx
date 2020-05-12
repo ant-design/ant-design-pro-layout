@@ -175,7 +175,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
             ))}
             <Menu.Item
               className={`${baseClassName}-collapsed-button`}
-              title={false}
+              title={undefined}
               onClick={() => {
                 if (onCollapse) {
                   onCollapse(!collapsed);
