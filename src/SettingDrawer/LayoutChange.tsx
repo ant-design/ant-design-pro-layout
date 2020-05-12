@@ -22,6 +22,7 @@ const LayoutSetting: React.FC<{
   const formatMessage = getFormatMessage();
   const { contentWidth, fixedHeader, layout, fixSiderbar } =
     settings || defaultSettings;
+
   return (
     <List
       split={false}
@@ -35,7 +36,7 @@ const LayoutSetting: React.FC<{
             <Select<string>
               value={contentWidth || 'Fixed'}
               size="small"
-              onSelect={value => changeSetting('contentWidth', value)}
+              onSelect={(value) => changeSetting('contentWidth', value)}
               style={{ width: 80 }}
             >
               {layout === 'side' ? null : (
@@ -64,7 +65,7 @@ const LayoutSetting: React.FC<{
             <Switch
               size="small"
               checked={!!fixedHeader}
-              onChange={checked => changeSetting('fixedHeader', checked)}
+              onChange={(checked) => changeSetting('fixedHeader', checked)}
             />
           ),
         },
@@ -82,7 +83,7 @@ const LayoutSetting: React.FC<{
             <Switch
               size="small"
               checked={!!fixSiderbar}
-              onChange={checked => changeSetting('fixSiderbar', checked)}
+              onChange={(checked) => changeSetting('fixSiderbar', checked)}
             />
           ),
         },

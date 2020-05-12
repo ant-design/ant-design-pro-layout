@@ -18,6 +18,8 @@ export { ProSettings as Settings } from './defaultSettings';
 
 export { MenuDataItem } from './typings';
 
+const PageHeaderWrapper = PageContainer;
+
 export {
   BasicLayout,
   BasicLayoutProps,
@@ -34,6 +36,7 @@ export {
   SettingDrawerState,
   SettingDrawerProps,
   getPageTitle,
+  PageHeaderWrapper,
   getMenuData,
   PageContainer,
 };

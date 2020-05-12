@@ -565,6 +565,26 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
           <BlockCheckbox
             prefixCls={baseClassName}
             value={layout}
+            list={[
+              {
+                key: 'side',
+                url:
+                  'https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg',
+                title: formatMessage({ id: 'app.setting.sidemenu' }),
+              },
+              {
+                key: 'top',
+                url:
+                  'https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg',
+                title: formatMessage({ id: 'app.setting.topmenu' }),
+              },
+              {
+                key: 'mix',
+                url:
+                  'https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg',
+                title: formatMessage({ id: 'app.setting.mixmenu' }),
+              },
+            ]}
             onChange={(value) => changeSetting('layout', value, hideLoading)}
           />
         </Body>
