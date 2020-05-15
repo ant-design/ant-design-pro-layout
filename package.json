@@ -81,7 +81,7 @@
     "rc-resize-observer": "^0.2.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-responsive": "^8.0.1",
-    "react-router-dom": "5.1.2",
+    "react-router-dom": "5.2.0",
     "unstated-next": "^1.1.0",
     "use-json-comparison": "^1.0.3",
     "use-media-antd-query": "^1.0.1",
