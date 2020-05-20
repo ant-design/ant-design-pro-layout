@@ -28,6 +28,7 @@ export const defaultRenderLogoAndTitle = (
   const {
     logo = 'https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg',
     title,
+    layout,
   } = props;
   const renderFunction = props[renderKey || ''];
   if (renderFunction === false) {
@@ -40,6 +41,11 @@ export const defaultRenderLogoAndTitle = (
     // when collapsed, no render title
     return renderFunction(logoDom, props.collapsed ? null : titleDom, props);
   }
+
+  if (layout === 'mix' && renderKey === 'menuHeaderRender') {
+    return null;
+  }
+
   return (
     <a href="/">
       {logoDom}

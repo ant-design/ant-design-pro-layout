@@ -10,7 +10,7 @@ import ProLayout, {
   SettingDrawer,
 } from '../../../es/';
 import { Select } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { HeartTwoTone } from '@ant-design/icons';
 import defaultSettings from '../../config/defaultSettings';
 import Footer from '@/components/Footer';
@@ -30,7 +30,6 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
 };
 
 const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
-  const [collapsed, handleMenuCollapse] = useState<boolean>(false);
   const { initialState, setInitialState } = useModel('@@initialState');
   const { settings = defaultSettings } = initialState || {};
   const intl = useIntl();
@@ -39,16 +38,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     <>
       <ProLayout
         logo={logo}
-        menuHeaderRender={
-          settings.layout !== 'mix'
-            ? (logoDom, titleDom) => (
-                <Link to="/">
-                  {logoDom}
-                  {titleDom}
-                </Link>
-              )
-            : false
-        }
         links={[
           <>
             <HeartTwoTone />
@@ -57,7 +46,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         ]}
         collapsed={false}
         formatMessage={intl.formatMessage}
-        onCollapse={handleMenuCollapse}
         menuItemRender={(menuItemProps, defaultDom) =>
           menuItemProps.isUrl ? (
             defaultDom
