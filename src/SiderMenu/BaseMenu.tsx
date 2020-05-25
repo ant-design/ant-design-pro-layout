@@ -226,7 +226,7 @@ const getOpenKeysProps = (
   openKeys?: undefined | string[];
 } => {
   let openKeysProps = {};
-  if (openKeys && !collapsed && layout === 'side') {
+  if (openKeys && !collapsed && ['side', 'mix'].includes(layout || 'mix')) {
     openKeysProps = {
       openKeys,
     };
