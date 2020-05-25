@@ -315,7 +315,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
       setSelectedKeys(keys);
       if (!defaultOpenAll && propsOpenKeys !== false) {
         setOpenKeys(keys);
-      } else {
+      } else if (flatMenuKeys.length > 0) {
         setDefaultOpenAll(false);
       }
     });

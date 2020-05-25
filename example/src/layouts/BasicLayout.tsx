@@ -44,7 +44,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             <span>name</span>
           </>,
         ]}
-        collapsed={false}
         formatMessage={intl.formatMessage}
         menuItemRender={(menuItemProps, defaultDom) =>
           menuItemProps.isUrl ? (
@@ -73,9 +72,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         }
         {...props}
         {...settings}
-        menu={{
-          defaultOpenAll: true,
-        }}
       >
         {props.children}
       </ProLayout>

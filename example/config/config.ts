@@ -59,6 +59,16 @@ export default defineConfig({
               name: 'sub-page',
               component: './Welcome',
             },
+            {
+              path: '/admin/sub-page2',
+              name: 'sub-page2',
+              component: './Welcome',
+            },
+            {
+              path: '/admin/sub-page3',
+              name: 'sub-page3',
+              component: './Welcome',
+            },
           ],
         },
         {
@@ -66,6 +76,23 @@ export default defineConfig({
           icon: 'table',
           path: '/list',
           component: './ListTableList',
+          routes: [
+            {
+              path: '/list/sub-page',
+              name: 'sub-page',
+              component: './Welcome',
+            },
+            {
+              path: '/list/sub-page2',
+              name: 'sub-page2',
+              component: './Welcome',
+            },
+            {
+              path: '/list/sub-page3',
+              name: 'sub-page3',
+              component: './Welcome',
+            },
+          ],
         },
         {
           path: '/',

@@ -458,6 +458,22 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     if (key === 'layout' && value === 'mix') {
       nextState.navTheme = 'light';
     }
+    if (key === 'colorWeak' && value === true) {
+      const dom = document.querySelector('body div') as HTMLDivElement;
+      if (!dom) {
+        return;
+      }
+      dom.dataset.prosettingdrawer = dom.style.filter;
+      dom.style.filter = 'invert(80%)';
+    }
+    if (key === 'colorWeak' && value === false) {
+      const dom = document.querySelector('body div') as HTMLDivElement;
+      if (!dom) {
+        return;
+      }
+      dom.style.filter = dom.dataset.prosettingdrawer || 'none';
+      delete dom.dataset.prosettingdrawer;
+    }
     setSettingState(nextState);
   };
 
