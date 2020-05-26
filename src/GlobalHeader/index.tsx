@@ -71,7 +71,7 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
 
     const logoDom = (
       <span className={`${baseClassName}-logo`} key="logo">
-        {defaultRenderLogo(logo)}
+        <a>{defaultRenderLogo(logo)}</a>
       </span>
     );
     return (
