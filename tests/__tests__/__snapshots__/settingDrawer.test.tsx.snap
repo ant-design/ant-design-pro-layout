@@ -393,13 +393,10 @@ exports[`settingDrawer.test base user 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -421,13 +418,10 @@ exports[`settingDrawer.test base user 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -477,13 +471,10 @@ exports[`settingDrawer.test base user 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
@@ -951,13 +942,10 @@ exports[`settingDrawer.test hideColors = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -979,13 +967,10 @@ exports[`settingDrawer.test hideColors = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -1035,13 +1020,10 @@ exports[`settingDrawer.test hideColors = true 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
@@ -1547,13 +1529,10 @@ exports[`settingDrawer.test hideCopyButton = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -1575,13 +1554,10 @@ exports[`settingDrawer.test hideCopyButton = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -1631,13 +1607,10 @@ exports[`settingDrawer.test hideCopyButton = true 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
@@ -2115,13 +2088,10 @@ exports[`settingDrawer.test hideHintAlert = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -2143,13 +2113,10 @@ exports[`settingDrawer.test hideHintAlert = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -2199,13 +2166,10 @@ exports[`settingDrawer.test hideHintAlert = true 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
@@ -2677,13 +2641,10 @@ exports[`settingDrawer.test hideLoading = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -2705,13 +2666,10 @@ exports[`settingDrawer.test hideLoading = true 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -2761,13 +2719,10 @@ exports[`settingDrawer.test hideLoading = true 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
@@ -3273,13 +3228,10 @@ exports[`settingDrawer.test settings = undefined 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -3301,13 +3253,10 @@ exports[`settingDrawer.test settings = undefined 1`] = `
                           <li>
                             <button
                               aria-checked="false"
-                              class="ant-switch ant-switch-small"
+                              class="ant-switch-small ant-switch"
                               role="switch"
                               type="button"
                             >
-                              <div
-                                class="ant-switch-handle"
-                              />
                               <span
                                 class="ant-switch-inner"
                               />
@@ -3357,13 +3306,10 @@ exports[`settingDrawer.test settings = undefined 1`] = `
                             <li>
                               <button
                                 aria-checked="false"
-                                class="ant-switch ant-switch-small"
+                                class="ant-switch-small ant-switch"
                                 role="switch"
                                 type="button"
                               >
-                                <div
-                                  class="ant-switch-handle"
-                                />
                                 <span
                                   class="ant-switch-inner"
                                 />
