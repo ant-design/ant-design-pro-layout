@@ -37,7 +37,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   return (
     <>
       <ProLayout
-        logo={logo}
+        logo="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
         links={[
           <>
             <HeartTwoTone />

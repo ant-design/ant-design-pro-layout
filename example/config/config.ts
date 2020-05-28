@@ -19,6 +19,9 @@ export default defineConfig({
     antd: true,
     baseNavigator: true,
   },
+  history: {
+    type: 'hash',
+  },
   dynamicImport: false,
   targets: {
     ie: 11,
