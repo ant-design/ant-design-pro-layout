@@ -15,7 +15,6 @@ import { HeartTwoTone } from '@ant-design/icons';
 import defaultSettings from '../../config/defaultSettings';
 import Footer from '@/components/Footer';
 import { Link, history, useIntl, useModel } from 'umi';
-import logo from '../assets/logo.svg';
 import RightContent from '@/components/RightContent';
 
 export interface BasicLayoutProps extends ProLayoutProps {
