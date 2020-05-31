@@ -137,10 +137,9 @@ class MenuUtil {
         </SubMenu>
       );
     }
-    const icon = getIcon(item.icon);
 
     return (
-      <Menu.Item icon={icon} key={item.key || item.path}>
+      <Menu.Item key={item.key || item.path}>
         {this.getMenuItemPath(item)}
       </Menu.Item>
     );
@@ -179,13 +178,20 @@ class MenuUtil {
     const { target } = item;
     // if local is true formatMessage all name。
     const name = this.getIntlName(item);
-    let defaultItem = <span>{name}</span>;
+    const icon = getIcon(item.icon);
+    let defaultItem = (
+      <>
+        {icon}
+        <span className="antd-menu-item-title">{name}</span>
+      </>
+    );
     const isHttpUrl = isUrl(itemPath);
 
     // Is it a http link
     if (isHttpUrl) {
       defaultItem = (
         <a href={itemPath} target={target}>
+          {icon}
           <span>{name}</span>
         </a>
       );

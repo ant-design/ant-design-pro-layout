@@ -167,8 +167,8 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       </div>
       <div className={`${baseClassName}-links`}>
         <Menu
-          inlineIndent={16}
           theme={theme}
+          inlineIndent={12}
           className={`${baseClassName}-link-menu`}
           selectedKeys={[]}
           openKeys={[]}
