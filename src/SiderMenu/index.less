@@ -61,7 +61,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 16px 8px;
     cursor: pointer;
     transition: padding 0.2s;
 
@@ -73,7 +73,7 @@
 
     img {
       display: inline-block;
-      height: 28px;
+      height: 24px;
       vertical-align: middle;
       transition: height 0.2s;
     }
@@ -93,7 +93,7 @@
 
   &-extra {
     margin-bottom: 16px;
-    padding: 0 16px;
+    padding: 0 8px;
     &-no-logo {
       margin-top: 16px;
     }
@@ -131,10 +131,6 @@
   }
 
   &.@{ant-prefix}-layout-sider-collapsed {
-    .@{pro-layout-sider-menu-prefix-cls}-logo {
-      padding: 16px 4px;
-    }
-
     .@{ant-prefix}-menu-inline-collapsed {
       width: 40px;
     }

@@ -1,7 +1,8 @@
 import { PageHeader, Tabs } from 'antd';
 import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { TabsProps, TabPaneProps } from 'antd/es/tabs';
+import { TabsProps } from 'antd/es/tabs';
+import { TabPaneProps } from 'rc-tabs/lib/sugar/TabPane';
 import { PageHeaderProps } from 'antd/es/page-header';
 import './index.less';
 import GridContent from '../GridContent';
@@ -56,8 +57,9 @@ const renderFooter: React.SFC<Omit<
         tabBarExtraContent={tabBarExtraContent}
         {...tabProps}
       >
-        {tabList.map((item) => (
-          <Tabs.TabPane {...item} tab={item.tab} key={item.key} />
+        {tabList.map((item, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Tabs.TabPane {...item} tab={item.tab} key={index} />
         ))}
       </Tabs>
     );
