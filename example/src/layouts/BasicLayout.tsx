@@ -38,10 +38,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
       <ProLayout
         logo="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
         links={[
-          <>
+          <Link to="/admin/sub-page">
             <HeartTwoTone />
             <span>name</span>
-          </>,
+          </Link>,
         ]}
         formatMessage={intl.formatMessage}
         menuItemRender={(menuItemProps, defaultDom) =>
