@@ -349,6 +349,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
       mode={mode}
       defaultOpenKeys={defaultOpenKeysRef.current}
       theme={theme}
+      inlineIndent={12}
       selectedKeys={selectedKeys}
       style={style}
       className={cls}
