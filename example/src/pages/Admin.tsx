@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { Card, Typography, Alert } from 'antd';
-import { PageContainer } from '../../../es/';
+import { PageContainer } from '../../../src/';
 
 export default (): React.ReactNode => (
   <PageContainer>

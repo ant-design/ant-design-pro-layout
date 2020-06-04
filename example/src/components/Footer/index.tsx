@@ -1,6 +1,6 @@
 import React from 'react';
 import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '../../../../es';
+import { DefaultFooter } from '../../../../src';
 
 export default () => (
   <DefaultFooter

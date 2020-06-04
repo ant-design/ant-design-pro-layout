@@ -19,6 +19,10 @@ export default defineConfig({
     antd: true,
     baseNavigator: true,
   },
+  chainWebpack(memo) {
+    memo.module.rule('ts-in-node_modules').include.clear();
+    return memo;
+  },
   history: {
     type: 'hash',
   },
