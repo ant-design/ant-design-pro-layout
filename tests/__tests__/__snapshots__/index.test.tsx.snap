@@ -48,9 +48,9 @@ exports[`BasicLayout 🥩 base use 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -94,7 +94,7 @@ exports[`BasicLayout 🥩 base use 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
       >
         <div
           class="ant-pro-basicLayout-children-content-wrap"
@@ -157,9 +157,9 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -203,7 +203,7 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
         style="padding:56px"
       >
         <div
@@ -267,9 +267,9 @@ exports[`BasicLayout 🥩 support loading 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -313,7 +313,7 @@ exports[`BasicLayout 🥩 support loading 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
       >
         <div
           class="ant-pro-basicLayout-children-content-wrap"
@@ -400,8 +400,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
                 aria-expanded="false"
                 aria-haspopup="true"
                 class="ant-menu-submenu-title"
-                role="button"
-                style="padding-left:24px"
+                style="padding-left:12px"
                 title="首页"
               >
                 首页
@@ -419,8 +418,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
                 aria-expanded="false"
                 aria-haspopup="true"
                 class="ant-menu-submenu-title"
-                role="button"
-                style="padding-left:24px"
+                style="padding-left:12px"
                 title="汇总数据"
               >
                 汇总数据
@@ -431,22 +429,33 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
               <div />
             </li>
             <li
-              class="ant-menu-item ant-menu-item-only-child"
+              class="ant-menu-item"
               role="menuitem"
-              style="padding-left:24px"
+              style="padding-left:12px"
             >
-              <span>
+              <span
+                class="antd-menu-item-title"
+              >
                 明细数据
               </span>
             </li>
             <li
-              class="ant-menu-item ant-menu-item-only-child"
+              class="ant-menu-submenu ant-menu-submenu-inline"
               role="menuitem"
-              style="padding-left:24px"
             >
-              <span>
+              <div
+                aria-expanded="false"
+                aria-haspopup="true"
+                class="ant-menu-submenu-title"
+                style="padding-left:12px"
+                title="其他"
+              >
                 其他
-              </span>
+                <i
+                  class="ant-menu-submenu-arrow"
+                />
+              </div>
+              <div />
             </li>
           </ul>
         </div>
@@ -458,9 +467,9 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -504,7 +513,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
       >
         <div
           class="ant-pro-basicLayout-children-content-wrap"

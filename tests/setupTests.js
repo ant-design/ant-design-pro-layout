@@ -1,5 +1,3 @@
-import 'jsdom-global/register';
-
 global.requestAnimationFrame =
   global.requestAnimationFrame ||
   function requestAnimationFrame(cb) {

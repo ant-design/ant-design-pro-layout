@@ -47,8 +47,7 @@ exports[`BasicLayout base use 1`] = `
                 aria-expanded="false"
                 aria-haspopup="true"
                 class="ant-menu-submenu-title"
-                role="button"
-                style="padding-left:24px"
+                style="padding-left:12px"
                 title="welcome"
               >
                 welcome
@@ -68,9 +67,9 @@ exports[`BasicLayout base use 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -114,7 +113,7 @@ exports[`BasicLayout base use 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
       >
         <div
           class="ant-pro-basicLayout-children-content-wrap"
@@ -137,16 +136,11 @@ exports[`BasicLayout base use 1`] = `
                     <div
                       class="ant-page-header-heading"
                     >
-                      <div
-                        class="ant-page-header-heading-left"
+                      <span
+                        class="ant-page-header-heading-title"
                       >
-                        <span
-                          class="ant-page-header-heading-title"
-                          title="welcome"
-                        >
-                          welcome
-                        </span>
-                      </div>
+                        welcome
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -207,8 +201,7 @@ exports[`BasicLayout content is text 1`] = `
                 aria-expanded="false"
                 aria-haspopup="true"
                 class="ant-menu-submenu-title"
-                role="button"
-                style="padding-left:24px"
+                style="padding-left:12px"
                 title="welcome"
               >
                 welcome
@@ -228,9 +221,9 @@ exports[`BasicLayout content is text 1`] = `
             role="menu"
           >
             <li
-              class="ant-menu-item ant-pro-sider-collapsed-button ant-menu-item-only-child"
+              class="ant-menu-item ant-pro-sider-collapsed-button"
               role="menuitem"
-              style="padding-left:16px"
+              style="padding-left:12px"
             >
               <span
                 aria-label="menu-fold"
@@ -274,7 +267,7 @@ exports[`BasicLayout content is text 1`] = `
         </div>
       </header>
       <main
-        class="ant-layout-content ant-pro-basicLayout-content ant-pro-basicLayout-has-header"
+        class="ant-pro-basicLayout-content ant-pro-basicLayout-has-header ant-layout-content"
       >
         <div
           class="ant-pro-basicLayout-children-content-wrap"
@@ -297,16 +290,11 @@ exports[`BasicLayout content is text 1`] = `
                     <div
                       class="ant-page-header-heading"
                     >
-                      <div
-                        class="ant-page-header-heading-left"
+                      <span
+                        class="ant-page-header-heading-title"
                       >
-                        <span
-                          class="ant-page-header-heading-title"
-                          title="welcome"
-                        >
-                          welcome
-                        </span>
-                      </div>
+                        welcome
+                      </span>
                     </div>
                     <div
                       class="ant-page-header-content"

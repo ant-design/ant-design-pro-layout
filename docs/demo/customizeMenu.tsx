@@ -17,9 +17,6 @@ export default () => {
         +1
       </Button>
       <ProLayout
-        location={{
-          pathname: '/welcome',
-        }}
         menuItemRender={(item, dom) => (
           <div>
             {index} {dom}
@@ -44,6 +41,9 @@ export default () => {
           </div>
         )}
         {...defaultProps}
+        location={{
+          pathname: '/welcome',
+        }}
       >
         <PageContainer content="欢迎使用">Hello World</PageContainer>
       </ProLayout>

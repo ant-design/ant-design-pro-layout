@@ -10,7 +10,7 @@ export default () => {
   const [settings, setSetting] = useState({});
   return (
     <div
-      id="test"
+      id="test-pro-layout"
       style={{
         transform: 'rotate(0)',
         overflowX: 'hidden',
@@ -24,6 +24,7 @@ export default () => {
         location={{
           pathname: '/welcome',
         }}
+        rightContentRender={() => 'dom'}
         {...settings}
       >
         <PageContainer content="欢迎使用">
@@ -37,7 +38,7 @@ export default () => {
         </PageContainer>
       </ProLayout>
       <SettingDrawer
-        getContainer={() => document.getElementById('test')}
+        getContainer={() => document.getElementById('test-pro-layout')}
         settings={settings}
         onSettingChange={setSetting}
       />
