@@ -93,7 +93,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
 
     const width =
       layout !== 'mix' && needSettingWidth
-        ? `calc(100% - ${collapsed ? 40 : siderWidth}px)`
+        ? `calc(100% - ${collapsed ? 48 : siderWidth}px)`
         : '100%';
     const right = needFixedHeader ? 0 : undefined;
     return (
