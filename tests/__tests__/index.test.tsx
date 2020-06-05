@@ -442,7 +442,7 @@ describe('BasicLayout', () => {
     await waitForComponentToPaint(wrapper);
     dom = wrapper.find('header.ant-pro-fixed-header');
     expect(dom.exists()).toBeTruthy();
-    expect(dom.props()?.style?.width).toBe('calc(100% - 40px)');
+    expect(dom.props()?.style?.width).toBe('calc(100% - 48px)');
 
     wrapper.setProps({
       fixedHeader: true,

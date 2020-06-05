@@ -119,7 +119,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
           }
         }
       }}
-      collapsedWidth={40}
+      collapsedWidth={48}
       style={{
         overflow: 'hidden',
         ...style,
@@ -168,7 +168,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
       <div className={`${baseClassName}-links`}>
         <Menu
           theme={theme}
-          inlineIndent={12}
+          inlineIndent={16}
           className={`${baseClassName}-link-menu`}
           selectedKeys={[]}
           openKeys={[]}
