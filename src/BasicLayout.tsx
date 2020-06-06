@@ -34,7 +34,7 @@ import MenuCounter from './SiderMenu/Counter';
 import WrapContent from './WrapContent';
 import { useDocumentTitle } from './utils/hooks';
 
-export interface BasicLayoutProps
+interface BasicLayoutProps
   extends Partial<RouterTypes<Route>>,
     SiderMenuProps,
     HeaderViewProps,
@@ -105,6 +105,8 @@ export interface BasicLayoutProps
    */
   disableContentMargin?: boolean;
 }
+
+export type { BasicLayoutProps };
 
 const headerRender = (
   props: BasicLayoutProps & {
@@ -332,6 +334,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     ...defaultProps,
     breadcrumbMap,
   });
+
   // render sider dom
   const siderMenuDom = renderSiderMenu({
     ...defaultProps,
@@ -472,6 +475,7 @@ BasicLayout.defaultProps = {
   logo: 'https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg',
   ...defaultSettings,
   prefixCls: 'ant-pro',
+  siderWidth: 208,
   location: isBrowser() ? window.location : undefined,
 };
 export default BasicLayout;

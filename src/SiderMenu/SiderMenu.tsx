@@ -76,7 +76,7 @@ export interface SiderMenuProps
   onOpenChange?: (openKeys: WithFalse<string[]>) => void;
 }
 
-const defaultRenderCollapsedButton = (collapsed?: boolean) =>
+export const defaultRenderCollapsedButton = (collapsed?: boolean) =>
   collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />;
 
 const SiderMenu: React.FC<SiderMenuProps> = (props) => {
@@ -101,7 +101,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
   const { flatMenuKeys } = MenuCounter.useContainer();
   const siderClassName = classNames(`${baseClassName}`, {
     [`${baseClassName}-fixed`]: fixSiderbar,
-    [`${baseClassName}-layout-${layout}`]: layout,
+    [`${baseClassName}-layout-${layout}`]: layout && !isMobile,
     [`${baseClassName}-light`]: theme === 'light',
   });
   const headerDom = defaultRenderLogoAndTitle(props);
@@ -180,7 +180,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
               {node}
             </Menu.Item>
           ))}
-          {collapsedButtonRender && (
+          {collapsedButtonRender && !isMobile && (
             <Menu.Item
               className={`${baseClassName}-collapsed-button`}
               title={false}

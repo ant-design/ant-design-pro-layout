@@ -12,9 +12,7 @@ import { WithFalse } from './typings';
 
 const { Header } = Layout;
 
-export interface HeaderViewProps
-  extends Partial<ProSettings>,
-    GlobalHeaderProps {
+interface HeaderViewProps extends Partial<ProSettings>, GlobalHeaderProps {
   isMobile?: boolean;
   collapsed?: boolean;
   logo?: React.ReactNode;
@@ -26,6 +24,7 @@ export interface HeaderViewProps
   siderWidth?: number;
   hasSiderMenu?: boolean;
 }
+export type { HeaderViewProps };
 
 interface HeaderViewState {
   visible: boolean;
@@ -95,13 +94,16 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       layout !== 'mix' && needSettingWidth
         ? `calc(100% - ${collapsed ? 48 : siderWidth}px)`
         : '100%';
+
     const right = needFixedHeader ? 0 : undefined;
+
     return (
       <>
         {needFixedHeader && (
           <Header
             style={{
               height: 48,
+              lineHeight: '48px',
             }}
           />
         )}
@@ -109,6 +111,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
           style={{
             padding: 0,
             height: 48,
+            lineHeight: '48px',
             width,
             zIndex: layout === 'mix' ? 100 : 9,
             right,

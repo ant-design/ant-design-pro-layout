@@ -7,6 +7,7 @@ import {
   defaultRenderLogo,
   SiderMenuProps,
   defaultRenderLogoAndTitle,
+  defaultRenderCollapsedButton,
 } from '../SiderMenu/SiderMenu';
 import { isBrowser } from '../utils/utils';
 import { ProSettings } from '../defaultSettings';
@@ -22,6 +23,7 @@ export interface GlobalHeaderProps extends Partial<ProSettings> {
   prefixCls?: string;
   style?: React.CSSProperties;
   menuHeaderRender?: SiderMenuProps['menuHeaderRender'];
+  collapsedButtonRender?: SiderMenuProps['collapsedButtonRender'];
 }
 
 const renderLogo = (
@@ -56,6 +58,9 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     const {
       isMobile,
       logo,
+      collapsed,
+      onCollapse,
+      collapsedButtonRender = defaultRenderCollapsedButton,
       rightContentRender,
       menuHeaderRender,
       className: propClassName,
@@ -77,7 +82,19 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     return (
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
-        {layout === 'mix' && (
+        {layout === 'mix' && isMobile && collapsedButtonRender && (
+          <a
+            className={`${baseClassName}-collapsed-button`}
+            onClick={() => {
+              if (onCollapse) {
+                onCollapse(!collapsed);
+              }
+            }}
+          >
+            {collapsedButtonRender(collapsed)}
+          </a>
+        )}
+        {layout === 'mix' && !isMobile && (
           <div className={`${baseClassName}-logo`}>
             {defaultRenderLogoAndTitle(
               { ...this.props, collapsed: false },
