@@ -83,7 +83,7 @@ exports[`BasicLayout 🥩 base use 1`] = `
     >
       <header
         class="ant-layout-header"
-        style="padding:0;height:48px;width:100%;z-index:9"
+        style="padding:0;height:48px;line-height:48px;width:100%;z-index:9"
       >
         <div
           class="ant-pro-global-header ant-pro-global-header-layout-side"
@@ -192,7 +192,7 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
     >
       <header
         class="ant-layout-header"
-        style="padding:0;height:48px;width:100%;z-index:9"
+        style="padding:0;height:48px;line-height:48px;width:100%;z-index:9"
       >
         <div
           class="ant-pro-global-header ant-pro-global-header-layout-side"
@@ -302,7 +302,7 @@ exports[`BasicLayout 🥩 support loading 1`] = `
     >
       <header
         class="ant-layout-header"
-        style="padding:0;height:48px;width:100%;z-index:9"
+        style="padding:0;height:48px;line-height:48px;width:100%;z-index:9"
       >
         <div
           class="ant-pro-global-header ant-pro-global-header-layout-side"
@@ -505,7 +505,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
     >
       <header
         class="ant-layout-header"
-        style="padding:0;height:48px;width:100%;z-index:9"
+        style="padding:0;height:48px;line-height:48px;width:100%;z-index:9"
       >
         <div
           class="ant-pro-global-header ant-pro-global-header-layout-side"
