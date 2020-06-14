@@ -70,9 +70,13 @@ const TopNavHeader: React.FC<TopNavHeaderProps> = (props) => {
     rightContentRender,
     className: propsClassName,
     style,
+    layout,
   } = props;
   const baseClassName = 'ant-pro-top-nav-header';
-  const headerDom = defaultRenderLogoAndTitle({ ...props, collapsed: false });
+  const headerDom = defaultRenderLogoAndTitle(
+    { ...props, collapsed: false },
+    layout === 'mix' ? 'headerTitleRender' : undefined,
+  );
 
   const className = classNames(baseClassName, propsClassName, {
     light: theme === 'light',

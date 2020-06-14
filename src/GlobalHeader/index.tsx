@@ -11,6 +11,8 @@ import {
 } from '../SiderMenu/SiderMenu';
 import { isBrowser } from '../utils/utils';
 import { ProSettings } from '../defaultSettings';
+import TopNavHeader from '../TopNavHeader';
+import { MenuDataItem } from '../';
 
 export interface GlobalHeaderProps extends Partial<ProSettings> {
   collapsed?: boolean;
@@ -21,9 +23,11 @@ export interface GlobalHeaderProps extends Partial<ProSettings> {
   rightContentRender?: HeaderViewProps['rightContentRender'];
   className?: string;
   prefixCls?: string;
+  menuData?: MenuDataItem[];
   style?: React.CSSProperties;
   menuHeaderRender?: SiderMenuProps['menuHeaderRender'];
   collapsedButtonRender?: SiderMenuProps['collapsedButtonRender'];
+  splitMenus?: boolean;
 }
 
 const renderLogo = (
@@ -67,6 +71,8 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       style,
       layout,
       children,
+      splitMenus,
+      menuData,
       prefixCls,
     } = this.props;
     const baseClassName = `${prefixCls}-global-header`;
@@ -74,11 +80,29 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
       [`${baseClassName}-layout-${layout}`]: layout,
     });
 
+    if (layout === 'mix' && !isMobile && splitMenus) {
+      const noChildrenMenuData = (menuData || []).map((item) => ({
+        ...item,
+        children: undefined,
+      }));
+      return (
+        <TopNavHeader
+          mode="horizontal"
+          {...this.props}
+          splitMenus={false}
+          menuData={noChildrenMenuData}
+          navTheme="dark"
+          theme="dark"
+        />
+      );
+    }
+
     const logoDom = (
       <span className={`${baseClassName}-logo`} key="logo">
         <a>{defaultRenderLogo(logo)}</a>
       </span>
     );
+
     return (
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
@@ -95,12 +119,14 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
           </a>
         )}
         {layout === 'mix' && !isMobile && (
-          <div className={`${baseClassName}-logo`}>
-            {defaultRenderLogoAndTitle(
-              { ...this.props, collapsed: false },
-              'headerTitleRender',
-            )}
-          </div>
+          <>
+            <div className={`${baseClassName}-logo`}>
+              {defaultRenderLogoAndTitle(
+                { ...this.props, collapsed: false },
+                'headerTitleRender',
+              )}
+            </div>
+          </>
         )}
         <div style={{ flex: 1 }}>{children}</div>
         {rightContentRender && rightContentRender(this.props)}

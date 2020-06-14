@@ -64,16 +64,19 @@ export default defineConfig({
             {
               path: '/admin/sub-page',
               name: 'sub-page',
+              icon: 'crown',
               component: './Welcome',
             },
             {
               path: '/admin/sub-page2',
               name: 'sub-page2',
+              icon: 'crown',
               component: './Welcome',
             },
             {
               path: '/admin/sub-page3',
               name: 'sub-page3',
+              icon: 'crown',
               component: './Welcome',
             },
           ],
@@ -87,16 +90,19 @@ export default defineConfig({
             {
               path: '/list/sub-page',
               name: 'sub-page',
+              icon: 'crown',
               component: './Welcome',
             },
             {
               path: '/list/sub-page2',
               name: 'sub-page2',
+              icon: 'crown',
               component: './Welcome',
             },
             {
               path: '/list/sub-page3',
               name: 'sub-page3',
+              icon: 'crown',
               component: './Welcome',
             },
           ],
