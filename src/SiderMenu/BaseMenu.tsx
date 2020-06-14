@@ -293,18 +293,6 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
     },
   );
 
-  useEffect(() => {
-    if (menu.defaultOpenAll || propsOpenKeys === false || flatMenuKeys.length) {
-      return;
-    }
-    const keys = getSelectedMenuKeys(location.pathname || '/', menuData || []);
-    if (keys) {
-      openKeysRef.current = keys;
-      setOpenKeys(keys);
-      setSelectedKeys(keys);
-    }
-  }, [flatMenuKeys.join('-')]);
-
   const [selectedKeys, setSelectedKeys] = useMergeValue<string[] | undefined>(
     [],
     {
@@ -318,6 +306,18 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
         : undefined,
     },
   );
+
+  useEffect(() => {
+    if (menu.defaultOpenAll || propsOpenKeys === false || flatMenuKeys.length) {
+      return;
+    }
+    const keys = getSelectedMenuKeys(location.pathname || '/', menuData || []);
+    if (keys) {
+      openKeysRef.current = keys;
+      setOpenKeys(keys);
+      setSelectedKeys(keys);
+    }
+  }, [flatMenuKeys.join('-')]);
 
   useEffect(() => {
     // reset IconFont
