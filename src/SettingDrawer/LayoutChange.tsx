@@ -20,7 +20,7 @@ const LayoutSetting: React.FC<{
   changeSetting: (key: string, value: any, hideLoading?: boolean) => void;
 }> = ({ settings = {}, changeSetting }) => {
   const formatMessage = getFormatMessage();
-  const { contentWidth, fixedHeader, layout, fixSiderbar } =
+  const { contentWidth, splitMenus, fixedHeader, layout, fixSiderbar } =
     settings || defaultSettings;
 
   return (
@@ -84,6 +84,17 @@ const LayoutSetting: React.FC<{
               size="small"
               checked={!!fixSiderbar}
               onChange={(checked) => changeSetting('fixSiderbar', checked)}
+            />
+          ),
+        },
+        {
+          title: formatMessage({ id: 'app.setting.splitMenus' }),
+          disabled: layout !== 'mix',
+          action: (
+            <Switch
+              size="small"
+              checked={!!splitMenus}
+              onChange={(checked) => changeSetting('splitMenus', checked)}
             />
           ),
         },

@@ -18,6 +18,7 @@ export default {
   'app.setting.sidemenu': 'Menu laterale',
   'app.setting.topmenu': 'Menu in testata',
   'app.setting.mixmenu': 'Mix Menu Layout',
+  'app.setting.splitMenus': 'split menus',
   'app.setting.fixedheader': 'Testata fissa',
   'app.setting.fixedsidebar': 'Menu laterale fisso',
   'app.setting.fixedsidebar.hint': 'Solo se selezionato Menu laterale',

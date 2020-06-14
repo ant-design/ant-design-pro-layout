@@ -33,6 +33,7 @@ export interface ProSettings {
   iconfontUrl: string;
   primaryColor: string;
   colorWeak?: boolean;
+  splitMenus?: boolean;
 }
 
 const defaultSettings: ProSettings = {

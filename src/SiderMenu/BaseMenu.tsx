@@ -372,7 +372,10 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
         return;
       }
     }
-  }, [(openKeys || []).join('-')]);
+    if (!splitMenus) {
+      setPostMenuData(menuData);
+    }
+  }, [(openKeys || []).join('-'), splitMenus]);
 
   // 这次 openKeys === false 的时候的情况，这种情况下帮用户选中一次
   // 第二次以后不再关系，所以用了 defaultOpenKeys

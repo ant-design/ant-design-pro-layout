@@ -93,6 +93,7 @@ render(<BasicLayout />, document.getElementById('root'));
 | onMenuHeaderClick | menu 菜单的头部点击事件 | `(e: React.MouseEvent<HTMLDivElement>) => void` | - |
 | contentStyle | layout 的 内容区 style | CSSProperties | - |
 | layout | layout 的菜单模式,sidemenu：右侧导航，topmenu：顶部导航 | 'sidemenu' \| 'topmenu' | `'sidemenu'` |
+| splitMenus | 是否自动切分 menuData，只有 mix 模式会生效 | boolean | false |
 | contentWidth | layout 的内容模式,Fluid：定宽 1200px，Fixed：自适应 | 'Fluid' \| 'Fixed' | `'Fluid'` |
 | navTheme | 导航的主题 | 'light' \| 'dark' | `'dark'` |
 | fixedHeader | 是否固定 header 到顶部 | boolean | `false` |
