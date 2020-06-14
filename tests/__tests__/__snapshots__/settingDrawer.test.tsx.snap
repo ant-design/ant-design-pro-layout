@@ -435,6 +435,35 @@ exports[`settingDrawer.test base user 1`] = `
                           </li>
                         </ul>
                       </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -980,6 +1009,35 @@ exports[`settingDrawer.test hideColors = true 1`] = `
                             <button
                               aria-checked="false"
                               class="ant-switch ant-switch-small"
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
                               role="switch"
                               type="button"
                             >
@@ -1589,6 +1647,35 @@ exports[`settingDrawer.test hideCopyButton = true 1`] = `
                           </li>
                         </ul>
                       </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -2157,6 +2244,35 @@ exports[`settingDrawer.test hideHintAlert = true 1`] = `
                           </li>
                         </ul>
                       </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -2706,6 +2822,35 @@ exports[`settingDrawer.test hideLoading = true 1`] = `
                             <button
                               aria-checked="false"
                               class="ant-switch ant-switch-small"
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
                               role="switch"
                               type="button"
                             >
@@ -3302,6 +3447,35 @@ exports[`settingDrawer.test settings = undefined 1`] = `
                             <button
                               aria-checked="false"
                               class="ant-switch ant-switch-small"
+                              role="switch"
+                              type="button"
+                            >
+                              <div
+                                class="ant-switch-handle"
+                              />
+                              <span
+                                class="ant-switch-inner"
+                              />
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li
+                        class="ant-list-item"
+                      >
+                        <span
+                          style="opacity:0.5"
+                        >
+                          自动分割菜单
+                        </span>
+                        <ul
+                          class="ant-list-item-action"
+                        >
+                          <li>
+                            <button
+                              aria-checked="false"
+                              class="ant-switch ant-switch-small ant-switch-disabled"
+                              disabled=""
                               role="switch"
                               type="button"
                             >
