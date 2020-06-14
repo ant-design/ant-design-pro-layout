@@ -1,8 +1,7 @@
 import { PageHeader, Tabs } from 'antd';
 import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { TabsProps } from 'antd/es/tabs';
-import { TabPaneProps } from 'rc-tabs/lib/sugar/TabPane';
+import { TabsProps, TabPaneProps } from 'antd/es/tabs';
 import { PageHeaderProps } from 'antd/es/page-header';
 import './index.less';
 import GridContent from '../GridContent';
