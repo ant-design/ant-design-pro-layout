@@ -5,13 +5,12 @@
 .@{top-nav-header-prefix-cls} {
   position: relative;
   width: 100%;
-  height: @layout-header-height;
+  height: 100%;
   box-shadow: @box-shadow-base;
   transition: background 0.3s, width 0.2s;
 
   .ant-menu-submenu.ant-menu-submenu-horizontal {
     height: 100%;
-    line-height: @layout-header-height;
     .ant-menu-submenu-title {
       height: 100%;
     }
@@ -26,7 +25,7 @@
 
   &-main {
     display: flex;
-    height: @layout-header-height;
+    height: 100%;
     padding-left: 24px;
     &.wide {
       max-width: 1200px;
@@ -45,9 +44,8 @@
   &-logo {
     position: relative;
     min-width: 165px;
-    height: @layout-header-height;
+    height: 100%;
     overflow: hidden;
-    line-height: @layout-header-height;
     transition: all 0.3s;
     img {
       display: inline-block;
@@ -66,8 +64,7 @@
   &-menu {
     min-width: 0;
     .ant-menu.ant-menu-horizontal {
-      height: @layout-header-height;
-      line-height: @layout-header-height;
+      height: 100%;
       border: none;
     }
   }

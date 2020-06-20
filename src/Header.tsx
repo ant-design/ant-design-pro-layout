@@ -21,6 +21,7 @@ export interface HeaderViewProps extends Partial<Settings>, GlobalHeaderProps {
   rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   siderWidth?: number;
   hasSiderMenu?: boolean;
+  headerHeight?: number;
 }
 
 interface HeaderViewState {
@@ -59,6 +60,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       hasSiderMenu,
       headerRender,
       isMobile,
+      headerHeight = 64
     } = this.props;
 
     const isTop = layout === 'topmenu';
@@ -76,7 +78,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
 
     return (
       <>
-        {fixedHeader && <Header />}
+        {fixedHeader && <Header style={{height:headerHeight,lineHeight:`${headerHeight}px`}} />}
         <Header
           style={{
             padding: 0,
@@ -86,6 +88,8 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
             zIndex: 9,
             right: fixedHeader ? 0 : undefined,
             ...style,
+            height:headerHeight,
+            lineHeight:`${headerHeight}px`
           }}
           className={className}
         >

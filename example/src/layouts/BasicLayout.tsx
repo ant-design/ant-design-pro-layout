@@ -18,7 +18,7 @@ import defaultSettings from '../../config/defaultSettings';
 import Link from 'umi/link';
 import history from 'umi/router';
 import logo from '../assets/logo.svg';
-import SelectLang from '@/components/SelectLang';
+import RightContent from '@/components/GlobalHeader/RightContent';
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
@@ -63,17 +63,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             </Link>
           )
         }
-        rightContentRender={() => [
-          <div
-            style={{
-              padding: '0 16px',
-              minWidth: 500,
-            }}
-          >
-            <SelectLang />
-          </div>,
-          <span />,
-        ]}
+        rightContentRender={() =><RightContent/>}
         collapsed={collapsed}
         onMenuHeaderClick={() => history.push('/')}
         footerRender={() => <DefaultFooter />}

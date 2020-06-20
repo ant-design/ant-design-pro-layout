@@ -33,6 +33,8 @@ export interface Settings {
   iconfontUrl: string;
   primaryColor: string;
   colorWeak?: boolean;
+  siderWidth?:number;
+  headerHeight?:number;
 }
 
 const defaultSettings: Settings = {
