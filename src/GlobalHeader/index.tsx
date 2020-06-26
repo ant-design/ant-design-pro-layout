@@ -106,8 +106,8 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
     return (
       <div className={className} style={style}>
         {isMobile && renderLogo(menuHeaderRender, logoDom)}
-        {layout === 'mix' && isMobile && collapsedButtonRender && (
-          <a
+        {isMobile && collapsedButtonRender && (
+          <span
             className={`${baseClassName}-collapsed-button`}
             onClick={() => {
               if (onCollapse) {
@@ -116,7 +116,7 @@ export default class GlobalHeader extends Component<GlobalHeaderProps> {
             }}
           >
             {collapsedButtonRender(collapsed)}
-          </a>
+          </span>
         )}
         {layout === 'mix' && !isMobile && (
           <>
