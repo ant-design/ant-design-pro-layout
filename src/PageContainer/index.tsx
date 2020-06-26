@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { TabsProps, TabPaneProps } from 'antd/es/tabs';
 import { PageHeaderProps } from 'antd/es/page-header';
 import './index.less';
-import GridContent from '../GridContent';
 import RouteContext, { RouteContextType } from '../RouteContext';
+import GridContent from '../GridContent';
 
 export interface PageHeaderTabConfig {
   tabList?: TabPaneProps[];
@@ -149,11 +149,9 @@ const PageContainer: React.SFC<PageContainerProps> = (props) => {
         </GridContent>
       </div>
       {children ? (
-        <GridContent>
-          <div className={`${prefixedClassName}-children-content`}>
-            {children}
-          </div>
-        </GridContent>
+        <div className={`${prefixedClassName}-children-content`}>
+          {children}
+        </div>
       ) : null}
     </div>
   );

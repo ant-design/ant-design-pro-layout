@@ -14,14 +14,16 @@ describe('BasicLayout', () => {
       })),
     });
   });
-  it('🥩 base use', () => {
+
+  it('🥩 base use', async () => {
     const html = render(<BasicLayout />);
     expect(html).toMatchSnapshot();
   });
 
-  it('🥩 support loading', () => {
-    const html = render(<BasicLayout loading />);
-    expect(html).toMatchSnapshot();
+  it('🥩 support loading', async () => {
+    const wrapper = mount(<BasicLayout loading />);
+    await waitForComponentToPaint(wrapper);
+    expect(wrapper.render()).toMatchSnapshot();
   });
 
   it('🥩 do not render menu', async () => {
@@ -38,8 +40,8 @@ describe('BasicLayout', () => {
     wrapper.unmount();
   });
 
-  it('🥩 support menuDateRender', () => {
-    const wrapper = render(
+  it('🥩 support menuDateRender', async () => {
+    const wrapper = mount(
       <BasicLayout
         menuDataRender={() =>
           [
@@ -51,6 +53,7 @@ describe('BasicLayout', () => {
                 {
                   path: '/home/overview',
                   name: '概述',
+                  hideInMenu: true,
                   exact: true,
                   locale: 'menu.home.overview',
                 },
@@ -58,6 +61,7 @@ describe('BasicLayout', () => {
                   path: '/home/search',
                   name: '搜索',
                   exact: true,
+                  hideInMenu: true,
                   locale: 'menu.home.search',
                 },
               ],
@@ -70,8 +74,8 @@ describe('BasicLayout', () => {
               children: [
                 {
                   collapsed: true,
-                  menuName: '域&middot;买家维度交易',
-                  name: '域&middot;买家维度交易',
+                  menuName: '域买家维度交易',
+                  name: '域买家维度交易',
 
                   children: [
                     {
@@ -100,8 +104,7 @@ describe('BasicLayout', () => {
                 },
                 {
                   collapsed: true,
-                  menuName: '域&middot;买家维度交易2',
-                  name: '域&middot;买家维度交易2',
+                  name: '域买家维度交易2',
                   children: [
                     {
                       id: 5,
@@ -129,9 +132,7 @@ describe('BasicLayout', () => {
                 },
                 {
                   collapsed: true,
-                  menuName: '域&middot;买家维度交易2',
-                  name: '域&middot;买家维度交易2',
-
+                  name: '域买家维度交易3',
                   children: [
                     {
                       id: 7,
@@ -197,7 +198,8 @@ describe('BasicLayout', () => {
         }
       />,
     );
-    expect(wrapper).toMatchSnapshot();
+    await waitForComponentToPaint(wrapper);
+    expect(wrapper.render()).toMatchSnapshot();
   });
 
   it('🥩 do not render footer', async () => {
@@ -478,4 +480,17 @@ describe('BasicLayout', () => {
     dom = wrapper.find('header.ant-pro-fixed-header');
     expect(dom.props()?.style?.width).toBe('100%');
   });
+});
+
+it('🥩 support disableAutoContentMinHeight', async () => {
+  const wrapper = mount<BasicLayoutProps>(
+    <BasicLayout
+      disableAutoContentMinHeight
+      location={{
+        pathname: '/',
+      }}
+    />,
+  );
+  await waitForComponentToPaint(wrapper);
+  expect(wrapper.render()).toMatchSnapshot();
 });

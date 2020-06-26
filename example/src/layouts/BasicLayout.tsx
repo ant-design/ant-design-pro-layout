@@ -71,6 +71,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         }
         {...props}
         {...settings}
+        menu={{
+          defaultOpenAll: true,
+        }}
       >
         {props.children}
       </ProLayout>

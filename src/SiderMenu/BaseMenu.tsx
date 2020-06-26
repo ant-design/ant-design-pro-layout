@@ -115,7 +115,7 @@ class MenuUtil {
     if (
       Array.isArray(item.children) &&
       !item.hideChildrenInMenu &&
-      item.children.some((child) => child && !!child.name)
+      item.children.some((child) => child && !!child.name && !child.hideInMenu)
     ) {
       const name = this.getIntlName(item);
       const { subMenuItemRender } = this.props;
