@@ -106,6 +106,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
   });
   const headerDom = defaultRenderLogoAndTitle(props);
   const extraDom = menuExtraRender && menuExtraRender(props);
+
   return (
     <Sider
       collapsible

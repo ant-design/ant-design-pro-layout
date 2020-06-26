@@ -410,14 +410,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     [`${baseClassName}-content-disable-margin`]: disableContentMargin,
   });
 
-  // warning info
-  useEffect(() => {
-    warning(
-      (props.collapsed === undefined) === (props.onCollapse === undefined),
-      'pro-layout: onCollapse and collapsed should exist simultaneously',
-    );
-  }, []);
-
   /**
    * 页面切换的时候触发
    */
@@ -429,7 +421,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   }, [stringify(props.location)]);
 
   useDocumentTitle(pageTitleInfo, props.title);
-
   return (
     <MenuCounter.Provider>
       <RouteContext.Provider
