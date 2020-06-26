@@ -140,19 +140,19 @@ const PageContainer: React.SFC<PageContainerProps> = (props) => {
   return (
     <div style={style} className={className}>
       <div className={`${prefixedClassName}-warp`}>
-        <GridContent>
-          {defaultPageHeaderRender(props, {
-            ...value,
-            prefixCls: undefined,
-            prefixedClassName,
-          })}
-        </GridContent>
+        {defaultPageHeaderRender(props, {
+          ...value,
+          prefixCls: undefined,
+          prefixedClassName,
+        })}
       </div>
-      {children ? (
-        <div className={`${prefixedClassName}-children-content`}>
-          {children}
-        </div>
-      ) : null}
+      <GridContent>
+        {children ? (
+          <div className={`${prefixedClassName}-children-content`}>
+            {children}
+          </div>
+        ) : null}
+      </GridContent>
     </div>
   );
 };

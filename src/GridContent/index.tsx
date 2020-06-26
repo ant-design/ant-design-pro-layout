@@ -35,7 +35,7 @@ const GridContent: React.SFC<GridContentProps> = (props) => {
   }
   return (
     <div className={classNames(className, propsClassName)} style={style}>
-      {children}
+      <div className={`${prefixCls}-grid-content-children`}>{children}</div>
     </div>
   );
 };

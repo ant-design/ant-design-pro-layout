@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react';
 import { ConfigProvider, Layout } from 'antd';
-import GridContent from './GridContent';
 
 const { Content } = Layout;
 
@@ -38,7 +37,7 @@ class WrapContent extends React.Component<{
             }}
             className={`${prefixCls}-basicLayout-children-content-wrap`}
           >
-            <GridContent>{children}</GridContent>
+            {children}
           </div>
         </ConfigProvider>
       </Content>
