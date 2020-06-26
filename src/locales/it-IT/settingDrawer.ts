@@ -17,7 +17,7 @@ export default {
   'app.setting.navigationmode': 'Modalità di navigazione',
   'app.setting.sidemenu': 'Menu laterale',
   'app.setting.topmenu': 'Menu in testata',
-  'app.setting.mixmenu': 'Mix Menu Layout',
+  'app.setting.mixmenu': 'Menu misto',
   'app.setting.splitMenus': 'split menus',
   'app.setting.fixedheader': 'Testata fissa',
   'app.setting.fixedsidebar': 'Menu laterale fisso',
