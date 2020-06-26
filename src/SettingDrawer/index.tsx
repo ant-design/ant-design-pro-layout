@@ -554,6 +554,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
             prefixCls={baseClassName}
             list={themeList.themeList}
             value={navTheme}
+            key="navTheme"
             onChange={(value) => changeSetting('navTheme', value, hideLoading)}
           />
         </Body>
@@ -581,6 +582,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
           <BlockCheckbox
             prefixCls={baseClassName}
             value={layout}
+            key="layout"
             list={[
               {
                 key: 'side',

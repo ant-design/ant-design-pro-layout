@@ -24,29 +24,29 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
   const [dom, setDom] = useState<JSX.Element[]>([]);
   useEffect(() => {
     const domList = (list || []).map((item) => (
-      <Tooltip title={item.title} key={item.key}>
-        <div
-          className={`${baseClassName}-item`}
-          onClick={() => onChange(item.key)}
-        >
+      <div
+        key={item.key}
+        className={`${baseClassName}-item`}
+        onClick={() => onChange(item.key)}
+      >
+        <Tooltip title={item.title} key={item.key}>
           <img src={item.url} alt={item.key} />
-          <div
-            className={`${baseClassName}-selectIcon`}
-            style={{
-              display: value === item.key ? 'block' : 'none',
-            }}
-          >
-            <CheckOutlined />
-          </div>
+        </Tooltip>
+        <div
+          className={`${baseClassName}-selectIcon`}
+          style={{
+            display: value === item.key ? 'block' : 'none',
+          }}
+        >
+          <CheckOutlined />
         </div>
-      </Tooltip>
+      </div>
     ));
     setDom(domList);
   }, [value]);
   return (
     <div
       className={baseClassName}
-      key={value}
       style={{
         minHeight: 42,
       }}
