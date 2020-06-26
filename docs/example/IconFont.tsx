@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from 'antd';
 // eslint-disable-next-line import/no-unresolved
 import ProLayout, { PageContainer } from '@ant-design/pro-layout';
 
@@ -25,7 +24,7 @@ export default () => (
           {
             key: 'test',
             name: 'test',
-            icon: <Icon type="smile" />,
+            icon: 'smile',
             path: '/test',
             exact: true,
           },

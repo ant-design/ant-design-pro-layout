@@ -11,13 +11,11 @@ import './index.less';
 import BaseMenu from '../SiderMenu/BaseMenu';
 import { HeaderViewProps } from '../Header';
 
-interface TopNavHeaderProps extends SiderMenuProps {
+export type TopNavHeaderProps = SiderMenuProps & {
   logo?: React.ReactNode;
   onCollapse?: (collapse: boolean) => void;
   rightContentRender?: HeaderViewProps['rightContentRender'];
-}
-
-export type { TopNavHeaderProps };
+};
 
 /**
  * 抽离出来是为了防止 rightSize 经常改变导致菜单 render

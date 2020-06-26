@@ -12,15 +12,18 @@ import {
 import { isBrowser } from '../utils/utils';
 import { ProSettings } from '../defaultSettings';
 import TopNavHeader from '../TopNavHeader';
-import { MenuDataItem } from '../';
+import { MenuDataItem } from '../index';
+import { WithFalse } from '../typings';
 
 export interface GlobalHeaderProps extends Partial<ProSettings> {
   collapsed?: boolean;
   onCollapse?: (collapsed: boolean) => void;
   isMobile?: boolean;
   logo?: React.ReactNode;
-  menuRender?: HeaderViewProps['menuRender'];
-  rightContentRender?: HeaderViewProps['rightContentRender'];
+  menuRender?: WithFalse<
+    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+  >;
+  rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   className?: string;
   prefixCls?: string;
   menuData?: MenuDataItem[];

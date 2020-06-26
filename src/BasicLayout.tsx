@@ -34,79 +34,67 @@ import MenuCounter from './SiderMenu/Counter';
 import WrapContent from './WrapContent';
 import { useDocumentTitle } from './utils/hooks';
 
-interface BasicLayoutProps
-  extends Partial<RouterTypes<Route>>,
-    SiderMenuProps,
-    HeaderViewProps,
-    Partial<ProSettings> {
-  pure?: boolean;
-  /**
-   * logo url
-   */
-  logo?: React.ReactNode | WithFalse<() => React.ReactNode>;
+export type BasicLayoutProps = Partial<RouterTypes<Route>> &
+  SiderMenuProps &
+  HeaderViewProps &
+  Partial<ProSettings> & {
+    pure?: boolean;
+    /**
+     * logo url
+     */
+    logo?: React.ReactNode | WithFalse<() => React.ReactNode>;
 
-  /**
-   * 页面切换的时候触发
-   */
-  onPageChange?: (location?: RouterTypes<Route>['location']) => void;
+    /**
+     * 页面切换的时候触发
+     */
+    onPageChange?: (location?: RouterTypes<Route>['location']) => void;
 
-  loading?: boolean;
+    loading?: boolean;
 
-  locale?: localeType;
+    locale?: localeType;
 
-  onCollapse?: (collapsed: boolean) => void;
+    onCollapse?: (collapsed: boolean) => void;
 
-  headerRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
-  headerTitleRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
-  headerContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
-  footerRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
-  menuRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
-  breadcrumbRender?: (
-    routers: AntdBreadcrumbProps['routes'],
-  ) => AntdBreadcrumbProps['routes'];
-  menuItemRender?: BaseMenuProps['menuItemRender'];
-  pageTitleRender?: WithFalse<
-    (
-      props: GetPageTitleProps,
-      defaultPageTitle?: string,
-      info?: {
-        // 页面标题
-        title: string;
-        // locale 的 title
-        id: string;
-        // 页面标题不带默认的 title
-        pageName: string;
-      },
-    ) => string
-  >;
-  menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[];
-  itemRender?: AntdBreadcrumbProps['itemRender'];
+    footerRender?: WithFalse<
+      (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+    >;
 
-  formatMessage?: (message: MessageDescriptor) => string;
-  /**
-   * 是否禁用移动端模式，有的管理系统不需要移动端模式，此属性设置为true即可
-   */
-  disableMobile?: boolean;
-  contentStyle?: CSSProperties;
-  isChildrenLayout?: boolean;
+    breadcrumbRender?: (
+      routers: AntdBreadcrumbProps['routes'],
+    ) => AntdBreadcrumbProps['routes'];
+    menuItemRender?: BaseMenuProps['menuItemRender'];
+    pageTitleRender?: WithFalse<
+      (
+        props: GetPageTitleProps,
+        defaultPageTitle?: string,
+        info?: {
+          // 页面标题
+          title: string;
+          // locale 的 title
+          id: string;
+          // 页面标题不带默认的 title
+          pageName: string;
+        },
+      ) => string
+    >;
+    menuDataRender?: (menuData: MenuDataItem[]) => MenuDataItem[];
+    itemRender?: AntdBreadcrumbProps['itemRender'];
 
-  className?: string;
+    formatMessage?: (message: MessageDescriptor) => string;
+    /**
+     * 是否禁用移动端模式，有的管理系统不需要移动端模式，此属性设置为true即可
+     */
+    disableMobile?: boolean;
+    contentStyle?: CSSProperties;
+    isChildrenLayout?: boolean;
 
-  /**
-   * 兼用 content的 margin
-   */
-  disableContentMargin?: boolean;
-}
+    className?: string;
 
-export type { BasicLayoutProps };
+    /**
+     * 兼用 content的 margin
+     */
+    disableContentMargin?: boolean;
+  };
 
 const headerRender = (
   props: BasicLayoutProps & {

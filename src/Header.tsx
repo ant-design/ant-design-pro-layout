@@ -3,8 +3,6 @@ import './Header.less';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Layout } from 'antd';
-
-import { BasicLayoutProps } from './BasicLayout';
 import GlobalHeader, { GlobalHeaderProps } from './GlobalHeader';
 import { ProSettings } from './defaultSettings';
 import TopNavHeader from './TopNavHeader';
@@ -12,19 +10,24 @@ import { WithFalse } from './typings';
 
 const { Header } = Layout;
 
-interface HeaderViewProps extends Partial<ProSettings>, GlobalHeaderProps {
-  isMobile?: boolean;
-  collapsed?: boolean;
-  logo?: React.ReactNode;
-  menuRender?: BasicLayoutProps['menuRender'];
-  headerRender?: BasicLayoutProps['headerRender'];
-  headerTitleRender?: BasicLayoutProps['headerTitleRender'];
-  headerContentRender?: BasicLayoutProps['headerContentRender'];
-  rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
-  siderWidth?: number;
-  hasSiderMenu?: boolean;
-}
-export type { HeaderViewProps };
+export type HeaderViewProps = Partial<ProSettings> &
+  GlobalHeaderProps & {
+    isMobile?: boolean;
+    collapsed?: boolean;
+    logo?: React.ReactNode;
+
+    headerRender?: WithFalse<
+      (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+    >;
+    headerTitleRender?: WithFalse<
+      (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
+    >;
+    headerContentRender?: WithFalse<
+      (props: HeaderViewProps) => React.ReactNode
+    >;
+    siderWidth?: number;
+    hasSiderMenu?: boolean;
+  };
 
 interface HeaderViewState {
   visible: boolean;
