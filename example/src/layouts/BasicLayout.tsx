@@ -32,7 +32,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const { initialState, setInitialState } = useModel('@@initialState');
   const { settings = defaultSettings } = initialState || {};
   const intl = useIntl();
-
   return (
     <>
       <ProLayout

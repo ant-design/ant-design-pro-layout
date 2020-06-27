@@ -19,7 +19,7 @@ import {
   WithFalse,
 } from './typings';
 import { getPageTitleInfo, GetPageTitleProps } from './getPageTitle';
-import defaultSettings, { ProSettings } from './defaultSettings';
+import defaultSettings, { PureSettings } from './defaultSettings';
 import getLocales, { localeType } from './locales';
 import { BaseMenuProps } from './SiderMenu/BaseMenu';
 import Footer from './Footer';
@@ -37,7 +37,7 @@ import { useDocumentTitle } from './utils/hooks';
 export type BasicLayoutProps = Partial<RouterTypes<Route>> &
   SiderMenuProps &
   HeaderViewProps &
-  Partial<ProSettings> & {
+  Partial<PureSettings> & {
     pure?: boolean;
     /**
      * logo url

@@ -20,6 +20,7 @@ import ThemeColor from './ThemeColor';
 import getLocales, { getLanguage } from '../locales';
 import { isBrowser, genStringToTheme } from '../utils/utils';
 import LayoutSetting, { renderLayoutSettingItem } from './LayoutChange';
+import RegionalSetting from './RegionalChange';
 
 interface BodyProps {
   title: string;
@@ -71,6 +72,11 @@ const getDifferentSetting = (state: Partial<ProSettings>) => {
   Object.keys(state).forEach((key) => {
     if (state[key] !== oldSetting[key] && key !== 'collapse') {
       stateObj[key] = state[key];
+    }
+
+    if (key.includes('Render')) {
+      stateObj[key] =
+        state[key] === 'false' || state[key] === false ? false : undefined;
     }
   });
 
@@ -286,8 +292,11 @@ const initState = (
     };
     const replaceSetting = {};
     Object.keys(params).forEach((key) => {
-      if (defaultSettings[key]) {
+      if (defaultSettings[key] || defaultSettings[key] === undefined) {
         replaceSetting[key] = params[key];
+        if (key.includes('Render')) {
+          replaceSetting[key] = params[key] === 'false' ? false : undefined;
+        }
       }
     });
     if (onSettingChange) {
@@ -607,6 +616,18 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
           />
         </Body>
         <LayoutSetting settings={settingState} changeSetting={changeSetting} />
+        <Divider />
+
+        <Body
+          prefixCls={baseClassName}
+          title={formatMessage({ id: 'app.setting.regionalsettings' })}
+        >
+          <RegionalSetting
+            settings={settingState}
+            changeSetting={changeSetting}
+          />
+        </Body>
+
         <Divider />
 
         <Body

@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Layout } from 'antd';
 import GlobalHeader, { GlobalHeaderProps } from './GlobalHeader';
-import { ProSettings } from './defaultSettings';
+import { PureSettings } from './defaultSettings';
 import TopNavHeader from './TopNavHeader';
 import { WithFalse } from './typings';
 
 const { Header } = Layout;
 
-export type HeaderViewProps = Partial<ProSettings> &
+export type HeaderViewProps = Partial<PureSettings> &
   GlobalHeaderProps & {
     isMobile?: boolean;
     collapsed?: boolean;
@@ -59,7 +59,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
         />
       );
     }
-    if (headerRender) {
+    if (headerRender && typeof headerRender === 'function') {
       return headerRender(this.props, defaultDom);
     }
     return defaultDom;

@@ -2,7 +2,13 @@ import { MenuTheme } from 'antd/es/menu/MenuContext';
 
 export type ContentWidth = 'Fluid' | 'Fixed';
 
-export interface ProSettings {
+export interface RenderSetting {
+  headerRender?: false;
+  footerRender?: false;
+  menuRender?: false;
+  menuHeaderRender?: false;
+}
+export interface PureSettings {
   /**
    * theme for nav menu
    */
@@ -35,6 +41,8 @@ export interface ProSettings {
   colorWeak?: boolean;
   splitMenus?: boolean;
 }
+
+export type ProSettings = PureSettings & RenderSetting;
 
 const defaultSettings: ProSettings = {
   navTheme: 'dark',
