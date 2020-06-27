@@ -7,7 +7,7 @@ import useMergeValue from 'use-merge-value';
 
 import { MenuMode, MenuProps } from 'antd/es/menu';
 import { MenuTheme } from 'antd/es/menu/MenuContext';
-import defaultSettings, { ProSettings } from '../defaultSettings';
+import defaultSettings, { PureSettings } from '../defaultSettings';
 import { getSelectedMenuKeys } from './SiderMenuUtils';
 import { isUrl, getOpenKeysFromMenuData } from '../utils/utils';
 
@@ -23,7 +23,7 @@ import MenuCounter from './Counter';
 export interface BaseMenuProps
   extends Partial<RouterTypes<Route>>,
     Omit<MenuProps, 'openKeys' | 'onOpenChange'>,
-    Partial<ProSettings> {
+    Partial<PureSettings> {
   className?: string;
   collapsed?: boolean;
   splitMenus?: boolean;

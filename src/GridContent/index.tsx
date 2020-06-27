@@ -4,10 +4,10 @@ import React, { useContext, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import RouteContext from '../RouteContext';
-import { ProSettings } from '../defaultSettings';
+import { PureSettings } from '../defaultSettings';
 
 interface GridContentProps {
-  contentWidth?: ProSettings['contentWidth'];
+  contentWidth?: PureSettings['contentWidth'];
   children: React.ReactNode;
   className?: string;
   style?: CSSProperties;

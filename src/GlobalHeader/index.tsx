@@ -10,12 +10,12 @@ import {
   defaultRenderCollapsedButton,
 } from '../SiderMenu/SiderMenu';
 import { isBrowser } from '../utils/utils';
-import { ProSettings } from '../defaultSettings';
+import { PureSettings } from '../defaultSettings';
 import TopNavHeader from '../TopNavHeader';
 import { MenuDataItem } from '../index';
 import { WithFalse } from '../typings';
 
-export interface GlobalHeaderProps extends Partial<ProSettings> {
+export interface GlobalHeaderProps extends Partial<PureSettings> {
   collapsed?: boolean;
   onCollapse?: (collapsed: boolean) => void;
   isMobile?: boolean;
