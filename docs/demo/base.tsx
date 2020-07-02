@@ -24,6 +24,7 @@ export default () => {
         {...defaultProps}
         style={{
           height: 800,
+          maxHeight: '100vh',
         }}
         location={{
           pathname,
@@ -39,6 +40,7 @@ export default () => {
         )}
         rightContentRender={() => 'dom'}
         {...settings}
+        layout="topmenu"
       >
         <PageContainer content="欢迎使用">
           <div
