@@ -433,6 +433,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           hasSiderMenu: !!siderMenuDom,
           hasHeader: !!headerDom,
           siderWidth: leftSiderWidth,
+          pageTitleInfo,
         }}
       >
         <div className={className}>

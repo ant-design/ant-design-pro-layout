@@ -13,6 +13,11 @@ export interface RouteContextType extends Partial<PureSettings> {
   hasHeader?: boolean;
   siderWidth?: number;
   isChildrenLayout?: boolean;
+  pageTitleInfo?: {
+    title: string;
+    id: string;
+    pageName: string;
+  };
 }
 
 const routeContext: React.Context<RouteContextType> = createContext({});
