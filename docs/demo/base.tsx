@@ -40,7 +40,6 @@ export default () => {
         )}
         rightContentRender={() => 'dom'}
         {...settings}
-        layout="topmenu"
       >
         <PageContainer content="欢迎使用">
           <div
