@@ -60,7 +60,7 @@ const renderFooter: React.SFC<Omit<
       >
         {tabList.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Tabs.TabPane {...item} tab={item.tab} key={index} />
+          <Tabs.TabPane {...item} tab={item.tab} key={item.key || index} />
         ))}
       </Tabs>
     );
