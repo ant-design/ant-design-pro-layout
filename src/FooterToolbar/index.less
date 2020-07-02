@@ -1,0 +1,21 @@
+@import '~antd/es/style/themes/default.less';
+
+@pro-global-footer-bar-prefix-cls: ~'@{ant-prefix}-pro-global-footer-bar';
+
+.@{pro-global-footer-bar-prefix-cls}{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    width: 100%;
+    padding: 0 24px;
+    line-height: 48px;
+    border-top: 1px solid @border-color-split;
+    box-shadow: @box-shadow-base;
+    background: @component-background;
+    display: flex;
+    &-left {
+      flex: 1;
+    }
+}
+
