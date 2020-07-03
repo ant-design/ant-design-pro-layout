@@ -31,7 +31,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
   return (
     <div
       className={classNames(className, `${baseClassName}`)}
-      style={{ width: width }}
+      style={{ width }}
       {...restProps}
     >
       <div className={`${baseClassName}-left`}>{extra}</div>
