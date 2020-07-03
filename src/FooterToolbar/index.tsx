@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, ReactNode } from 'react';
-import { RouteContext, RouteContextType } from '@ant-design/pro-layout';
+import { RouteContext, RouteContextType } from '../index';
 import classNames from 'classnames';
 import './index.less';
 import { Space } from 'antd';
@@ -31,7 +31,11 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
     if (!hasSiderMenu) {
       return undefined;
     }
-    return isMobile ? undefined : `calc(100% - ${siderWidth}px)`;
+    // 0 or undefined
+    if (!siderWidth) {
+      return '100%';
+    }
+    return isMobile ? '100%' : `calc(100% - ${siderWidth}px)`;
   }, [value.collapsed, value.hasSiderMenu, value.isMobile, value.siderWidth]);
 
   const dom = (
