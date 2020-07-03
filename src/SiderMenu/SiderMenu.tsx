@@ -47,7 +47,7 @@ export const defaultRenderLogoAndTitle = (
   }
 
   return (
-    <a href="/">
+    <a>
       {logoDom}
       {props.collapsed ? null : titleDom}
     </a>
