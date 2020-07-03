@@ -19,9 +19,7 @@ exports[`BasicLayout 🥩 base use 1`] = `
           class="ant-pro-sider-logo"
           id="logo"
         >
-          <a
-            href="/"
-          >
+          <a>
             <img
               alt="logo"
               src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
@@ -124,9 +122,7 @@ exports[`BasicLayout 🥩 contentStyle should change dom 1`] = `
           class="ant-pro-sider-logo"
           id="logo"
         >
-          <a
-            href="/"
-          >
+          <a>
             <img
               alt="logo"
               src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
@@ -230,9 +226,7 @@ exports[`BasicLayout 🥩 support loading 1`] = `
           class="ant-pro-sider-logo"
           id="logo"
         >
-          <a
-            href="/"
-          >
+          <a>
             <img
               alt="logo"
               src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
@@ -360,9 +354,7 @@ exports[`BasicLayout 🥩 support menuDateRender 1`] = `
           class="ant-pro-sider-logo"
           id="logo"
         >
-          <a
-            href="/"
-          >
+          <a>
             <img
               alt="logo"
               src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
@@ -518,9 +510,7 @@ exports[`🥩 support disableAutoContentMinHeight 1`] = `
           class="ant-pro-sider-logo"
           id="logo"
         >
-          <a
-            href="/"
-          >
+          <a>
             <img
               alt="logo"
               src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
