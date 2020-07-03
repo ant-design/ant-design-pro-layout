@@ -1,5 +1,5 @@
-import React, { useContext, useMemo } from 'react';
-import { RouteContext } from '@ant-design/pro-layout';
+import React, { useContext, useMemo, ReactNode } from 'react';
+import { RouteContext, RouteContextType } from '@ant-design/pro-layout';
 import classNames from 'classnames';
 import './index.less';
 import { Space } from 'antd';
@@ -8,6 +8,10 @@ export interface FooterToolbarProps {
   extra?: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
+  renderContent?: (
+    props: FooterToolbarProps & RouteContextType & { leftWidth?: string },
+    dom: JSX.Element,
+  ) => ReactNode;
   prefixCls?: string;
 }
 const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
@@ -16,6 +20,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
     prefixCls = 'ant-pro',
     className,
     extra,
+    renderContent,
     ...restProps
   } = props;
 
@@ -28,16 +33,32 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
     }
     return isMobile ? undefined : `calc(100% - ${siderWidth}px)`;
   }, [value.collapsed, value.hasSiderMenu, value.isMobile, value.siderWidth]);
+
+  const dom = (
+    <>
+      <div className={`${baseClassName}-left`}>{extra}</div>
+      <div className={`${baseClassName}-right`}>
+        <Space>{children}</Space>
+      </div>
+    </>
+  );
+
   return (
     <div
       className={classNames(className, `${baseClassName}`)}
       style={{ width }}
       {...restProps}
     >
-      <div className={`${baseClassName}-left`}>{extra}</div>
-      <div className={`${baseClassName}-right`}>
-        <Space>{children}</Space>
-      </div>
+      {renderContent
+        ? renderContent(
+            {
+              ...props,
+              ...value,
+              leftWidth: width,
+            },
+            dom,
+          )
+        : dom}
     </div>
   );
 };
