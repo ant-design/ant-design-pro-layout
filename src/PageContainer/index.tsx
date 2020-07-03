@@ -9,7 +9,7 @@ import GridContent from '../GridContent';
 import FooterToolbar from '../FooterToolbar';
 
 export interface PageHeaderTabConfig {
-  tabList?: TabPaneProps[];
+  tabList?: (TabPaneProps & { key?: React.ReactText })[];
   tabActiveKey?: TabsProps['activeKey'];
   onTabChange?: TabsProps['onChange'];
   tabBarExtraContent?: TabsProps['tabBarExtraContent'];
