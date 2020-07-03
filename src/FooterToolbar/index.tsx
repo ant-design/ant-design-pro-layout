@@ -24,7 +24,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
     ...restProps
   } = props;
 
-  const baseClassName = `${prefixCls}-global-footer-bar`;
+  const baseClassName = `${prefixCls}-footer-bar`;
   const value = useContext(RouteContext);
   const width = useMemo(() => {
     const { hasSiderMenu, isMobile, siderWidth } = value;
