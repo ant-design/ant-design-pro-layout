@@ -210,7 +210,7 @@ export interface Settings {
 ### MenuDataItem
 
 ```ts | pure
-// 可以通过 import { MenuDataItem } from '@ant-design/pro-layout/typings'
+// 可以通过 import { MenuDataItem } from '@ant-design/pro-layout'
 // 来获取这个类型
 
 export interface MenuDataItem {

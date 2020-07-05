@@ -1,9 +1,9 @@
 ---
-title: menu 的相关能力
+title: 菜单能力
 order: 9
 sidemenu: false
 nav:
-  title: 能力展示
+  title: 菜单能力
   order: 1
 ---
 

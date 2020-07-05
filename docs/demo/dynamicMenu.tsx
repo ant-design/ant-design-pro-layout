@@ -5,7 +5,7 @@ import ProLayout, {
   MenuDataItem,
   // eslint-disable-next-line import/no-unresolved
 } from '@ant-design/pro-layout';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import customMenuDate from './customMenu';
 
 export default () => {
@@ -44,7 +44,7 @@ export default () => {
                 height: '100%',
               }}
             >
-              <PageLoading />
+              {dom}
             </div>
           ) : (
             dom
