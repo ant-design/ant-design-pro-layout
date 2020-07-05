@@ -1,7 +1,7 @@
 ---
 title: 快速开始
 order: 9
-sidemenu: false
+side: false
 nav:
   title: 快速开始
   order: 0
