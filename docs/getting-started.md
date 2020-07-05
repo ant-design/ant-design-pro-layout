@@ -66,4 +66,107 @@ export interface MenuDataItem {
 - hideInMenu 会把这个路由配置在 menu 中隐藏这个路由，name 不填会有相同的效果
 - hideChildrenInMenu 会把这个路由的子节点在 menu 中隐藏
 
+> ProLayout 其实是读取的 props 中的 route 和 location。这两个属性是 umi 默认注入的。
+
 ### 从服务器获取
+
+有些时候我们希望服务器来管理我们的路由，所以希望菜单时服务器进行分发的数据。我们提供了 `menuDataRender` 来进行修改数据，但是要注意 `menuDataRender` 会触发重新渲染，并且还会支持的国际化和权限的配置，如果你不需要国际化，建议使用 `postMenuData` 可以显著的提升性能。
+
+服务器需要返回的数据与 `MenuDataItem` 相同，`menuDataRender` 需要返回一个数组，如果你想拥有更好的性能可以试试使用 props 中的 route 属性，这里有个 [demo](/menu)。
+
+### PageContainer
+
+PageContainer 是为了减少繁杂的面包屑配置和标题，很多页面都需要面包屑和标题的配置。当然也可以关掉自动生成的，而使用自己的配置。
+
+PageContainer 封装了 antd 的 PageHeader 组件，增加了 tabList 和 content。 根据当前的路由填入 title 和 breadcrumb。它依赖 Layout 的 route 属性。当然你可以传入参数来复写默认值。 PageContainer 支持 Tabs 和 PageHeader 的所有属性。
+
+为了方便进行表单等操作我们增加了一个 footer 属性，可以获得一个一直悬浮在底部的操作栏。如果觉得不方便也可以直接使用 FooterToolbar 来承载操作，两者表现基本相同，但是 FooterToolbar 拥有更多自定义的配置。
+
+```tsx | pure
+<PageContainer
+  content="欢迎使用 ProLayout 组件"
+  tabList={[
+    {
+      tab: '基本信息',
+      key: 'base',
+    },
+    {
+      tab: '详细信息',
+      key: 'info',
+    },
+  ]}
+  extra={[
+    <Button key="3">操作</Button>,
+    <Button key="2">操作</Button>,
+    <Button key="1" type="primary">
+      主操作
+    </Button>,
+  ]}
+  footer={[<Button>重置</Button>, <Button type="primary">提交</Button>]}
+>
+  {children}
+</PageContainer>
+```
+
+### GridContent
+
+GridContent 是个简单的语法糖，封装了 ProLayout 的 `contentWidth` 配置，`contentWidth` 如果设置为 `Fixed` 定宽模式，最宽只有 `1200px`。
+
+使用方式：
+
+```tsx | pure
+<GridContent>{children}</GridContent>
+```
+
+### Footer
+
+页脚一般一般会展示一些公司和版权信息，默认的 ProLayout 不提供 Footer,但是提供了一个 Footer 组件，支持配置一些超链接和一些版权信息。
+
+```tsx | pure
+<Footer
+  copyright="2019 蚂蚁金服体验技术部出品"
+  links={[
+    {
+      key: 'Ant Design Pro',
+      title: 'Ant Design Pro',
+      href: 'https://pro.ant.design',
+      blankTarget: true,
+    },
+    {
+      key: 'github',
+      title: <GithubOutlined />,
+      href: 'https://github.com/ant-design/ant-design-pro',
+      blankTarget: true,
+    },
+    {
+      key: 'Ant Design',
+      title: 'Ant Design',
+      href: 'https://ant.design',
+      blankTarget: true,
+    },
+  ]}
+/>
+```
+
+### 高级用法
+
+RouteContext 提供一个可以根据 layout 的数据来进行一些操作, PageContainer 和 FooterToolbar 都是依赖 RouteContext 的数据来实现功能。
+
+```tsx | pure
+import { RouteContext, RouteContextType } from '@ant-design/pro-layout';
+
+const Page = () => (
+  <RouteContext.Consumer>
+    {(value: RouteContextType) => {
+      const { isMobile, hasHeader, hasSiderMenu, collapsed } = value;
+      // 用户的标题
+      return value.title;
+    }}
+  </RouteContext.Consumer>
+);
+```
+
+- [API](/api)
+- [菜单 的 demo](/menu)
+- [页脚](/footer)
+- [更多的例子](/example)
