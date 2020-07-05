@@ -65,6 +65,9 @@ export interface SiderMenuProps
       props?: SiderMenuProps,
     ) => React.ReactNode
   >;
+  menuContentRender?: WithFalse<
+    (props: SiderMenuProps, defaultDom: React.ReactNode) => React.ReactNode
+  >;
   menuExtraRender?: WithFalse<(props: SiderMenuProps) => React.ReactNode>;
   collapsedButtonRender?: WithFalse<(collapsed?: boolean) => React.ReactNode>;
   breakpoint?: SiderProps['breakpoint'] | false;

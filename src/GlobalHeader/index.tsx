@@ -23,9 +23,6 @@ export interface GlobalHeaderProps extends Partial<PureSettings> {
   menuRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
-  menuContentRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
   rightContentRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode>;
   className?: string;
   prefixCls?: string;
