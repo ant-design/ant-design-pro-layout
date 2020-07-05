@@ -31,16 +31,14 @@ export default () => {
       </Button>
       <ProLayout
         style={{
-          height: 500,
+          height: 400,
           border: '1px solid #ddd',
         }}
         menuContentRender={(_, dom) =>
           loading ? (
             <div
               style={{
-                width: 256,
-                display: 'flex',
-                padding: 24,
+                padding: '24px 0',
               }}
             >
               <Spin tip="菜单加载中">{dom}</Spin>

@@ -40,7 +40,7 @@ export default () => {
       <ProLayout
         {...defaultProps}
         style={{
-          height: 800,
+          height: 500,
           maxHeight: '100vh',
         }}
         location={{
