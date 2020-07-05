@@ -39,6 +39,22 @@ ProLayout 提供一些 api 删除用户不需要的区域。在 SettingDrawer �
 
 > 在 layout 中所有的 xxxRender 都可以传入 false，来关闭渲染。
 
+### 收起展开
+
+一些时候我们会发现 `collapsed` 和 `onCollapse` 设置默认收起并不生效，这是因为 ProLayout 中内置了 `breakpoint` 来触发收起的机制，我们可以设置 `breakpoint={false}` 来关掉这个机制。
+
+### 自定义菜单的宽度
+
+siderWidth 可以自定义菜单的宽度，你可以设置的更短或者更长 FooterToolbar 等组件会自动支持，但是可能需要做一些样式上的处理，不然菜单展示可能会有一些小问题。
+
+菜单收起宽度是无法自定义的，因为涉及到动画和巨量的 css 改动，自定义难道很大。
+
+### 自动切割菜单
+
+自动切割菜单是 `mix` 模式专属的能力，他可以把第一级的菜单放置到顶栏中。我们可以设置 `splitMenus=true` 来打开它，为了体验良好最好给每个一级菜单都设置一个重定向,这样可以防止切换到白屏页面。
+
+![切割菜单](https://gw.alipayobjects.com/zos/antfincdn/H9hDMcrUh1/5438EB45-27F8-4B4F-8740-54F7BE55075C.png)
+
 ## 自定义菜单
 
 ProLayout 会自动生成菜单，同时根据 pathname 进行自动选中。配合 PageContainer 可以实现自动推算面包屑和页面标题。如果和 umi 配置使用，只需要将 Page 的 props 交个 ProLayout 就根据 config 中的 routers 的配置 可以自动生成菜单的配置。
@@ -74,9 +90,11 @@ export interface MenuDataItem {
 
 服务器需要返回的数据与 `MenuDataItem` 相同，`menuDataRender` 需要返回一个数组，如果你想拥有更好的性能可以试试使用 props 中的 route 属性，这里有个 [demo](/menu)。
 
-### PageContainer
+## PageContainer
 
 PageContainer 是为了减少繁杂的面包屑配置和标题，很多页面都需要面包屑和标题的配置。当然也可以关掉自动生成的，而使用自己的配置。
+
+![PageContainer](https://gw.alipayobjects.com/zos/antfincdn/74fprCn%2403/BBFF4972-8CD0-47C3-AFA8-FD67171A9A45.png)
 
 PageContainer 封装了 antd 的 PageHeader 组件，增加了 tabList 和 content。 根据当前的路由填入 title 和 breadcrumb。它依赖 Layout 的 route 属性。当然你可以传入参数来复写默认值。 PageContainer 支持 Tabs 和 PageHeader 的所有属性。
 
@@ -108,17 +126,7 @@ PageContainer 封装了 antd 的 PageHeader 组件，增加了 tabList 和 conte
 </PageContainer>
 ```
 
-### GridContent
-
-GridContent 是个简单的语法糖，封装了 ProLayout 的 `contentWidth` 配置，`contentWidth` 如果设置为 `Fixed` 定宽模式，最宽只有 `1200px`。
-
-使用方式：
-
-```tsx | pure
-<GridContent>{children}</GridContent>
-```
-
-### Footer
+## Footer
 
 页脚一般一般会展示一些公司和版权信息，默认的 ProLayout 不提供 Footer,但是提供了一个 Footer 组件，支持配置一些超链接和一些版权信息。
 
@@ -148,7 +156,17 @@ GridContent 是个简单的语法糖，封装了 ProLayout 的 `contentWidth` �
 />
 ```
 
-### 高级用法
+## GridContent
+
+GridContent 是个简单的语法糖，封装了 ProLayout 的 `contentWidth` 配置，`contentWidth` 如果设置为 `Fixed` 定宽模式，最宽只有 `1200px`。
+
+使用方式：
+
+```tsx | pure
+<GridContent>{children}</GridContent>
+```
+
+## 高级用法
 
 RouteContext 提供一个可以根据 layout 的数据来进行一些操作, PageContainer 和 FooterToolbar 都是依赖 RouteContext 的数据来实现功能。
 

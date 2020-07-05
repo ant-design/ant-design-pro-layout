@@ -75,10 +75,10 @@ export default () => {
             },
           ]}
           extra={[
-            <Button key="3">Operation</Button>,
-            <Button key="2">Operation</Button>,
+            <Button key="3">操作</Button>,
+            <Button key="2">操作</Button>,
             <Button key="1" type="primary">
-              Primary
+              主操作
             </Button>,
           ]}
           footer={[<Button>重置</Button>, <Button type="primary">提交</Button>]}
