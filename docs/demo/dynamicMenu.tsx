@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProLayout, {
   PageContainer,
-  PageLoading,
   MenuDataItem,
   // eslint-disable-next-line import/no-unresolved
 } from '@ant-design/pro-layout';
@@ -35,16 +34,16 @@ export default () => {
           height: 500,
           border: '1px solid #ddd',
         }}
-        menuRender={(_, dom) =>
+        menuContentRender={(_, dom) =>
           loading ? (
             <div
               style={{
                 width: 256,
-                background: '#FFF',
-                height: '100%',
+                display: 'flex',
+                padding: 24,
               }}
             >
-              {dom}
+              <Spin tip="菜单加载中">{dom}</Spin>
             </div>
           ) : (
             dom
