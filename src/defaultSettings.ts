@@ -40,6 +40,7 @@ export interface PureSettings {
   primaryColor: string;
   colorWeak?: boolean;
   splitMenus?: boolean;
+  direction?: 'ltr' | 'rtl' | undefined;
 }
 
 export type ProSettings = PureSettings & RenderSetting;
@@ -56,5 +57,6 @@ const defaultSettings: ProSettings = {
   title: 'Ant Design Pro',
   iconfontUrl: '',
   primaryColor: '#1890ff',
+  direction: 'ltr',
 };
 export default defaultSettings;

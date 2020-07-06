@@ -77,6 +77,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
       headerRender,
       isMobile,
       prefixCls,
+      direction,
     } = this.props;
     const needFixedHeader = fixedHeader || layout === 'mix';
     const isTop = layout === 'top';
@@ -99,6 +100,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
         : '100%';
 
     const right = needFixedHeader ? 0 : undefined;
+    const left = direction === 'rtl' ? 0 : undefined;
 
     return (
       <>
@@ -119,6 +121,7 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
             width,
             zIndex: layout === 'mix' ? 100 : 9,
             right,
+            left,
             ...style,
           }}
           className={className}

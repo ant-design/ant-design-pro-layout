@@ -17,6 +17,7 @@ export default () => {
   const [right, setRight] = useState(true);
   const [pure, setPure] = useState(false);
   const [collapsedButtonRender, setCollapsedButtonRender] = useState(true);
+  const [direction, setDirection] = useState('ltr');
   return (
     <>
       <Switch
@@ -91,6 +92,14 @@ export default () => {
         }}
       />
       清爽模式
+      <Switch
+        checked={direction === 'rtl'}
+        onChange={(e) => setDirection(e ? 'rtl' : 'ltr')}
+        style={{
+          margin: 8,
+        }}
+      />
+      RTL
       <br />
       <br />
       <ProLayout
@@ -117,6 +126,7 @@ export default () => {
           pathname: '/welcome',
         }}
         pure={pure}
+        direction={direction}
         footerRender={() => (footer ? <DefaultFooter /> : null)}
       >
         <PageContainer content="欢迎使用">Hello World</PageContainer>

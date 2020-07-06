@@ -2,7 +2,7 @@ import './BasicLayout.less';
 
 import React, { CSSProperties, useContext, useEffect } from 'react';
 import { BreadcrumbProps as AntdBreadcrumbProps } from 'antd/es/breadcrumb';
-import { Layout } from 'antd';
+import { Layout, ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import warning from 'warning';
 import useMergeValue from 'use-merge-value';
@@ -197,6 +197,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     location = { pathname: '/' },
     fixSiderbar,
     navTheme,
+    direction,
     contentStyle,
     route = {
       routes: [],
@@ -374,7 +375,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     props.className,
     'ant-design-pro',
     baseClassName,
-    {
+    { 
+      [`ant-design-pro-rtl`]: direction === 'rtl',
       [`screen-${colSize}`]: colSize,
       [`${baseClassName}-top-menu`]: propsLayout === 'top',
       [`${baseClassName}-is-children`]: isChildrenLayout,
@@ -436,29 +438,31 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           pageTitleInfo,
         }}
       >
-        <div className={className}>
-          <Layout
-            style={{
-              minHeight: '100%',
-              ...style,
-            }}
-            hasSider
-          >
-            {siderMenuDom}
-            <Layout style={genLayoutStyle}>
-              {headerDom}
-              <WrapContent
-                isChildrenLayout={isChildrenLayout}
-                {...rest}
-                className={contentClassName}
-                style={contentStyle}
-              >
-                {loading ? <PageLoading /> : children}
-              </WrapContent>
-              {footerDom}
+        <ConfigProvider direction={direction}>
+          <div className={className}>
+            <Layout
+              style={{
+                minHeight: '100%',
+                ...style,
+              }}
+              hasSider
+            >
+              {siderMenuDom}
+              <Layout style={genLayoutStyle}>
+                {headerDom}
+                <WrapContent
+                  isChildrenLayout={isChildrenLayout}
+                  {...rest}
+                  className={contentClassName}
+                  style={contentStyle}
+                >
+                  {loading ? <PageLoading /> : children}
+                </WrapContent>
+                {footerDom}
+              </Layout>
             </Layout>
-          </Layout>
-        </div>
+          </div>
+        </ConfigProvider>
       </RouteContext.Provider>
     </MenuCounter.Provider>
   );

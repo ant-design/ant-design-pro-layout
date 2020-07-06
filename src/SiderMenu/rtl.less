@@ -1,0 +1,20 @@
+@import '~antd/es/style/themes/default.less';
+
+@pro-layout-sider-menu-prefix-cls: ~'@{ant-prefix}-pro-sider';
+
+.@{pro-layout-sider-menu-prefix-cls} {
+  &-logo {
+    h1 {
+      .@{ant-prefix}-design-pro-rtl & {
+        margin: 0 12px 0 0;
+      }
+    }
+  }
+
+  &-fixed {
+    .@{ant-prefix}-design-pro-rtl & {
+      right: 0;
+      left: auto;
+    }
+  }
+}

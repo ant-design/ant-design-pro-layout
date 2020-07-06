@@ -401,6 +401,7 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     primaryColor = 'daybreak',
     layout = 'sidemenu',
     colorWeak,
+    direction = 'ltr',
   } = settingState || {};
 
   useEffect(() => {
@@ -588,6 +589,25 @@ const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
           onChange={(color) =>
             changeSetting('primaryColor', color, hideLoading)
           }
+        />
+
+        <br/>
+
+        <List
+          split={false}
+          renderItem={renderLayoutSettingItem}
+          dataSource={[
+            {
+              title: 'RTL',
+              action: (
+                <Switch
+                  size="small"
+                  checked={direction === 'rtl'}
+                  onChange={(checked) => changeSetting('direction', checked ? 'rtl' : 'ltr')}
+                />
+              ),
+            },
+          ]}
         />
 
         <Divider />
