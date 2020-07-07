@@ -40,7 +40,7 @@ export interface PureSettings {
   primaryColor: string;
   colorWeak?: boolean;
   splitMenus?: boolean;
-  direction?: string;
+  direction: 'ltr' | 'rtl' | undefined;
 }
 
 export type ProSettings = PureSettings & RenderSetting;
