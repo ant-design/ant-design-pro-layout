@@ -268,7 +268,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
   const openKeysRef = useRef<string[]>([]);
   // 用于减少 defaultOpenKeys 计算的组件
   const defaultOpenKeysRef = useRef<string[]>([]);
-  const [postMenuData, setPostMenuData] = useState(() => menuData);
+  const [postMenuData, setPostMenuData] = useState(menuData);
 
   const { pathname } = location;
 
