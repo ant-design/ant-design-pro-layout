@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { ConfigProvider, Layout } from 'antd';
+import { ConfigConsumer, ConfigConsumerProps } from 'antd/es/config-provider';
 
 const { Content } = Layout;
 
@@ -23,23 +24,28 @@ class WrapContent extends React.Component<{
     } = this.props;
     return (
       <Content className={className} style={style}>
-        <ConfigProvider
-          getPopupContainer={() => {
-            if (isChildrenLayout && this.ref) {
-              return this.ref;
-            }
-            return document.body;
-          }}
-        >
-          <div
-            ref={(ele) => {
-              this.ref = ele;
-            }}
-            className={`${prefixCls}-basicLayout-children-content-wrap`}
-          >
-            {children}
-          </div>
-        </ConfigProvider>
+        <ConfigConsumer>
+          {(props: ConfigConsumerProps) => (
+            <ConfigProvider
+              getPopupContainer={() => {
+                if (isChildrenLayout && this.ref) {
+                  return this.ref;
+                }
+                return document.body;
+              }}
+              {...props}
+            >
+              <div
+                ref={(ele) => {
+                  this.ref = ele;
+                }}
+                className={`${prefixCls}-basicLayout-children-content-wrap`}
+              >
+                {children}
+              </div>
+            </ConfigProvider>
+          )}
+        </ConfigConsumer>
       </Content>
     );
   }
