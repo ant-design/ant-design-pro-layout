@@ -217,6 +217,8 @@ class MenuUtil {
           isMobile,
           replace: itemPath === location.pathname,
           onClick: () => onCollapse && onCollapse(true),
+          // 如果 hideChildrenInMenu  children 不应该使用
+          children: item.hideChildrenInMenu ? undefined : item.children,
         },
         defaultItem,
       );
@@ -369,7 +371,7 @@ const BaseMenu: React.FC<BaseMenuProps> = (props) => {
       selectedKeys={selectedKeys}
       style={style}
       className={cls}
-      onOpenChange={setOpenKeys}
+      onOpenChange={(keys) => setOpenKeys(keys as string[])}
       {...props.menuProps}
     >
       {menuUtils.getNavMenuItems(postData)}
