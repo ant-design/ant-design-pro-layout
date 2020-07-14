@@ -115,15 +115,19 @@ class MenuUtil {
       .map((item) => this.getSubMenuOrItem(item))
       .filter((item) => item);
 
+  hasChildren = (item: MenuDataItem) => {
+    return (
+      !item.hideChildrenInMenu &&
+      item.children &&
+      item.children.some((child) => child && !!child.name && !child.hideInMenu)
+    );
+  };
+
   /**
    * get SubMenu or Item
    */
   getSubMenuOrItem = (item: MenuDataItem): React.ReactNode => {
-    if (
-      Array.isArray(item.children) &&
-      !item.hideChildrenInMenu &&
-      item.children.some((child) => child && !!child.name && !child.hideInMenu)
-    ) {
+    if (Array.isArray(item.children) && this.hasChildren(item)) {
       const name = this.getIntlName(item);
       const { subMenuItemRender } = this.props;
       //  get defaultTitle by menuItemRender
@@ -218,7 +222,7 @@ class MenuUtil {
           replace: itemPath === location.pathname,
           onClick: () => onCollapse && onCollapse(true),
           // 如果 hideChildrenInMenu  children 不应该使用
-          children: item.hideChildrenInMenu ? undefined : item.children,
+          children: !this.hasChildren(item) ? undefined : item.children,
         },
         defaultItem,
       );
