@@ -73,7 +73,7 @@ let IconFont = createFromIconfontCN({
 //   icon: <Icon type="setting" />,
 const getIcon = (icon?: string | React.ReactNode): React.ReactNode => {
   if (typeof icon === 'string' && icon !== '') {
-    if (isUrl(icon)) {
+    if (isUrl(icon)||/\w.(png|jpg|jpeg|svg|webp|gif|bmp)$/i.test(icon)) {
       return (
         <Icon
           component={() => (
