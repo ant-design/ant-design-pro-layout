@@ -100,7 +100,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
     menuContentRender,
     prefixCls = 'ant-pro',
     onOpenChange,
-    headerStyle
+    headerHeight
   } = props;
   const baseClassName = `${prefixCls}-sider`;
   const { flatMenuKeys } = MenuCounter.useContainer();
@@ -154,7 +154,7 @@ const SiderMenu: React.FC<SiderMenuProps> = (props) => {
         collapsedWidth={48}
         style={{
           overflow: 'hidden',
-          paddingTop: layout === 'mix' ? headerStyle?.height : undefined,
+          paddingTop: layout === 'mix' ? headerHeight : undefined,
           ...style,
         }}
         width={siderWidth}
