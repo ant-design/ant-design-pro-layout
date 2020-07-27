@@ -105,8 +105,8 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
         {needFixedHeader && (
           <Header
             style={{
-              height: 48,
-              lineHeight: '48px',
+              height: this.props.headerStyle?.height,
+              lineHeight: `${this.props.headerStyle?.height}px`,
               background: 'transparent',
             }}
           />
@@ -114,8 +114,8 @@ class HeaderView extends Component<HeaderViewProps, HeaderViewState> {
         <Header
           style={{
             padding: 0,
-            height: 48,
-            lineHeight: '48px',
+            height: this.props.headerStyle?.height,
+            lineHeight: `${this.props.headerStyle?.height}px`,
             width,
             zIndex: layout === 'mix' ? 100 : 9,
             right,
