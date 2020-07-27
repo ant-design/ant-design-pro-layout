@@ -16,9 +16,9 @@ export interface PureSettings {
   /**
    * nav menu position: `side` or `top`
    */
-  headerStyle: {
-    height: number;
-    background: string;
+  headerStyle?: {
+    height?: number;
+    background?: string;
   }
   /**
    * customize style for header
